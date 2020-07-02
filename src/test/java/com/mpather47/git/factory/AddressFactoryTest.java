@@ -14,12 +14,12 @@ public class AddressFactoryTest {
         Address address = AddressFactory.addAddress("Test case");
         Assert.assertEquals(null, address.getAddress());
     }
-
+    // Tests if the method returns a null value
     @Test
     public void addPostalCode() {
             Address address = AddressFactory.addAddress("Test case");
             Assert.assertEquals(null, address.getPostcode());
     }
-    // Tests if the method returns a null value
+
 
 }
