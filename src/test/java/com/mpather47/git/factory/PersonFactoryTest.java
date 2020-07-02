@@ -11,6 +11,6 @@ public class PersonFactoryTest {
     @Test
     public void createPerson() {
         Person person = PersonFactory.createPerson(13231,"Marcell","1998/08/21");
-        Assert.assertEquals(null, person.getName());
+        Assert.assertNotNull(person);
     }
 }
