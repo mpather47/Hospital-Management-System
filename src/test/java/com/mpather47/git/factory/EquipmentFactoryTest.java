@@ -9,6 +9,8 @@ public class EquipmentFactoryTest extends TestCase {
     Room r;
     public void testCreateEquipment() {
         Equipment e = EquipmentFactory.createEquipment("SC125", "Scalpel", "Auxiliary tool", 5, r);
-        Assert.assertTrue(e instanceof Equipment);
+        Assert.assertNotNull(e);
     }
 }
+
+

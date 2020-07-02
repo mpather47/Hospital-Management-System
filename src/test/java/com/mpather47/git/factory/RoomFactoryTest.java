@@ -12,6 +12,11 @@ public class RoomFactoryTest extends TestCase {
     List e;
     public void testCreateRoom() {
         Room r = RoomFactory.createRoom("e21", e, h);
-        Assert.assertTrue(r instanceof Room);
+        Assert.assertNotNull(r);
     }
 }
+
+
+
+
+
