@@ -6,9 +6,9 @@ public class Person {
     private String dateOfBirth;
 
     public Person(Builder builder) {
-        this.personId = personId;
-        this.name = name;
-        this.dateOfBirth = dateOfBirth;
+        this.personId = builder.personId;
+        this.name = builder.name;
+        this.dateOfBirth = builder.dateOfBirth;
     }
 
     private Person(){
@@ -56,9 +56,9 @@ public class Person {
         }
 
         public Builder copy(Person person){
-            this.personId = personId;
-            this.name = name;
-            this.dateOfBirth = dateOfBirth;
+            this.personId = person.personId;
+            this.name = person.name;
+            this.dateOfBirth = person.dateOfBirth;
             return this;
         }
 

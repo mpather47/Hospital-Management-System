@@ -18,7 +18,7 @@ public class ContactFactoryTest {
     @Test
     public void addhomePhone() {
         Contact contact = ContactFactory.addhomePhone(423487943);
-        Assert.assertEquals(0, contact.getCellphoneNo());
+        Assert.assertEquals(0, contact.getHomePhone());
     }
     // Tests if the method returns a null value
     @Test

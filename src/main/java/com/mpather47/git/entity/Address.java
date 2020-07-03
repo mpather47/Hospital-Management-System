@@ -6,9 +6,9 @@ public class Address {
     private Person details;
 
     public Address(Builder builder) {
-        this.address = address;
-        this.postcode = postcode;
-        this.details = details;
+        this.address = builder.address;
+        this.postcode = builder.postcode;
+        this.details = builder.details;
     }
 
 
@@ -56,10 +56,10 @@ public class Address {
             return this;
         }
 
-        public Builder copy(Person person){
-            this.address = address;
-            this.postcode = postcode;
-            this.details = details;
+        public Builder copy(Address address1){
+            this.address = address1.address;
+            this.postcode = address1.postcode;
+            this.details = address1.details;
             return this;
         }
 
