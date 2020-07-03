@@ -2,8 +2,7 @@ package com.mpather47.git.entity;
 
 public class Person {
     private int personId;
-    private String name;
-    private String dateOfBirth;
+    private String name, dateOfBirth;
 
     public Person(Builder builder) {
         this.personId = builder.personId;
@@ -37,8 +36,7 @@ public class Person {
 
     public static class Builder{
         private int personId;
-        private String name;
-        private String dateOfBirth;
+        private String name,dateOfBirth;
 
         public Builder setPersonId(int personId) {
             this.personId = personId;

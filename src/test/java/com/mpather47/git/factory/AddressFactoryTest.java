@@ -17,7 +17,7 @@ public class AddressFactoryTest {
     // Tests if the method returns a value
     @Test
     public void addPostalCode() {
-            Address address = AddressFactory.addPostalCode("Test case");
+            Address address = AddressFactory.addPostalCode(78798);
             Assert.assertNotNull(address.getPostcode());
     }
 

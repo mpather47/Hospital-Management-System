@@ -1,8 +1,7 @@
 package com.mpather47.git.entity;
 
 public class Contact {
-    private int cellphoneNo;
-    private int homePhone;
+    private int cellphoneNo,homePhone;
     private String email;
     private Person details;
 
@@ -43,8 +42,7 @@ public class Contact {
     }
 
     public static class Builder{
-        private int cellphoneNo;
-        private int homePhone;
+        private int cellphoneNo,homePhone;
         private String email;
         private Person details;
 

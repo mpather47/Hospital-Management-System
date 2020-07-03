@@ -2,7 +2,7 @@ package com.mpather47.git.entity;
 
 public class Address {
     private String address;
-    private String postcode;
+    private int postcode;
     private Person details;
 
     public Address(Builder builder) {
@@ -16,7 +16,7 @@ public class Address {
         return address;
     }
 
-    public String getPostcode() {
+    public int getPostcode() {
         return postcode;
     }
 
@@ -38,7 +38,7 @@ public class Address {
 
     public static class Builder{
         private String address;
-        private String postcode;
+        private int postcode;
         private Person details;
 
         public Builder setAddress(String address) {
@@ -46,7 +46,7 @@ public class Address {
             return this;
         }
 
-        public Builder setPostcode(String postcode) {
+        public Builder setPostcode(int postcode) {
             this.postcode = postcode;
             return this;
         }

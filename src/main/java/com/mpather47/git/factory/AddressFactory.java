@@ -8,7 +8,7 @@ public class AddressFactory {
         return new Address.Builder().setAddress(address).build();
     }
 
-    public static Address addPostalCode(String postalCode){
+    public static Address addPostalCode(int postalCode){
         return new Address.Builder().setPostcode(postalCode).build();
     }
 }
