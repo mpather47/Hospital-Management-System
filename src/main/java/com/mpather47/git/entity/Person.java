@@ -13,7 +13,8 @@ public class Person {
     private Person(){
     }
 
-    public int getPersonId() {
+    public int getPersonId()
+    {
         return personId;
     }
 
