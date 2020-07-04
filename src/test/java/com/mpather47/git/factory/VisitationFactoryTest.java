@@ -13,4 +13,5 @@ public class VisitationFactoryTest {
         Visitation visit = VisitationFactory.createVisitation("1156","13","1123","7032","2020/05/7");
         Assert.assertNotNull(visit);
     }
+    
 }
