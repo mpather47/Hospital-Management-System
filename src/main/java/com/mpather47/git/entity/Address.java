@@ -2,13 +2,13 @@ package com.mpather47.git.entity;
 
 public class Address {
     private String address;
-    private String postcode;
+    private int postcode;
     private Person details;
 
     public Address(Builder builder) {
-        this.address = address;
-        this.postcode = postcode;
-        this.details = details;
+        this.address = builder.address;
+        this.postcode = builder.postcode;
+        this.details = builder.details;
     }
 
 
@@ -16,7 +16,7 @@ public class Address {
         return address;
     }
 
-    public String getPostcode() {
+    public int getPostcode() {
         return postcode;
     }
 
@@ -38,7 +38,7 @@ public class Address {
 
     public static class Builder{
         private String address;
-        private String postcode;
+        private int postcode;
         private Person details;
 
         public Builder setAddress(String address) {
@@ -46,7 +46,7 @@ public class Address {
             return this;
         }
 
-        public Builder setPostcode(String postcode) {
+        public Builder setPostcode(int postcode) {
             this.postcode = postcode;
             return this;
         }
@@ -56,10 +56,10 @@ public class Address {
             return this;
         }
 
-        public Builder copy(Person person){
-            this.address = address;
-            this.postcode = postcode;
-            this.details = details;
+        public Builder copy(Address address1){
+            this.address = address1.address;
+            this.postcode = address1.postcode;
+            this.details = address1.details;
             return this;
         }
 
