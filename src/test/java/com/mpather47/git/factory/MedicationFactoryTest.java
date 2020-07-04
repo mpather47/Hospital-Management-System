@@ -14,4 +14,5 @@ public class MedicationFactoryTest {
         Medication medication = MedicationFactory.createMedication("112","51","244");
         Assert.assertNotNull(medication);
     }
+    
 }
