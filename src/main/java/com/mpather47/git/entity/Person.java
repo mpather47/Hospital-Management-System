@@ -2,13 +2,12 @@ package com.mpather47.git.entity;
 
 public class Person {
     private int personId;
-    private String name;
-    private String dateOfBirth;
+    private String name, dateOfBirth;
 
     public Person(Builder builder) {
-        this.personId = personId;
-        this.name = name;
-        this.dateOfBirth = dateOfBirth;
+        this.personId = builder.personId;
+        this.name = builder.name;
+        this.dateOfBirth = builder.dateOfBirth;
     }
 
     private Person(){
@@ -38,8 +37,7 @@ public class Person {
 
     public static class Builder{
         private int personId;
-        private String name;
-        private String dateOfBirth;
+        private String name,dateOfBirth;
 
         public Builder setPersonId(int personId) {
             this.personId = personId;
@@ -57,9 +55,9 @@ public class Person {
         }
 
         public Builder copy(Person person){
-            this.personId = personId;
-            this.name = name;
-            this.dateOfBirth = dateOfBirth;
+            this.personId = person.personId;
+            this.name = person.name;
+            this.dateOfBirth = person.dateOfBirth;
             return this;
         }
 

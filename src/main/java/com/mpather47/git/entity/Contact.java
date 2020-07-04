@@ -1,18 +1,17 @@
 package com.mpather47.git.entity;
 
 public class Contact {
-    private int cellphoneNo;
-    private int homePhone;
+    private int cellphoneNo,homePhone;
     private String email;
     private Person details;
 
 
 
     public Contact(Builder builder) {
-        this.cellphoneNo = cellphoneNo;
-        this.homePhone = homePhone;
-        this.email = email;
-        this.details = details;
+        this.cellphoneNo = builder.cellphoneNo;
+        this.homePhone = builder.homePhone;
+        this.email = builder.email;
+        this.details = builder.details;
     }
 
 
@@ -43,8 +42,7 @@ public class Contact {
     }
 
     public static class Builder{
-        private int cellphoneNo;
-        private int homePhone;
+        private int cellphoneNo,homePhone;
         private String email;
         private Person details;
 
@@ -68,10 +66,10 @@ public class Contact {
             return this;
         }
         public Builder copy(Contact contact){
-            this.cellphoneNo = cellphoneNo;
-            this.homePhone = homePhone;
-            this.email = email;
-            this.details =details;
+            this.cellphoneNo = contact.cellphoneNo;
+            this.homePhone = contact.homePhone;
+            this.email = contact.email;
+            this.details =contact.details;
             return this;
         }
 
