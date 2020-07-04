@@ -8,17 +8,17 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class AddressFactoryTest {
-    // Tests if the method returns a null value
+    // Tests if the method returns a value
     @Test
     public void addAddress() {
         Address address = AddressFactory.addAddress("Test case");
-        Assert.assertEquals(null, address.getAddress());
+        Assert.assertNotNull(address.getAddress());
     }
-    // Tests if the method returns a null value
+    // Tests if the method returns a value
     @Test
     public void addPostalCode() {
-            Address address = AddressFactory.addAddress("Test case");
-            Assert.assertEquals(null, address.getPostcode());
+            Address address = AddressFactory.addPostalCode(78798);
+            Assert.assertNotNull(address.getPostcode());
     }
 
 
