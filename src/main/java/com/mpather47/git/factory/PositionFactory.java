@@ -1,8 +1,6 @@
 package com.mpather47.git.factory;
 
-
 import com.mpather47.git.entity.Position;
-
 
 public class PositionFactory {
 
