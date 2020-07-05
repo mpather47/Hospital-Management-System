@@ -6,14 +6,12 @@ public class Contact {
     private Person details;
 
 
-
-    public Contact(Builder builder) {
+    private Contact(Builder builder) {
         this.cellphoneNo = builder.cellphoneNo;
         this.homePhone = builder.homePhone;
         this.email = builder.email;
         this.details = builder.details;
     }
-
 
 
     public int getCellphoneNo() {

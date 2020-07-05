@@ -5,7 +5,7 @@ public class Address {
     private int postcode;
     private Person details;
 
-    public Address(Builder builder) {
+    private Address(Builder builder) {
         this.address = builder.address;
         this.postcode = builder.postcode;
         this.details = builder.details;
