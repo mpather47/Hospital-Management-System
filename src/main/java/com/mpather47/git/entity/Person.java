@@ -4,14 +4,12 @@ public class Person {
     private int personId;
     private String name, dateOfBirth;
 
-    public Person(Builder builder) {
+    private Person(Builder builder) {
         this.personId = builder.personId;
         this.name = builder.name;
         this.dateOfBirth = builder.dateOfBirth;
     }
 
-    private Person(){
-    }
 
     public int getPersonId()
     {
