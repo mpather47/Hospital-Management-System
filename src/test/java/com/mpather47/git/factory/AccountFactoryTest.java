@@ -1,6 +1,7 @@
 package com.mpather47.git.factory;
 
 import com.mpather47.git.entity.Account;
+import org.junit.Assert;
 
 import static org.junit.Assert.*;
 
