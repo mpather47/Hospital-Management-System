@@ -1,11 +1,12 @@
 package com.mpather47.git.factory;
 
 import com.mpather47.git.entity.Statement;
+import org.junit.Assert;
 
 import static org.junit.Assert.*;
 
 public class StatementFactoryTest {
-
+// added import for Assert
     @org.junit.Test
     public void createStatement() {
         Statement statement = StatementFactory.createStatement(7);
