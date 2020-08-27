@@ -1,9 +1,10 @@
-package com.mpather47.git.repository.person.impl;
+package com.mpather47.git.repository.person.impl.person;
 
 import com.mpather47.git.entity.person.Contact;
 import com.mpather47.git.factory.person.ContactFactory;
 import com.mpather47.git.factory.person.PersonFactory;
 import com.mpather47.git.repository.person.ContactRepository;
+import com.mpather47.git.repository.person.impl.ContactRepositoryImpl;
 import com.mpather47.git.utility.Helper;
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
