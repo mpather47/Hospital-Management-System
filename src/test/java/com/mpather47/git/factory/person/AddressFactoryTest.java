@@ -10,7 +10,7 @@ import org.junit.Test;
 public class AddressFactoryTest {
     // Tests if the method returns a value
     @Test
-    public void addAddress() {
+    public static void addAddress() {
         Helper uuid = new Helper();
         Address address = AddressFactory.addAddress("492094",23423, PersonFactory.createPerson(uuid.generateId(),"Marcell","1998/08/21"));
         System.out.println(address);

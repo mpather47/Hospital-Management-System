@@ -1,8 +1,8 @@
 package com.mpather47.git.entity.person;
 
 public class Person {
-    private String personId;
-    private String name, dateOfBirth;
+
+    private String personId,name, dateOfBirth;
 
     private Person(Builder builder) {
         this.personId = builder.personId;
@@ -28,14 +28,13 @@ public class Person {
     public String toString() {
         return "Person{" +
                 "personId=" + personId +
-                ", fName='" + name + '\'' +
+                ", name='" + name + '\'' +
                 ", date=" + dateOfBirth +
                 '}';
     }
 
     public static class Builder{
-        private String personId;
-        private String name,dateOfBirth;
+        private String personId, name,dateOfBirth;
 
         public Builder setPersonId(String personId) {
             this.personId = personId;
