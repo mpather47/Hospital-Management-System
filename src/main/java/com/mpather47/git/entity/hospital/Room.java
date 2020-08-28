@@ -13,7 +13,7 @@ public class Room {
         this.details = b.details;
     }
 
-    public String getroomId() {
+    public String getRoomId() {
         return roomId;
     }
 

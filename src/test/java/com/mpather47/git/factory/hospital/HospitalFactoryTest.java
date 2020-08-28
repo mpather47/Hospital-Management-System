@@ -1,7 +1,6 @@
 package com.mpather47.git.factory.hospital;
 
 import com.mpather47.git.entity.hospital.Hospital;
-import com.mpather47.git.factory.hospital.HospitalFactory;
 import junit.framework.TestCase;
 import org.junit.Assert;
 
