@@ -1,7 +1,7 @@
 package com.mpather47.git.entity.hospital;
 
 public class Equipment {
-    private String equipment;
+    private String equipmentId;
     private String name;
     private String desc;
     private int quantity;
@@ -9,15 +9,15 @@ public class Equipment {
 
 
     public Equipment(Builder b){
-        this.equipment = b.equipment;
+        this.equipmentId = b.equipment;
         this.name = b.name;
         this.desc = b.desc;
         this.quantity = b.quantity;
         this.details = b.details;
     }
 
-    public String getEquipment() {
-        return equipment;
+    public String getEquipmentId() {
+        return equipmentId;
     }
 
     public String getName() {
@@ -37,7 +37,7 @@ public class Equipment {
     @Override
     public String toString() {
         return "Equipment{" +
-                "equipment='" + equipment + '\'' +
+                "equipment='" + equipmentId + '\'' +
                 ", name='" + name + '\'' +
                 ", desc='" + desc + '\'' +
                 ", quantity=" + quantity +
@@ -77,7 +77,7 @@ public class Equipment {
             return this;
         }
         public Builder copy(Equipment e){
-            this.equipment = e.equipment;
+            this.equipment = e.equipmentId;
             this.name = e.name;
             this.desc = e.desc;
             this.quantity = e.quantity;
