@@ -1,4 +1,4 @@
-package repository.hospital.impl.hospital;
+package com.mpather47.git.repository.person.impl.hospital;
 
 import com.mpather47.git.entity.hospital.Equipment;
 import com.mpather47.git.factory.hospital.EquipmentFactory;
