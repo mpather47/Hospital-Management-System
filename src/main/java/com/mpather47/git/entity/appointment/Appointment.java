@@ -1,11 +1,11 @@
 package com.mpather47.git.entity.appointment;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Appointment {
     private String appointmentId;
     private String patientId;
-    private Date bookingDate;
+    private LocalDate bookingDate;
 
     public Appointment (AppointmentBuilder appointmentBuilder){
         this.appointmentId = appointmentBuilder.appointmentId;
@@ -21,14 +21,14 @@ public class Appointment {
         return patientId;
     }
 
-    public Date getBookingDate() {
+    public LocalDate getBookingDate() {
         return bookingDate;
     }
 
     public static class AppointmentBuilder{
         private String appointmentId;
         private String patientId;
-        private Date bookingDate;
+        private LocalDate bookingDate;
 
         public AppointmentBuilder(){}
 
@@ -42,7 +42,7 @@ public class Appointment {
             return this;
         }
 
-        public AppointmentBuilder setBookingDate(Date bookingDate) {
+        public AppointmentBuilder setBookingDate(LocalDate bookingDate) {
             this.bookingDate = bookingDate;
             return this;
         }
