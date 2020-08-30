@@ -1,38 +1,63 @@
 package com.mpather47.git.entity.account;
 
 public class Statement {
-
-    private int statementNum;
+    private String statementNum;
+    private String  date;
+    private double paymentDue;
     private Account details;
 
 
     public Statement(Builder builder){
         this.statementNum = builder.statementNum;
+        this.paymentDue = builder.paymentDue;
+        this.date = builder.date;
         this.details = builder.details;
 
     }
 
-    public int getStatementNum() {
-        return statementNum; }
+    public String getStatementNum() { return statementNum; }
 
-    public Account getDetails() {
+    public String getDate() {
+        return date;
+    }
 
-        return details; }
+    public Double getPaymentDue() {
+        return paymentDue;
+    }
 
+    public Account getDetails() { return details; }
 
-
-    public String toString(){
-
-        return "Statement" + "  statementNum: " +
-                statementNum + " details: " + details  ;
+    @Override
+    public String toString() {
+        return "Statement{" +
+                "statementNum='" + statementNum + '\'' +
+                ", date='" + date + '\'' +
+                ", paymentDue=" + paymentDue +
+                ", details=" + details +
+                '}';
     }
 
     public static class Builder {
-        private int statementNum;
+
+        private String statementNum;
+        private String date;
+        private double paymentDue;
         private Account details;
 
-        public Builder setStatementNum(int statementNum) {
+        public Builder setStatementNum(String statementNum) {
             this.statementNum = statementNum;
+            return this;
+        }
+
+        public Builder setDate(String date) {
+
+            this.date = date;
+            return this;
+        }
+
+        public Builder setPaymentDue(double paymentDue) {
+
+            this.paymentDue = paymentDue;
             return this;
         }
 
@@ -44,6 +69,8 @@ public class Statement {
 
         public Builder copy(Statement statement){
             this.statementNum = statement.statementNum;
+            this.date = statement.date;
+            this.paymentDue = statement.paymentDue;
             this.details = statement.details;
             return this;
         }
@@ -53,5 +80,7 @@ public class Statement {
             return new Statement(this);
 
         }
+
+
     }
 }
