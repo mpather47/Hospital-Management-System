@@ -36,7 +36,7 @@ public class Prescription {
         private String prescriptionId, medicationId, visitId;
 
 
-        public Builder setPrescriptionId(String prescriptionID) {
+        public Builder setPrescriptionId(String prescriptionId) {
             this.prescriptionId = prescriptionId;
             return this;
         }
