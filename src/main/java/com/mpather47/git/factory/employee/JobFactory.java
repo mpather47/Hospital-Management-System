@@ -14,5 +14,7 @@ public static Job createJob (String jobTittle){
 }
 
 
-
+    public static Job buildJob(String jobTittle) {
+        return null;
+    }
 }
