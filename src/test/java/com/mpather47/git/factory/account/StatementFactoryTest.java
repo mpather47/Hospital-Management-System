@@ -1,14 +1,19 @@
 package com.mpather47.git.factory.account;
 
 import com.mpather47.git.entity.account.Statement;
-import com.mpather47.git.factory.account.StatementFactory;
+import com.mpather47.git.utility.Helper;
 import org.junit.Assert;
 
+
 public class StatementFactoryTest {
-// added import for Assert
+
     @org.junit.Test
     public void createStatement() {
-        Statement statement = StatementFactory.createStatement(7);
-        Assert.assertEquals(7, statement.getStatementNum());
+        Helper uuid = new Helper();
+        Statement statement = StatementFactory.createStatement(uuid.generateId(),"12/24/2020",5000.00,AccountFactory.createAccount(uuid.generateId(),300.00,"Cash"));
+        Assert.assertNotNull(statement.getStatementNum());
+        System.out.println(statement);
+
+
     }
 }
