@@ -16,7 +16,8 @@ import static org.junit.Assert.*;
 public class PositionRepositoryImplTest {
 
     private static PositionRepository repository= new PositionRepositoryImpl();
-    private Position position = PositionFactory.buildJob("CEO");
+    //private Position position = PositionFactory.buildJob("CEO");
+    private Position position = PositionFactory.createPosition("76555","CEO");
 
     @Test
     public void a_create() {
