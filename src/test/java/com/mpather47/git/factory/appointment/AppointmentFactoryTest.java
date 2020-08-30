@@ -5,6 +5,7 @@ import com.mpather47.git.factory.appointment.AppointmentFactory;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class AppointmentFactoryTest {
@@ -13,9 +14,9 @@ public class AppointmentFactoryTest {
         Appointment appointment = AppointmentFactory.createAppointment(
                 "102C3",
                 "124G",
-                new Date());
+                LocalDate.of(2020,9,12));
 
-        Date afterApp = new Date();
-        Assert.assertTrue(appointment.getBookingDate().before(afterApp));
+        LocalDate afterApp = LocalDate.of(2020,10,4);
+        Assert.assertEquals(appointment.getBookingDate(), afterApp);
     }
 }
