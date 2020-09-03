@@ -33,6 +33,7 @@ public class ContactRepositoryImplTest {
     @Test
     public void c_update()
     {
+
         Contact updated = new Contact.Builder().copy(contact).setCellphoneNo(1111111).setHomePhone(35344).setEmail("gsgg").build();
         updated = repository.update(updated);
         System.out.println("Updated: " + updated);

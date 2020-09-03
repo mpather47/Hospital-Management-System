@@ -34,18 +34,21 @@ public class AddressRepositoryImplTest {
     @Test
     public void c_update()
     {
+
         Address updated = new Address.Builder().copy(address).setAddress("20 Address Street").setPostcode(1111111).build();
         updated = repository.update(updated);
         System.out.println("Updated: " + updated);
     }
 
     @Test
+
     public void e_delete(){
         boolean deleted = repository.delete(address.getDetails().getPersonId());
         Assert.assertTrue(deleted);
     }
 
     @Test
+
     public void d_getAll(){
         System.out.println("Get all: " + repository.getAll());
     }
