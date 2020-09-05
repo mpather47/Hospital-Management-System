@@ -37,6 +37,11 @@ public class Employee {
         private String certification;
         private List<String> languages;
 
+        @Override
+        public String toString(){
+
+            return "EmployeeID: "+"Education: "+"Certification: "+"languages: "+employeeID+" "+education+" "+certification+" "+languages;
+        }
 
         public EmployeeBuilder(){}
 
