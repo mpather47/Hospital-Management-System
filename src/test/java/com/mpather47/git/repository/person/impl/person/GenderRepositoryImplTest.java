@@ -1,8 +1,9 @@
-package com.mpather47.git.repository.person.impl;
+package com.mpather47.git.repository.person.impl.person;
 
 import com.mpather47.git.entity.person.Gender;
 import com.mpather47.git.factory.person.GenderFactory;
 import com.mpather47.git.repository.person.GenderRepository;
+import com.mpather47.git.repository.person.impl.GenderRepositoryImpl;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
