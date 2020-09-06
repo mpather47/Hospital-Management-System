@@ -31,6 +31,16 @@ public class Employee {
         return employeeID;
     }
 
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "employeeID='" + employeeID + '\'' +
+                ", education='" + education + '\'' +
+                ", certification='" + certification + '\'' +
+                ", languages=" + languages +
+                '}';
+    }
+
     public static class EmployeeBuilder{
         private String employeeID;
         private String education;

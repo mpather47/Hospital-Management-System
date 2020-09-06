@@ -10,3 +10,4 @@ public interface AddressService extends IService<Address, String> {
 
     //unique business logic
 }
+
