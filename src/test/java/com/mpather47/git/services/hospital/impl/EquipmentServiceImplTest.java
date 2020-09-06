@@ -1,11 +1,10 @@
-package com.mpather47.git.repository.hospital.impl;
+package com.mpather47.git.services.hospital.impl;
 
 import com.mpather47.git.entity.hospital.Equipment;
 import com.mpather47.git.factory.hospital.EquipmentFactory;
 import com.mpather47.git.factory.hospital.HospitalFactory;
 import com.mpather47.git.factory.hospital.RoomFactory;
-import com.mpather47.git.repository.hospital.EquipmentRepository;
-import com.mpather47.git.repository.hospital.impl.EquipmentRepositoryImpl;
+import com.mpather47.git.services.hospital.EquipmentService;
 import com.mpather47.git.utility.Helper;
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
@@ -13,47 +12,47 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
 import java.util.List;
+import java.util.Set;
+
+import static org.junit.Assert.assertEquals;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class EquipmentRepositoryImplTest {
+public class EquipmentServiceImplTest {
     private static List e;
-    private static EquipmentRepository repository = EquipmentRepositoryImpl.getRepository();
+    private static EquipmentService service = EquipmentServiceImpl.getService();
     private static Helper help = new Helper();
     private static Equipment equipment = EquipmentFactory.createEquipment(help.generateId(), "Scalpel", "Bladed Instrument utilized in surgery",
             4, RoomFactory.createRoom(help.generateId(),e , HospitalFactory.createHospital(help.generateId(), "St Mary", 1456)));
-
-
     @Test
-    public void a_create(){
-        Equipment created = repository.create(equipment);
+    public void d_testGetAll() {
+        Set<Equipment> equipment = service.getAll();
+        assertEquals(1,equipment.size());
+        System.out.println("All equipment: " + equipment);
+    }
+    @Test
+    public void a_testCreate() {
+        Equipment created = service.create(equipment);
         Assert.assertEquals(equipment.getEquipmentId(), created.getEquipmentId());
         System.out.println("Created:" + created);
     }
-
     @Test
-    public void b_read(){
-        Equipment read = repository.read(equipment.getEquipmentId());
+    public void b_testRead() {
+        Equipment read = service.read(equipment.getEquipmentId());
         System.out.println("Read:" + read);
     }
-
     @Test
-    public void c_update()
-    {
+    public void c_testUpdate() {
         Equipment updated = new Equipment.Builder().copy(equipment).setName("Jumper").build();
-        updated = repository.update(updated);
+        updated = service.update(updated);
         System.out.println("Updated: " + updated);
     }
 
     @Test
-    public void d_delete(){
-        boolean deleted = repository.delete(equipment.getEquipmentId());
+    public void e_testDelete() {
+        boolean deleted = service.delete(equipment.getEquipmentId());
         Assert.assertTrue(deleted);
     }
-
-    @Test
-    public void e_getAll(){
-        System.out.println("Get all: " + repository.getAll());
-    }
-
-
 }
+
+
+
