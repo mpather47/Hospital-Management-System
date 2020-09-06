@@ -45,7 +45,7 @@ public class PositionServiceImplTest {
     }
 
     @Test
-    public void read() {
+    public void b_read() {
 
         Position read = service.read(position.getPositionCode());
         System.out.println("Read" + read);
@@ -55,7 +55,7 @@ public class PositionServiceImplTest {
     }
 
     @Test
-    public void update() {
+    public void c_update() {
 
         Position updated = new Position.Builder().copy(position).setPositionCode("Fulltime").build();
         updated = service.update(updated);
@@ -64,7 +64,7 @@ public class PositionServiceImplTest {
     }
 
     @Test
-    public void delete() {
+    public void e_delete() {
         boolean deleted = service.delete(position.getPositionCode());
         Assert.assertTrue(deleted);
 
