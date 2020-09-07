@@ -1,8 +1,8 @@
-package com.mpather47.git.repository.person.impl;
+package com.mpather47.git.services.person.impl;
 
 import com.mpather47.git.entity.person.Gender;
 import com.mpather47.git.factory.person.GenderFactory;
-import com.mpather47.git.repository.person.GenderRepository;
+import com.mpather47.git.services.person.GenderService;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
@@ -10,24 +10,22 @@ import org.junit.runners.MethodSorters;
 import java.util.Set;
 
 import static org.junit.Assert.*;
-
-
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class GenderRepositoryImplTest {
 
-    private static GenderRepository repository = GenderRepositoryImpl.getGenderRepository();
+public class GenderServiceImplTest {
 
+    private static GenderService service = GenderServiceImpl.getService();
     private static Gender gender = GenderFactory.createGender(1, "Male");
 
     @Test
     public void a_create() {
-        Gender created = repository.create(gender);
+        Gender created = service.create(gender);
         assertEquals(gender.getGenderId(), created.getGenderId());
     }
 
     @Test
     public void b_read() {
-        Gender read = repository.read(gender.getGenderId());
+        Gender read = service.read(gender.getGenderId());
         assertEquals(gender.getGenderId(), read.getGenderId());
     }
 
@@ -36,19 +34,20 @@ public class GenderRepositoryImplTest {
         Gender updated = new Gender.GenderBuilder().copy(gender).
                 setGenderType("Female").build();
 
-        updated = repository.update(updated);
+        updated = service.update(updated);
         assertEquals(gender.getGenderId(), updated.getGenderId());
     }
 
     @Test
     public void e_delete() {
-        repository.delete(gender.getGenderId());
-        assertNull(repository.read(gender.getGenderId()));
+        service.delete(gender.getGenderId());
+        assertNull(service.read(gender.getGenderId()));
     }
 
     @Test
     public void d_getAll() {
-        Set<Gender> genders = repository.getAll();
+        Set<Gender> genders = service.getAll();
         assertEquals(1, genders.size());
     }
+
 }
