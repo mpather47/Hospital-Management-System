@@ -2,7 +2,7 @@ package com.mpather47.git.entity.person;
 
 import java.io.Serializable;
 
-public class Address implements Serializable {
+public class Address {
     private String address;
     private int postcode;
     private Person details;

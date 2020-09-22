@@ -1,7 +1,6 @@
 package com.mpather47.git.controller;
 
 import com.mpather47.git.entity.person.Contact;
-import com.mpather47.git.entity.person.Person;
 import com.mpather47.git.factory.person.ContactFactory;
 import com.mpather47.git.factory.person.PersonFactory;
 import org.junit.FixMethodOrder;
@@ -45,7 +44,7 @@ public class ContactControllerTest {
 
     @Test
     public void b_read(){
-        String url = baseURL + "read/" +contact.getDetails().getPersonId();
+        String url = baseURL + "read/"+contact.getDetails().getPersonId();
         System.out.println("URL: " + url);
         ResponseEntity<Contact> response = restTemplate.getForEntity(url,Contact.class);
         contact = response.getBody();

@@ -2,7 +2,7 @@ package com.mpather47.git.entity.person;
 
 import java.io.Serializable;
 
-public class Contact implements Serializable {
+public class Contact  {
     private int cellphoneNo,homePhone;
     private String email;
     private Person details;

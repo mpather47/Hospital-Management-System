@@ -25,7 +25,7 @@ public class ContactController {
         return contactService.create(newContact);
     }
 
-    @GetMapping("/read{id}")
+    @GetMapping("/read/{id}")
     public Contact read(@PathVariable String id){
         return contactService.read(id);
     }
