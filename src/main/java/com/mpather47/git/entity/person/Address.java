@@ -1,10 +1,15 @@
 package com.mpather47.git.entity.person;
 
-public class Address {
+import java.io.Serializable;
+
+public class Address implements Serializable {
     private String address;
     private int postcode;
     private Person details;
 
+    private Address(){
+
+    }
     private Address(Builder builder) {
         this.address = builder.address;
         this.postcode = builder.postcode;

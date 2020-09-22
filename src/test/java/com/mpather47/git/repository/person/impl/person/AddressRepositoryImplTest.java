@@ -15,7 +15,7 @@ import org.junit.runners.MethodSorters;
 public class AddressRepositoryImplTest {
     private static AddressRepository repository = AddressRepositoryImpl.getRepository();
     private static Helper help = new Helper();
-    private static Address address = AddressFactory.addAddress("15 Address Street", 324243,PersonFactory.createPerson(help.generateId(), "Marcelll Pather","1998/21/08"));
+    private static Address address = AddressFactory.addAddress("15 Address Street", 324243,PersonFactory.createPerson( "Marcelll Pather","1998/21/08"));
 
 
     @Test

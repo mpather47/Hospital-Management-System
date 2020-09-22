@@ -15,7 +15,7 @@ import org.junit.runners.MethodSorters;
 public class ContactRepositoryImplTest {
     private static ContactRepository repository = ContactRepositoryImpl.getRepository();
     private static Helper help = new Helper();
-    private static Contact contact = ContactFactory.addContact(24234433,32434323,"email@email.com", PersonFactory.createPerson(help.generateId(),"Marcell Pather", "1998/08/21"));
+    private static Contact contact = ContactFactory.addContact(24234433,32434323,"email@email.com", PersonFactory.createPerson("Marcell Pather", "1998/08/21"));
 
     @Test
     public void a_create(){

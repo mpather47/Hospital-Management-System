@@ -1,11 +1,15 @@
 package com.mpather47.git.entity.person;
 
-public class Contact {
+import java.io.Serializable;
+
+public class Contact implements Serializable {
     private int cellphoneNo,homePhone;
     private String email;
     private Person details;
 
+    private Contact(){
 
+    }
     private Contact(Builder builder) {
         this.cellphoneNo = builder.cellphoneNo;
         this.homePhone = builder.homePhone;

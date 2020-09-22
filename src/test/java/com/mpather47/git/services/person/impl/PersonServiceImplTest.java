@@ -16,7 +16,7 @@ import static org.junit.Assert.assertEquals;
 public class PersonServiceImplTest {
     private static PersonService service = PersonServiceImpl.getService();
     private static Helper help = new Helper();
-    private static Person person = PersonFactory.createPerson(help.generateId(),"Marcell Panther", "1998/08/21");
+    private static Person person = PersonFactory.createPerson("Marcell Panther", "1998/08/21");
 
     @Test
     public void d_testGetAll() {

@@ -20,7 +20,7 @@ import static org.junit.Assert.assertEquals;
 public class AddressServiceImplTest {
     private static AddressService service = AddressServiceImpl.getService();
     private static Helper help = new Helper();
-    private static Address address = AddressFactory.addAddress("15 Address Street", 324243,PersonFactory.createPerson(help.generateId(), "Marcelll Pather","1998/21/08"));
+    private static Address address = AddressFactory.addAddress("15 Address Street", 324243,PersonFactory.createPerson( "Marcelll Pather","1998/21/08"));
 
     @Test
     public void d_testGetAll() {
