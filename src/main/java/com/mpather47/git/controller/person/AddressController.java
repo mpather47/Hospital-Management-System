@@ -20,18 +20,42 @@ public class AddressController {
 
     @PostMapping("/create")
     public Address create(@RequestBody Address address){
+        boolean addressExist = false;
         Address newAddress = AddressFactory.addAddress(address.getAddress(),address.getPostcode(),address.getDetails());
-        return addressService.create(newAddress);
+        if(newAddress !=null){
+            addressExist = true;
+        }
+
+        if(addressExist){
+            return addressService.create(newAddress);
+        }
+        else return AddressFactory.addAddress(null,0,null);
     }
 
     @GetMapping("/read/{id}")
     public Address read(@PathVariable String id){
-        return addressService.read(id);
+        boolean addressExist = false;
+        if(id !=null){
+            addressExist = true;
+        }
+
+        if(addressExist = true){
+            return addressService.read(id);
+        }
+        else return null;
     }
 
     @PostMapping("/update")
     public Address update(@RequestBody Address address){
-        return addressService.update(address);
+        boolean addressExist = false;
+        if(address !=null){
+            addressExist = true;
+        }
+
+        if(addressExist = true){
+            return addressService.update(address);
+        }
+        else return null;
     }
 
     @GetMapping("/all")
@@ -41,6 +65,14 @@ public class AddressController {
 
     @DeleteMapping("/delete/{id}")
     public boolean delete(@PathVariable String id){
-        return addressService.delete(id);
+        boolean addressExist = false;
+        if(id !=null){
+            addressExist = true;
+        }
+
+        if(addressExist = true){
+            return addressService.delete(id);
+        }
+        else return false;
     }
 }

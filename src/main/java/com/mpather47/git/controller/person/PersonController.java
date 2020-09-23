@@ -17,18 +17,44 @@ public class PersonController {
 
     @PostMapping("/create")
     public Person create(@RequestBody Person person){
+        boolean personExist = false;
         Person newPerson = PersonFactory.createPerson(person.getName(), person.getDateOfBirth());
-        return personService.create(newPerson);
+        if(newPerson !=null){
+            personExist = true;
+        }
+
+        if(personExist){
+            return personService.create(newPerson);
+        }
+
+        else return PersonFactory.createPerson("","");
     }
 
     @GetMapping("/read/{id}")
     public Person read(@PathVariable String id){
-        return personService.read(id);
+        boolean personExist = false;
+        if(id !=null){
+            personExist = true;
+        }
+
+        if(personExist = true){
+            return personService.read(id);
+        }
+        else return null;
     }
 
     @PostMapping("/update")
     public Person update(@RequestBody Person person){
-        return personService.update(person);
+        boolean personExist = false;
+        if(person !=null) {
+            personExist = true;
+        }
+
+        if(personExist){
+            return personService.update(person);
+        }
+        else return null;
+
     }
 
     @GetMapping("/all")
@@ -38,6 +64,15 @@ public class PersonController {
 
     @DeleteMapping("/delete/{id}")
     public boolean delete(@PathVariable String id){
-        return personService.delete(id);
+        boolean personExist = false;
+        if(id != null){
+            personExist = true;
+        }
+
+        if(personExist){
+            return personService.delete(id);
+
+        }
+        else return false;
     }
 }
