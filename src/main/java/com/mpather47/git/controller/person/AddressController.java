@@ -24,7 +24,7 @@ public class AddressController {
         return addressService.create(newAddress);
     }
 
-    @GetMapping("/read{id}")
+    @GetMapping("/read/{id}")
     public Address read(@PathVariable String id){
         return addressService.read(id);
     }

@@ -3,6 +3,9 @@ package com.mpather47.git.entity.person;
 import java.io.Serializable;
 
 public class Contact  {
+
+
+    private String contactId;
     private int cellphoneNo,homePhone;
     private String email;
     private Person details;
@@ -11,13 +14,16 @@ public class Contact  {
 
     }
     private Contact(Builder builder) {
+        this.contactId = builder.contactId;
         this.cellphoneNo = builder.cellphoneNo;
         this.homePhone = builder.homePhone;
         this.email = builder.email;
         this.details = builder.details;
     }
 
-
+    public String getContactId() {
+        return contactId;
+    }
     public int getCellphoneNo() {
         return cellphoneNo;
     }
@@ -33,20 +39,28 @@ public class Contact  {
         return details;
     }
 
+
     @Override
     public String toString() {
         return "Contact{" +
-                "cellphoneNo='" + cellphoneNo + '\'' +
-                ", homePhone='" + homePhone + '\'' +
+                "contactId='" + contactId + '\'' +
+                ", cellphoneNo=" + cellphoneNo +
+                ", homePhone=" + homePhone +
                 ", email='" + email + '\'' +
                 ", details=" + details +
                 '}';
     }
 
     public static class Builder{
+        private String contactId;
         private int cellphoneNo,homePhone;
         private String email;
         private Person details;
+
+        public Builder setContactId(String contactId) {
+            this.contactId = contactId;
+            return this;
+        }
 
         public Builder setCellphoneNo(int cellphoneNo) {
             this.cellphoneNo = cellphoneNo;
@@ -68,6 +82,7 @@ public class Contact  {
             return this;
         }
         public Builder copy(Contact contact){
+            this.contactId = contact.contactId;
             this.cellphoneNo = contact.cellphoneNo;
             this.homePhone = contact.homePhone;
             this.email = contact.email;

@@ -24,7 +24,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @RunWith(SpringRunner.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class AddressControllerTest {
-    private Address address = AddressFactory.addAddress("5454",234234,PersonFactory.createPerson("424234","324324"));
+    private static Address address = AddressFactory.addAddress("5454",234234,PersonFactory.createPerson("424234","324324"));
     @Autowired
     private TestRestTemplate restTemplate;
     private String baseURL = "http://localhost:8080/address/";
@@ -39,16 +39,15 @@ public class AddressControllerTest {
         assertNotNull(postResponse.getBody());
         address = postResponse.getBody();
         System.out.println("Saved data: " + address);
-        assertEquals(address.getDetails().getPersonId(),postResponse.getBody().getDetails().getPersonId());
+        assertEquals(address.getAddressId(),postResponse.getBody().getAddressId());
     }
 
     @Test
     public void b_read(){
-        String url = baseURL + "read/" +address.getDetails().getPersonId();
+        String url = baseURL + "read/" +address.getAddressId();
         System.out.println("URL: " + url);
         ResponseEntity<Address> response = restTemplate.getForEntity(url,Address.class);
-        address = response.getBody();
-        assertEquals(address.getDetails().getPersonId(),response.getBody().getDetails().getPersonId());
+        assertEquals(address.getAddressId(),response.getBody().getAddressId());
     }
 
     @Test
@@ -57,14 +56,13 @@ public class AddressControllerTest {
         String url = baseURL + "update/";
         System.out.println("Post data:" + updated);
         ResponseEntity<Address> response = restTemplate.postForEntity(url,updated, Address.class);
-        address = response.getBody();
-        System.out.println(address);
-        assertEquals(address.getDetails().getPersonId(),response.getBody().getDetails().getPersonId());
+        System.out.println(response);
+        assertEquals(address.getAddressId(),response.getBody().getAddressId());
     }
 
     @Test
     public void e_delete(){
-        String url = baseURL + "delete/" + address.getDetails().getPersonId();
+        String url = baseURL + "delete/" + address.getAddressId();
         System.out.println("URL: " + url);
         restTemplate.delete(url);
     }

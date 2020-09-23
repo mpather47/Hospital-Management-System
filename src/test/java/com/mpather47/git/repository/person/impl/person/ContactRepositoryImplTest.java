@@ -14,7 +14,6 @@ import org.junit.runners.MethodSorters;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class ContactRepositoryImplTest {
     private static ContactRepository repository = ContactRepositoryImpl.getRepository();
-    private static Helper help = new Helper();
     private static Contact contact = ContactFactory.addContact(24234433,32434323,"email@email.com", PersonFactory.createPerson("Marcell Pather", "1998/08/21"));
 
     @Test
@@ -26,7 +25,7 @@ public class ContactRepositoryImplTest {
 
     @Test
     public void b_read(){
-        Contact read = repository.read(contact.getDetails().getPersonId());
+        Contact read = repository.read(contact.getContactId());
         System.out.println("Read:" + read);
     }
 
@@ -41,7 +40,7 @@ public class ContactRepositoryImplTest {
 
     @Test
     public void e_delete(){
-        boolean deleted = repository.delete(contact.getDetails().getPersonId());
+        boolean deleted = repository.delete(contact.getContactId());
         Assert.assertTrue(deleted);
     }
 

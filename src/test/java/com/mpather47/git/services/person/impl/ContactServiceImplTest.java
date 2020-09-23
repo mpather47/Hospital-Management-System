@@ -31,12 +31,12 @@ public class ContactServiceImplTest {
     @Test
     public void a_testCreate() {
         Contact created = service.create(contact);
-        Assert.assertEquals(contact.getDetails().getPersonId(),created.getDetails().getPersonId());
+        Assert.assertEquals(contact.getContactId(),created.getContactId());
         System.out.println("Created:" + created);
     }
     @Test
     public void b_testRead() {
-        Contact read = service.read(contact.getDetails().getPersonId());
+        Contact read = service.read(contact.getContactId());
         System.out.println("Read:" + read);
     }
     @Test
@@ -47,7 +47,7 @@ public class ContactServiceImplTest {
     }
     @Test
     public void e_testDelete() {
-        boolean deleted = service.delete(contact.getDetails().getPersonId());
+        boolean deleted = service.delete(contact.getContactId());
         Assert.assertTrue(deleted);
     }
 }

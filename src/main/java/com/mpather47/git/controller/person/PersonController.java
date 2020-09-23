@@ -21,7 +21,7 @@ public class PersonController {
         return personService.create(newPerson);
     }
 
-    @GetMapping("/read{id}")
+    @GetMapping("/read/{id}")
     public Person read(@PathVariable String id){
         return personService.read(id);
     }
@@ -30,6 +30,7 @@ public class PersonController {
     public Person update(@RequestBody Person person){
         return personService.update(person);
     }
+
     @GetMapping("/all")
     public Set<Person> getAll(){
         return personService.getAll();

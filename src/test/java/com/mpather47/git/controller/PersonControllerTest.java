@@ -1,5 +1,6 @@
 package com.mpather47.git.controller;
 
+import com.mpather47.git.entity.person.Address;
 import com.mpather47.git.entity.person.Person;
 import com.mpather47.git.factory.person.PersonFactory;
 import org.junit.FixMethodOrder;
@@ -23,7 +24,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class PersonControllerTest {
 
-    private Person person = PersonFactory.createPerson("Marcell","1998/08/21");
+    private static Person person = PersonFactory.createPerson("Marcell","1998/08/21");
 
     @Autowired
     private TestRestTemplate restTemplate;
@@ -31,34 +32,32 @@ public class PersonControllerTest {
 
     @Test
     public void a_create(){
-        String url = baseURL + "create/";
-        System.out.println("URL: " + url);
-        System.out.println("Post data: " + person);
-        ResponseEntity<Person> postResponse = restTemplate.postForEntity(url,person,Person.class);
-        assertNotNull(postResponse);
-        assertNotNull(postResponse.getBody());
-        person = postResponse.getBody();
+        String url = baseURL + "create";
+        System.out.println("URL" + url);
+        System.out.printf("Post data: " + person);
+        ResponseEntity<Person> posResponse = restTemplate.postForEntity(url, person, Person.class);
+        assertNotNull(posResponse);
+        assertNotNull(posResponse.getBody());
+        person = posResponse.getBody();
         System.out.println("Saved data: " + person);
-        assertEquals(person.getPersonId(),postResponse.getBody().getPersonId());
+        assertEquals(person.getPersonId(),posResponse.getBody().getPersonId());
     }
 
     @Test
     public void b_read(){
-        String url = baseURL + "read/" +person.getPersonId();
+        String url = baseURL +  "read/" + person.getPersonId();
         System.out.println("URL: " + url);
         ResponseEntity<Person> response = restTemplate.getForEntity(url,Person.class);
-        person = response.getBody();
         assertEquals(person.getPersonId(),response.getBody().getPersonId());
     }
 
     @Test
     public void c_update(){
-        Person updated = new Person.Builder().copy(person).setName("Marvel").setDateOfBirth("1998/08/21").build();
+        Person updated = new Person.Builder().copy(person).setName("gsgfgd").setDateOfBirth("fgsdgsd").build();
         String url = baseURL + "update/";
         System.out.println("Post data:" + updated);
         ResponseEntity<Person> response = restTemplate.postForEntity(url,updated, Person.class);
-        person = response.getBody();
-        System.out.println(person);
+        System.out.println(response);
         assertEquals(person.getPersonId(),response.getBody().getPersonId());
     }
 
@@ -74,7 +73,7 @@ public class PersonControllerTest {
         String url = baseURL + "all/";
         HttpHeaders headers= new HttpHeaders();
         HttpEntity<String> entity = new HttpEntity<>(null,headers);
-        ResponseEntity<String> response = restTemplate.exchange(url,HttpMethod.GET,entity,String.class);
+        ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET,entity,String.class);
         System.out.println(response);
         System.out.println(response.getBody());
 
