@@ -15,7 +15,7 @@ import org.junit.runners.MethodSorters;
 public class PersonRepositoryImplTest {
     private static PersonRepository repository = PersonRepositoryImpl.getRepository();
     private static Helper help = new Helper();
-    private static Person person = PersonFactory.createPerson(help.generateId(),"Marcell Panther", "1998/08/21");
+    private static Person person = PersonFactory.createPerson("Marcell Panther", "1998/08/21");
 
     @Test
     public void a_create(){

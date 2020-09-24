@@ -11,7 +11,7 @@ public class ContactFactoryTest {
     @Test
     public void addPhoneNo() {
         Helper helper = new Helper();
-        Contact contact = ContactFactory.addContact(2342343,234242,"email@gmail.com", PersonFactory.createPerson(helper.generateId(),"Marcell Pather", "1998/08/21"));
+        Contact contact = ContactFactory.addContact(2342343,234242,"email@gmail.com", PersonFactory.createPerson("Marcell Pather", "1998/08/21"));
         System.out.println(contact);
         Assert.assertNotNull(contact);
     }

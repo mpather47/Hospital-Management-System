@@ -14,20 +14,19 @@ import org.junit.runners.MethodSorters;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class AddressRepositoryImplTest {
     private static AddressRepository repository = AddressRepositoryImpl.getRepository();
-    private static Helper help = new Helper();
-    private static Address address = AddressFactory.addAddress("15 Address Street", 324243,PersonFactory.createPerson(help.generateId(), "Marcelll Pather","1998/21/08"));
+    private static Address address = AddressFactory.addAddress("15 Address Street", 324243,PersonFactory.createPerson( "Marcelll Pather","1998/21/08"));
 
 
     @Test
     public void a_create(){
         Address created = repository.create(address);
-        Assert.assertEquals(address.getDetails().getPersonId(),created.getDetails().getPersonId());
+        Assert.assertEquals(address.getAddressId(),created.getAddressId());
         System.out.println("Created:" + created);
     }
 
     @Test
     public void b_read(){
-        Address read = repository.read(address.getDetails().getPersonId());
+        Address read = repository.read(address.getAddressId());
         System.out.println("Read:" + read);
     }
 
@@ -43,7 +42,7 @@ public class AddressRepositoryImplTest {
     @Test
 
     public void e_delete(){
-        boolean deleted = repository.delete(address.getDetails().getPersonId());
+        boolean deleted = repository.delete(address.getAddressId());
         Assert.assertTrue(deleted);
     }
 
