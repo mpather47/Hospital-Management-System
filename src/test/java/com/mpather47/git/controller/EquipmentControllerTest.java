@@ -28,7 +28,7 @@ public class EquipmentControllerTest {
     private static Equipment equipment = EquipmentFactory.createEquipment("232", "Scalpel", "Cutting tool", 5,  a);
     @Autowired
     private TestRestTemplate restTemplate;
-    private String baseURL = "http://localhost:8080/hospital/";
+    private String baseURL = "http://localhost:8080/equipment/";
 
     @Test
     public void a_create(){

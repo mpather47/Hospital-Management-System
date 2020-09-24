@@ -30,7 +30,7 @@ public class RoomControllerTest {
     private static Room room = RoomFactory.createRoom("2343", e, a);
     @Autowired
     private TestRestTemplate restTemplate;
-    private String baseURL = "http://localhost:8080/address/";
+    private String baseURL = "http://localhost:8080/room/";
 
     @Test
     public void a_create(){
