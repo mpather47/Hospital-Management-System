@@ -30,10 +30,10 @@ public class HospitalControllerTest {
 
     @Test
     public void a_create(){
-        String url = baseURL + "create/";
+        String url = baseURL + "create";
         System.out.println("URL: " + url);
         System.out.println("Post data: " + hospital);
-        ResponseEntity<Hospital> postResponse = restTemplate.postForEntity(url, hospital,Hospital.class);
+        ResponseEntity<Hospital> postResponse = restTemplate.postForEntity(url,hospital,Hospital.class);
         assertNotNull(postResponse);
         assertNotNull(postResponse.getBody());
         hospital = postResponse.getBody();

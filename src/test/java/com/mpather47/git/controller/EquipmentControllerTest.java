@@ -24,7 +24,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @RunWith(SpringRunner.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class EquipmentControllerTest {
-    static Room a;
+    private static Room a;
     private static Equipment equipment = EquipmentFactory.createEquipment("232", "Scalpel", "Cutting tool", 5,  a);
     @Autowired
     private TestRestTemplate restTemplate;

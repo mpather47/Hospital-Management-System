@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Set;
 
+@RestController
+@RequestMapping("/equipment")
 public class EquipmentController {
     @Autowired
     private EquipmentServiceImpl equipmentService;
