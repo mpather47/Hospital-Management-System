@@ -53,10 +53,10 @@ public class EquipmentControllerTest {
 
     @Test
     public void c_update(){
-        Equipment updated = new Equipment.Builder().copy(equipment).setEquipment("23423").setName("knife").setDesc("another cutting tool").setQuantity(3).setDetails(a).build();
+        Equipment updated = new Equipment.Builder().copy(equipment).setName("knife").setDesc("another cutting tool").setQuantity(3).setDetails(a).build();
         String url = baseURL + "update/";
         System.out.println("Post data:" + updated);
-        ResponseEntity<Equipment> response = restTemplate.postForEntity(url,updated, Equipment.class);
+        ResponseEntity<Equipment> response = restTemplate.postForEntity(url, updated, Equipment.class);
         System.out.println(response);
         assertEquals(equipment.getEquipmentId(),response.getBody().getEquipmentId());
     }

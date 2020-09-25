@@ -30,7 +30,7 @@ public class HospitalControllerTest {
 
     @Test
     public void a_create(){
-        String url = baseURL + "create";
+        String url = baseURL + "create/";
         System.out.println("URL: " + url);
         System.out.println("Post data: " + hospital);
         ResponseEntity<Hospital> postResponse = restTemplate.postForEntity(url,hospital,Hospital.class);
@@ -51,12 +51,12 @@ public class HospitalControllerTest {
 
     @Test
     public void c_update(){
-        Hospital updated = new Hospital.Builder().copy(hospital).setHospitalId("23423").setHospitalName("st mary").setHospitalNumber(323).build();
+        Hospital updated = new Hospital.Builder().copy(hospital).setHospitalName("st mary").setHospitalNumber(323).build();
         String url = baseURL + "update/";
         System.out.println("Post data:" + updated);
-        ResponseEntity<Hospital> response = restTemplate.postForEntity(url,updated, Hospital.class);
+        ResponseEntity<Hospital> response = restTemplate.postForEntity(url, updated, Hospital.class);
         System.out.println(response);
-        assertEquals(hospital.getHospitalId(),response.getBody().getHospitalId());
+        assertEquals(updated.getHospitalId(),response.getBody().getHospitalId());
     }
 
     @Test

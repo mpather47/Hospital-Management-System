@@ -15,7 +15,7 @@ public class HospitalController {
     @Autowired
     private HospitalServiceImpl hospitalService;
 
-    @PostMapping("/create")
+    @PostMapping("/create/")
     public Hospital create(@RequestBody Hospital hospital) {
         boolean hospitalExist = false;
         Hospital newHospital = HospitalFactory.createHospital(hospital.getHospitalId(), hospital.getHospitalName(), hospital.getHospitalNumber());

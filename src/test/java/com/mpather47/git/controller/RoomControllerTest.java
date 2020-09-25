@@ -28,13 +28,15 @@ public class RoomControllerTest {
     static List e;
     static Hospital a;
     private static Room room = RoomFactory.createRoom("2343", e, a);
+
+
     @Autowired
     private TestRestTemplate restTemplate;
-    private String baseURL = "http://localhost:8080/room/";
+    private String baseURL = "http://localhost:8080/room";
 
     @Test
     public void a_create(){
-        String url = baseURL + "create/";
+        String url = baseURL + "/create";
         System.out.println("URL: " + url);
         System.out.println("Post data: " + room);
         ResponseEntity<Room> postResponse = restTemplate.postForEntity(url, room,Room.class);
@@ -47,7 +49,7 @@ public class RoomControllerTest {
 
     @Test
     public void b_read(){
-        String url = baseURL + "read/" + room.getRoomId();
+        String url = baseURL + "/read/" + room.getRoomId();
         System.out.println("URL: " + url);
         ResponseEntity<Room> response = restTemplate.getForEntity(url,Room.class);
         assertEquals(room.getRoomId(),response.getBody().getRoomId());
@@ -55,8 +57,8 @@ public class RoomControllerTest {
 
     @Test
     public void c_update(){
-        Room updated = new Room.Builder().copy(room).setRoomId("45e").setEquipment(e).setDetails(a).build();
-        String url = baseURL + "update/";
+        Room updated = new Room.Builder().copy(room).setEquipment(e).setDetails(a).build();
+        String url = baseURL + "/update";
         System.out.println("Post data:" + updated);
         ResponseEntity<Room> response = restTemplate.postForEntity(url,updated, Room.class);
         System.out.println(response);
@@ -65,14 +67,14 @@ public class RoomControllerTest {
 
     @Test
     public void e_delete(){
-        String url = baseURL + "delete/" + room.getRoomId();
+        String url = baseURL + "/delete/" + room.getRoomId();
         System.out.println("URL: " + url);
         restTemplate.delete(url);
     }
 
     @Test
     public void d_getAll(){
-        String url = baseURL + "all/";
+        String url = baseURL + "/all";
         HttpHeaders headers= new HttpHeaders();
         HttpEntity<String> entity = new HttpEntity<>(null,headers);
         ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET,entity,String.class);
