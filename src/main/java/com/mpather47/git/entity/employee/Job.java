@@ -1,15 +1,17 @@
 package com.mpather47.git.entity.employee;
 
+import java.io.Serializable;
+
 /**
  * @authour @Pilisa
  * Decription: Entity for Position
 
  */
 
-public class Job {
+public class Job implements Serializable {
 
     private String jobTittle;
-
+    private Job(){}
 
     private Job(Builder builder) {
         this.jobTittle =builder.jobTittle;
@@ -45,6 +47,7 @@ public class Job {
         public Job build(){
             return new Job (this);
         }
+
 
     }
 
