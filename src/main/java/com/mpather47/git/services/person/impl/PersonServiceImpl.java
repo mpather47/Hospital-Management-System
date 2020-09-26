@@ -8,9 +8,10 @@ import com.mpather47.git.repository.person.impl.ContactRepositoryImpl;
 import com.mpather47.git.repository.person.impl.PersonRepositoryImpl;
 import com.mpather47.git.services.person.ContactService;
 import com.mpather47.git.services.person.PersonService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
-
+@Service
 public class PersonServiceImpl  implements PersonService{
 
     private static PersonService service=null;
