@@ -5,6 +5,10 @@ public class Hospital {
     private String hospitalName;
     private int hospitalNumber;
 
+    private Hospital() {
+
+    }
+
     private Hospital(Builder b){
         this.hospitalId = b.hospitalId;
         this.hospitalName = b.hospitalName;

@@ -4,9 +4,10 @@ import com.mpather47.git.entity.hospital.Room;
 import com.mpather47.git.repository.hospital.RoomRepository;
 import com.mpather47.git.repository.hospital.impl.RoomRepositoryImpl;
 import com.mpather47.git.services.hospital.RoomService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
-
+@Service
 public class RoomServiceImpl implements RoomService {
     private static RoomService service = null;
     private RoomRepository repository;
