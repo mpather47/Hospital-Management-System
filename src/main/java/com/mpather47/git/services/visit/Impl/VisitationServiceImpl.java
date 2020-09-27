@@ -8,9 +8,10 @@ import com.mpather47.git.repository.visit.VisitationRepository;
 import com.mpather47.git.services.person.impl.AddressServiceImpl;
 import com.mpather47.git.services.visit.PrescriptionService;
 import com.mpather47.git.services.visit.VisitationService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
-
+@Service
 public class VisitationServiceImpl implements VisitationService {
 
     private static VisitationService service = null;

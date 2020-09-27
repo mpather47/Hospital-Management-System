@@ -1,10 +1,13 @@
 package com.mpather47.git.entity.visit;
 
-public class Prescription {
+import java.io.Serializable;
+
+public class Prescription implements Serializable {
     private String prescriptionId, medicationId, visitId;
+    private Prescription(){}
 
 
-    public Prescription(Builder builder) {
+    private Prescription(Builder builder) {
         this.prescriptionId = builder.prescriptionId;
         this.medicationId = builder.medicationId;
         this.visitId = builder.visitId;
