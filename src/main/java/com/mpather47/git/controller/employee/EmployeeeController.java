@@ -14,9 +14,9 @@ public class EmployeeeController {
 
     @Autowired
     private EmployeeServiceImpl employeeService;
-
     @PostMapping("/create ")
-    public Employee create(@RequestBody Employee employee) {
+    public Employee create(@RequestBody Employee employee)
+    {
         boolean employeeExist = false;
         Employee newEmployee = EmployeeFactory.createEmployee(employee.getEducation(),employee.getLanguages(), employee.getCertification());
         if (newEmployee != null) {
@@ -29,7 +29,8 @@ public class EmployeeeController {
             return EmployeeFactory.createEmployee(null, null, null);
     }
     @GetMapping("/read/{id}")
-    public Employee read(@PathVariable String id) {
+    public Employee read(@PathVariable String id)
+    {
         boolean employeeExist = false;
         if (id != null) {
             employeeExist = true;
@@ -42,7 +43,8 @@ public class EmployeeeController {
             return null;
     }
     @PostMapping("/update")
-    public Employee update(@RequestBody Employee employee) {
+    public Employee update(@RequestBody Employee employee)
+    {
         boolean employeeExist = false;
         if (employee != null) {
             employeeExist = true;
@@ -54,7 +56,8 @@ public class EmployeeeController {
         else return null;
     }
     @GetMapping("/all")
-    public Set<Employee> getAll() {
+    public Set<Employee> getAll()
+    {
         return employeeService.getAll();
     }
 

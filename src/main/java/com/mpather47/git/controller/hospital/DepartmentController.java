@@ -16,13 +16,15 @@ public class DepartmentController {
     private DepartmentServiceImpl departmentService;
 
     @PostMapping("/create ")
-    public Department create(@RequestBody Department department) {
+    public Department create(@RequestBody Department department)
+    {
         boolean departmentExist = false;
         Department newDepartment = DepartmentFactory.createDepartment(department.getDepartmentId(),department.getWard(),department.getRole());
         if (newDepartment != null) {
             departmentExist = true;
         }
-        if (departmentExist) {
+        if (departmentExist)
+        {
             return departmentService.create(newDepartment);
         }
         else
