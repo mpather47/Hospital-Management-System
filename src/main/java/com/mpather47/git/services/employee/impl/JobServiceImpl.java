@@ -6,11 +6,16 @@ import com.mpather47.git.entity.employee.Position;
 import com.mpather47.git.repository.employee.JobRepository;
 import com.mpather47.git.repository.employee.impl.JobRepositoryImpl;
 import com.mpather47.git.services.employee.JobService;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.Set;
-
-public class JobServiceImpl implements JobService {
+@Service
+@Repository
+@Component
+public class JobServiceImpl   implements JobService {
 
     private static JobService service= null;
     private JobRepository repository;
