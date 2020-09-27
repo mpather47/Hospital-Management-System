@@ -8,10 +8,15 @@ import com.mpather47.git.repository.employee.impl.JobRepositoryImpl;
 import com.mpather47.git.repository.employee.impl.PositionRepositoryImpl;
 import com.mpather47.git.services.employee.JobService;
 import com.mpather47.git.services.employee.PositionService;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.Set;
-
+@Service
+@Repository
+@Component
 public class PositionServiceImpl  implements PositionService {
 
     private static PositionService service= null;

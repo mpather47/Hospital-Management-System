@@ -1,17 +1,22 @@
 package com.mpather47.git.entity.employee;
 
 
+import java.io.Serializable;
+
 /**
  * @authour @Pilisa
  * Decription: Entity for Position
 
  */
 
-public class Position {
+public class Position implements Serializable {
 
 
      private String positionCode;
      private String positionStatus;
+
+     private Position(){}
+
 
     private Position(Builder builder) {
         this.positionCode= builder.positionCode;
