@@ -4,9 +4,10 @@ import com.mpather47.git.entity.account.Statement;
 import com.mpather47.git.repository.account.StatementRepository;
 import com.mpather47.git.repository.account.impl.StatementRepositoryImpl;
 import com.mpather47.git.services.account.StatementService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
-
+@Service
 public class StatementServiceImpl implements StatementService {
 
     private static StatementService statementService = null;

@@ -23,6 +23,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @RunWith(SpringRunner.class)
+
 public class PositionControllerTest {
 
     private Position position= PositionFactory.createPosition("CEO" ,"Accepted");

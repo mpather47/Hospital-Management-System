@@ -4,9 +4,10 @@ import com.mpather47.git.entity.account.Invoice;
 import com.mpather47.git.repository.account.InvoiceRepository;
 import com.mpather47.git.repository.account.impl.InvoiceRepositoryImpl;
 import com.mpather47.git.services.account.InvoiceService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
-
+@Service
 public class InvoiceServiceImpl implements InvoiceService {
 
     private static InvoiceService invoiceService = null;
