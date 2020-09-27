@@ -7,8 +7,11 @@ public class Equipment {
     private int quantity;
     private Room details;
 
+    private Equipment(){
 
-    public Equipment(Builder b){
+    }
+
+    private Equipment(Builder b){
         this.equipmentId = b.equipment;
         this.name = b.name;
         this.desc = b.desc;

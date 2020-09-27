@@ -19,8 +19,7 @@ import static org.junit.Assert.assertEquals;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class AddressServiceImplTest {
     private static AddressService service = AddressServiceImpl.getService();
-    private static Helper help = new Helper();
-    private static Address address = AddressFactory.addAddress("15 Address Street", 324243,PersonFactory.createPerson(help.generateId(), "Marcelll Pather","1998/21/08"));
+    private static Address address = AddressFactory.addAddress("15 Address Street", 324243,PersonFactory.createPerson( "Marcelll Pather","1998/21/08"));
 
     @Test
     public void d_testGetAll() {
@@ -31,12 +30,12 @@ public class AddressServiceImplTest {
     @Test
     public void a_testCreate() {
         Address created = service.create(address);
-        Assert.assertEquals(address.getDetails().getPersonId(),created.getDetails().getPersonId());
+        Assert.assertEquals(address.getAddressId(),created.getAddressId());
         System.out.println("Created:" + created);
     }
     @Test
     public void b_testRead() {
-        Address read = service.read(address.getDetails().getPersonId());
+        Address read = service.read(address.getAddressId());
         System.out.println("Read:" + read);
     }
     @Test
@@ -47,7 +46,7 @@ public class AddressServiceImplTest {
     }
     @Test
     public void e_testDelete() {
-        boolean deleted = service.delete(address.getDetails().getPersonId());
+        boolean deleted = service.delete(address.getAddressId());
         Assert.assertTrue(deleted);
     }
 }

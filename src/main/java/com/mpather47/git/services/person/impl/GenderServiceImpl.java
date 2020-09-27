@@ -4,9 +4,10 @@ import com.mpather47.git.entity.person.Gender;
 import com.mpather47.git.repository.person.GenderRepository;
 import com.mpather47.git.repository.person.impl.GenderRepositoryImpl;
 import com.mpather47.git.services.person.GenderService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
-
+@Service
 public class GenderServiceImpl implements GenderService {
 
     private GenderRepository repository;
