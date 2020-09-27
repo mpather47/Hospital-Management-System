@@ -5,18 +5,17 @@ import com.mpather47.git.factory.employee.EmployeeFactory;
 import com.mpather47.git.services.employee.impl.EmployeeServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.Set;
+
 @RestController
 @RequestMapping("/employee")
+
 public class EmployeeeController {
-
-
 
     @Autowired
     private EmployeeServiceImpl employeeService;
 
-    @PostMapping("/create")
+    @PostMapping("/create ")
     public Employee create(@RequestBody Employee employee) {
         boolean employeeExist = false;
         Employee newEmployee = EmployeeFactory.createEmployee(employee.getEducation(),employee.getLanguages(), employee.getCertification());

@@ -5,17 +5,17 @@ import com.mpather47.git.factory.hospital.DepartmentFactory;
 import com.mpather47.git.services.hospital.impl.DepartmentServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-
 import java.util.Set;
+
 @RestController
 @RequestMapping("/department")
+
 public class DepartmentController {
 
     @Autowired
     private DepartmentServiceImpl departmentService;
 
-    @PostMapping("/create")
+    @PostMapping("/create ")
     public Department create(@RequestBody Department department) {
         boolean departmentExist = false;
         Department newDepartment = DepartmentFactory.createDepartment(department.getDepartmentId(),department.getWard(),department.getRole());
