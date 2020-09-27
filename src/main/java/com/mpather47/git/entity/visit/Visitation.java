@@ -1,12 +1,14 @@
 package com.mpather47.git.entity.visit;
+import java.io.Serializable;
 
-public class Visitation {
+public class Visitation implements Serializable{
 
     private String visitId,patientId,doctorId,prescriptionId;
+    private Visitation(){}
     private String visitDate;
 
 
-    public Visitation(Builder builder){
+    private Visitation(Builder builder){
         this.visitId = builder.visitId;
         this.patientId = builder.patientId;
         this.doctorId = builder.doctorId;
