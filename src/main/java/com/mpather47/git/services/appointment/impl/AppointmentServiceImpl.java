@@ -4,9 +4,11 @@ import com.mpather47.git.entity.appointment.Appointment;
 import com.mpather47.git.repository.appointment.AppointmentRepository;
 import com.mpather47.git.repository.appointment.impl.AppointmentRepositoryImpl;
 import com.mpather47.git.services.appointment.AppointmentService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
+@Service
 public class AppointmentServiceImpl implements AppointmentService {
 
     private static AppointmentService service = null;
