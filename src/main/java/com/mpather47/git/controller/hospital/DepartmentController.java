@@ -44,7 +44,8 @@ public class DepartmentController {
             return null;
     }
     @PostMapping("/update")
-    public Department update(@RequestBody Department department) {
+    public Department update(@RequestBody Department department)
+    {
         boolean departmentExist = false;
         if (department != null) {
             departmentExist = true;
@@ -61,7 +62,8 @@ public class DepartmentController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public boolean delete(@PathVariable String id) {
+    public boolean delete(@PathVariable String id)
+    {
         boolean departmentExist = false;
         if (id != null) {
             departmentExist = true;
