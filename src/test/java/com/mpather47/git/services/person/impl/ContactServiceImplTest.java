@@ -20,7 +20,7 @@ import static org.junit.Assert.assertEquals;
 public class ContactServiceImplTest {
     private static ContactService service = ContactServiceImpl.getService();
     private static Helper help = new Helper();
-    private static Contact contact = ContactFactory.addContact(24234433,32434323,"email@email.com", PersonFactory.createPerson(help.generateId(),"Marcell Pather", "1998/08/21"));
+    private static Contact contact = ContactFactory.addContact(24234433,32434323,"email@email.com", PersonFactory.createPerson("Marcell Pather", "1998/08/21"));
 
     @Test
     public void d_testGetAll() {
@@ -31,12 +31,12 @@ public class ContactServiceImplTest {
     @Test
     public void a_testCreate() {
         Contact created = service.create(contact);
-        Assert.assertEquals(contact.getDetails().getPersonId(),created.getDetails().getPersonId());
+        Assert.assertEquals(contact.getContactId(),created.getContactId());
         System.out.println("Created:" + created);
     }
     @Test
     public void b_testRead() {
-        Contact read = service.read(contact.getDetails().getPersonId());
+        Contact read = service.read(contact.getContactId());
         System.out.println("Read:" + read);
     }
     @Test
@@ -47,7 +47,7 @@ public class ContactServiceImplTest {
     }
     @Test
     public void e_testDelete() {
-        boolean deleted = service.delete(contact.getDetails().getPersonId());
+        boolean deleted = service.delete(contact.getContactId());
         Assert.assertTrue(deleted);
     }
 }

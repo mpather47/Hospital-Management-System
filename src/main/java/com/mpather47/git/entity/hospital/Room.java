@@ -7,6 +7,10 @@ public class Room {
     private List equipment;
     private Hospital details;
 
+    private Room() {
+
+    }
+
     private Room(Builder b){
         this.roomId =b.roomId;
         this.equipment = b.equipment;

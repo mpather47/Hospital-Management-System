@@ -10,8 +10,8 @@ public class PersonFactoryTest {
     // Tests if the method returns a value
     @Test
     public void createPerson() {
-        Helper uuid = new Helper();
-        Person person = PersonFactory.createPerson(uuid.generateId(),"Marcell","1998/08/21");
+
+        Person person = PersonFactory.createPerson("Marcell","1998/08/21");
         System.out.println(person);
         Assert.assertNotNull(person);
     }

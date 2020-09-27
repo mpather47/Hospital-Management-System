@@ -4,9 +4,10 @@ import com.mpather47.git.entity.hospital.Hospital;
 import com.mpather47.git.repository.hospital.HospitalRepository;
 import com.mpather47.git.repository.hospital.impl.HospitalRepositoryImpl;
 import com.mpather47.git.services.hospital.HospitalService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
-
+@Service
 public class HospitalServiceImpl implements HospitalService {
     private static HospitalService service=null;
     private HospitalRepository repository;

@@ -33,14 +33,14 @@ public class AddressRepositoryImpl implements AddressRepository {
 
     @Override
     public Address read(String id) {
-        Address address = this.addressDB.stream().filter(r -> r.getDetails().getPersonId().trim().equalsIgnoreCase(id))
+        Address address = this.addressDB.stream().filter(r -> r.getAddressId().trim().equalsIgnoreCase(id))
                 .findAny().orElse(null);
         return address;
     }
 
     @Override
     public Address update(Address address) {
-        boolean deleteAddress = delete(address.getDetails().getPersonId());
+        boolean deleteAddress = delete(address.getAddressId());
         if(deleteAddress){
             this.addressDB.add(address);
             return address;

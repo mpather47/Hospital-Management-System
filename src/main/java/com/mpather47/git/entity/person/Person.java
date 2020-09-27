@@ -1,9 +1,11 @@
 package com.mpather47.git.entity.person;
 
-public class Person {
+import java.io.Serializable;
+
+public class Person  {
 
     private String personId,name, dateOfBirth;
-
+    private Person(){}
     private Person(Builder builder) {
         this.personId = builder.personId;
         this.name = builder.name;

@@ -7,10 +7,11 @@ import com.mpather47.git.repository.person.PersonRepository;
 import com.mpather47.git.repository.person.impl.AddressRepositoryImpl;
 import com.mpather47.git.repository.person.impl.PersonRepositoryImpl;
 import com.mpather47.git.services.person.AddressService;
+import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.Set;
-
+@Service
 public class AddressServiceImpl implements AddressService {
 
     private static AddressService service=null;
