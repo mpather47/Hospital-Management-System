@@ -1,8 +1,9 @@
 package com.mpather47.git.controller;
 
-import com.mpather47.git.entity.person.Address;
-import com.mpather47.git.entity.person.Person;
-import com.mpather47.git.factory.person.PersonFactory;
+
+import com.mpather47.git.entity.hospital.Equipment;
+import com.mpather47.git.entity.hospital.Room;
+import com.mpather47.git.factory.hospital.EquipmentFactory;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,48 +23,47 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @RunWith(SpringRunner.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class PersonControllerTest {
-
-    private static Person person = PersonFactory.createPerson("Marcell","1998/08/21");
-
+public class EquipmentControllerTest {
+    private static Room a;
+    private static Equipment equipment = EquipmentFactory.createEquipment("232", "Scalpel", "Cutting tool", 5,  a);
     @Autowired
     private TestRestTemplate restTemplate;
-    private String baseURL = "http://localhost:8080/person/";
+    private String baseURL = "http://localhost:8080/equipment/";
 
     @Test
     public void a_create(){
-        String url = baseURL + "create";
-        System.out.println("URL" + url);
-        System.out.printf("Post data: " + person);
-        ResponseEntity<Person> posResponse = restTemplate.postForEntity(url, person, Person.class);
-        assertNotNull(posResponse);
-        assertNotNull(posResponse.getBody());
-        person = posResponse.getBody();
-        System.out.println("Saved data: " + person);
-        assertEquals(person.getPersonId(),posResponse.getBody().getPersonId());
+        String url = baseURL + "create/";
+        System.out.println("URL: " + url);
+        System.out.println("Post data: " + equipment);
+        ResponseEntity<Equipment> postResponse = restTemplate.postForEntity(url, equipment,Equipment.class);
+        assertNotNull(postResponse);
+        assertNotNull(postResponse.getBody());
+        equipment = postResponse.getBody();
+        System.out.println("Saved data: " + equipment);
+        assertEquals(equipment.getEquipmentId(),postResponse.getBody().getEquipmentId());
     }
 
     @Test
     public void b_read(){
-        String url = baseURL +  "read/" + person.getPersonId();
+        String url = baseURL + "read/" + equipment.getEquipmentId();
         System.out.println("URL: " + url);
-        ResponseEntity<Person> response = restTemplate.getForEntity(url,Person.class);
-        assertEquals(person.getPersonId(),response.getBody().getPersonId());
+        ResponseEntity<Equipment> response = restTemplate.getForEntity(url,Equipment.class);
+        assertEquals(equipment.getEquipmentId(),response.getBody().getEquipmentId());
     }
 
     @Test
     public void c_update(){
-        Person updated = new Person.Builder().copy(person).setName("gsgfgd").setDateOfBirth("fgsdgsd").build();
+        Equipment updated = new Equipment.Builder().copy(equipment).setName("knife").setDesc("another cutting tool").setQuantity(3).setDetails(a).build();
         String url = baseURL + "update/";
         System.out.println("Post data:" + updated);
-        ResponseEntity<Person> response = restTemplate.postForEntity(url,updated, Person.class);
+        ResponseEntity<Equipment> response = restTemplate.postForEntity(url, updated, Equipment.class);
         System.out.println(response);
-        assertEquals(person.getPersonId(),response.getBody().getPersonId());
+        assertEquals(equipment.getEquipmentId(),response.getBody().getEquipmentId());
     }
 
     @Test
     public void e_delete(){
-        String url = baseURL + "delete/" + person.getPersonId();
+        String url = baseURL + "delete/" + equipment.getEquipmentId();
         System.out.println("URL: " + url);
         restTemplate.delete(url);
     }
@@ -79,5 +79,6 @@ public class PersonControllerTest {
 
     }
 
-
 }
+
+

@@ -33,14 +33,14 @@ public class ContactRepositoryImpl implements ContactRepository {
 
     @Override
     public Contact read(String id) {
-        Contact contact = this.contactDB.stream().filter(r -> r.getDetails().getPersonId().trim().equalsIgnoreCase(id))
+        Contact contact = this.contactDB.stream().filter(r -> r.getContactId().trim().equalsIgnoreCase(id))
                 .findAny().orElse(null);
         return contact;
     }
 
     @Override
     public Contact update(Contact contact) {
-        boolean deleteAddress = delete(contact.getDetails().getPersonId());
+        boolean deleteAddress = delete(contact.getContactId());
         if(deleteAddress){
             this.contactDB.add(contact);
             return contact;

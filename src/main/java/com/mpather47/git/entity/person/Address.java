@@ -3,6 +3,7 @@ package com.mpather47.git.entity.person;
 import java.io.Serializable;
 
 public class Address {
+    private String addressId;
     private String address;
     private int postcode;
     private Person details;
@@ -11,11 +12,15 @@ public class Address {
 
     }
     private Address(Builder builder) {
+        this.addressId = builder.addressId;
         this.address = builder.address;
         this.postcode = builder.postcode;
         this.details = builder.details;
     }
 
+    public String getAddressId() {
+        return addressId;
+    }
 
     public String getAddress() {
         return address;
@@ -30,21 +35,27 @@ public class Address {
     }
 
 
-
     @Override
-    public String
-    toString() {
+    public String toString() {
         return "Address{" +
-                "Address='" + address + '\'' +
-                ", postcode='" + postcode + '\'' +
+                "addressId='" + addressId + '\'' +
+                ", address='" + address + '\'' +
+                ", postcode=" + postcode +
                 ", details=" + details +
                 '}';
     }
 
     public static class Builder{
+        private String addressId;
         private String address;
         private int postcode;
         private Person details;
+
+        public Builder setAddressId(String addressId) {
+            this.addressId = addressId;
+            return this;
+        }
+
 
         public Builder setAddress(String address) {
             this.address = address;
@@ -62,6 +73,7 @@ public class Address {
         }
 
         public Builder copy(Address address1){
+            this.addressId = address1.addressId;
             this.address = address1.address;
             this.postcode = address1.postcode;
             this.details = address1.details;

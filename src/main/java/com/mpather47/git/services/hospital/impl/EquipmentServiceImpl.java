@@ -4,9 +4,10 @@ import com.mpather47.git.entity.hospital.Equipment;
 import com.mpather47.git.repository.hospital.EquipmentRepository;
 import com.mpather47.git.repository.hospital.impl.EquipmentRepositoryImpl;
 import com.mpather47.git.services.hospital.EquipmentService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
-
+@Service
 public class EquipmentServiceImpl implements EquipmentService {
     private static EquipmentService service = null;
     private EquipmentRepository repository;
