@@ -1,8 +1,9 @@
 package com.mpather47.git.entity.employee;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Employee {
+public class Employee implements Serializable {
     private String employeeID;
     private String education;
     private String certification;
@@ -14,6 +15,7 @@ public class Employee {
         this.certification = employeeBuilder.certification;
         this.languages = employeeBuilder.languages;
     }
+    public  Employee(){}
 
     public String getEducation() {
         return education;
