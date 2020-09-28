@@ -1,5 +1,4 @@
 package com.mpather47.git.entity.account;
-import java.io.Serializable;
 
 public class Statement {
     private String statementNum;
@@ -8,9 +7,7 @@ public class Statement {
     private Account details;
 
 
-    private Statement(){}
-
-    private Statement(Builder builder){
+    public Statement(Builder builder){
         this.statementNum = builder.statementNum;
         this.paymentDue = builder.paymentDue;
         this.date = builder.date;
