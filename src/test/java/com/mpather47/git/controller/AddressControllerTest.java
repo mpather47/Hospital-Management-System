@@ -1,11 +1,11 @@
 package com.mpather47.git.controller;
 
-
-import com.mpather47.git.entity.account.Invoice;
-import com.mpather47.git.factory.account.AccountFactory;
-import com.mpather47.git.factory.account.InvoiceFactory;
+import com.mpather47.git.entity.person.Address;
+import com.mpather47.git.entity.person.Person;
+import com.mpather47.git.factory.person.AddressFactory;
+import com.mpather47.git.factory.person.PersonFactory;
 import org.junit.FixMethodOrder;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,73 +17,65 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
+
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @RunWith(SpringRunner.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-class InvoiceControllerTest {
-
-    private static Invoice invoice = InvoiceFactory.createInvoice("27/07/2023","Coka Cola", AccountFactory.createAccount(555.00,"Payroll"));
+public class AddressControllerTest {
+    private static Address address = AddressFactory.addAddress("5454",234234,PersonFactory.createPerson("424234","324324"));
     @Autowired
     private TestRestTemplate restTemplate;
-    private String baseURL = "http://localhost:8080/invoice/";
-
+    private String baseURL = "http://localhost:8080/address/";
 
     @Test
-    void a_create() {
+    public void a_create(){
         String url = baseURL + "create/";
         System.out.println("URL: " + url);
-        System.out.println("Post data: " + invoice);
-        ResponseEntity<Invoice> postResponse = restTemplate.postForEntity(url,invoice,Invoice.class);
+        System.out.println("Post data: " + address);
+        ResponseEntity<Address> postResponse = restTemplate.postForEntity(url,address,Address.class);
         assertNotNull(postResponse);
         assertNotNull(postResponse.getBody());
-        invoice = postResponse.getBody();
-        System.out.println("Saved data: " + invoice);
-        assertEquals(invoice.getInvoiceNum(),postResponse.getBody().getInvoiceNum());
-
-
+        address = postResponse.getBody();
+        System.out.println("Saved data: " + address);
+        assertEquals(address.getAddressId(),postResponse.getBody().getAddressId());
     }
 
     @Test
-    void b_read() {
-        String url = baseURL + "read/" + invoice.getInvoiceNum();
+    public void b_read(){
+        String url = baseURL + "read/" +address.getAddressId();
         System.out.println("URL: " + url);
-        ResponseEntity<Invoice> response = restTemplate.getForEntity(url,Invoice.class);
-        assertEquals(invoice.getInvoiceNum(),response.getBody().getInvoiceNum());
-
-
-
+        ResponseEntity<Address> response = restTemplate.getForEntity(url,Address.class);
+        assertEquals(address.getAddressId(),response.getBody().getAddressId());
     }
 
     @Test
-    void c_update() {
-        Invoice updated = new Invoice.Builder().copy(invoice).setInvoiceDate("07/01/2021").setDescription("LG Refrigerant").build();
+    public void c_update(){
+        Address updated = new Address.Builder().copy(address).setPostcode(34234).setAddress("545345").setPostcode(25435543).build();
         String url = baseURL + "update/";
         System.out.println("Post data:" + updated);
-        ResponseEntity<Invoice> response = restTemplate.postForEntity(url,updated, Invoice.class);
+        ResponseEntity<Address> response = restTemplate.postForEntity(url,updated, Address.class);
         System.out.println(response);
-        assertEquals(invoice.getInvoiceNum(),response.getBody().getInvoiceNum());
-
+        assertEquals(address.getAddressId(),response.getBody().getAddressId());
     }
 
     @Test
-    void e_delete() {
-        String url = baseURL + "delete/" + invoice.getInvoiceNum();
+    public void e_delete(){
+        String url = baseURL + "delete/" + address.getAddressId();
         System.out.println("URL: " + url);
         restTemplate.delete(url);
     }
 
     @Test
-    void d_getAll() {
+    public void d_getAll(){
         String url = baseURL + "all/";
         HttpHeaders headers= new HttpHeaders();
         HttpEntity<String> entity = new HttpEntity<>(null,headers);
         ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET,entity,String.class);
         System.out.println(response);
         System.out.println(response.getBody());
-    }
 
+    }
 
 }
