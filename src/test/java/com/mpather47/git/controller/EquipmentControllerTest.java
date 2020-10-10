@@ -1,9 +1,9 @@
-package com.mpather47.git.controller.person;
+package com.mpather47.git.controller;
 
-import com.mpather47.git.entity.person.Address;
-import com.mpather47.git.entity.person.Person;
-import com.mpather47.git.factory.person.AddressFactory;
-import com.mpather47.git.factory.person.PersonFactory;
+
+import com.mpather47.git.entity.hospital.Equipment;
+import com.mpather47.git.entity.hospital.Room;
+import com.mpather47.git.factory.hospital.EquipmentFactory;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,52 +17,52 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.Assert.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @RunWith(SpringRunner.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class AddressControllerTest {
-    private static Address address = AddressFactory.addAddress("5454",234234,PersonFactory.createPerson("424234","324324"));
+public class EquipmentControllerTest {
+    private static Room a;
+    private static Equipment equipment = EquipmentFactory.createEquipment("232", "Scalpel", "Cutting tool", 5,  a);
     @Autowired
     private TestRestTemplate restTemplate;
-    private String baseURL = "http://localhost:8080/address/";
+    private String baseURL = "http://localhost:8080/equipment/";
 
     @Test
     public void a_create(){
         String url = baseURL + "create/";
         System.out.println("URL: " + url);
-        System.out.println("Post data: " + address);
-        ResponseEntity<Address> postResponse = restTemplate.postForEntity(url,address,Address.class);
+        System.out.println("Post data: " + equipment);
+        ResponseEntity<Equipment> postResponse = restTemplate.postForEntity(url, equipment,Equipment.class);
         assertNotNull(postResponse);
         assertNotNull(postResponse.getBody());
-        address = postResponse.getBody();
-        System.out.println("Saved data: " + address);
-        assertEquals(address.getAddressId(),postResponse.getBody().getAddressId());
+        equipment = postResponse.getBody();
+        System.out.println("Saved data: " + equipment);
+        assertEquals(equipment.getEquipmentId(),postResponse.getBody().getEquipmentId());
     }
 
     @Test
     public void b_read(){
-        String url = baseURL + "read/" +address.getAddressId();
+        String url = baseURL + "read/" + equipment.getEquipmentId();
         System.out.println("URL: " + url);
-        ResponseEntity<Address> response = restTemplate.getForEntity(url,Address.class);
-        assertEquals(address.getAddressId(),response.getBody().getAddressId());
+        ResponseEntity<Equipment> response = restTemplate.getForEntity(url,Equipment.class);
+        assertEquals(equipment.getEquipmentId(),response.getBody().getEquipmentId());
     }
 
     @Test
     public void c_update(){
-        Address updated = new Address.Builder().copy(address).setPostcode(34234).setAddress("545345").setPostcode(25435543).build();
+        Equipment updated = new Equipment.Builder().copy(equipment).setName("knife").setDesc("another cutting tool").setQuantity(3).setDetails(a).build();
         String url = baseURL + "update/";
         System.out.println("Post data:" + updated);
-        ResponseEntity<Address> response = restTemplate.postForEntity(url,updated, Address.class);
+        ResponseEntity<Equipment> response = restTemplate.postForEntity(url, updated, Equipment.class);
         System.out.println(response);
-        assertEquals(address.getAddressId(),response.getBody().getAddressId());
+        assertEquals(equipment.getEquipmentId(),response.getBody().getEquipmentId());
     }
 
     @Test
     public void e_delete(){
-        String url = baseURL + "delete/" + address.getAddressId();
+        String url = baseURL + "delete/" + equipment.getEquipmentId();
         System.out.println("URL: " + url);
         restTemplate.delete(url);
     }
@@ -79,3 +79,5 @@ public class AddressControllerTest {
     }
 
 }
+
+

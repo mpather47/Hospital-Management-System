@@ -1,5 +1,4 @@
 package com.mpather47.git.entity.account;
-import java.io.Serializable;
 
 public class Account {
 
@@ -7,9 +6,7 @@ public class Account {
     private double balance;
     private String paymentMethod;
 
-    private Account(){}
-
-    private Account(Builder builder) {
+    public Account(Builder builder) {
         this.accountId = builder.accountId;
         this.balance = builder.balance;
         this.paymentMethod = builder.paymentMethod;
