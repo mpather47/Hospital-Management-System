@@ -1,8 +1,9 @@
-package com.mpather47.git.controller;
+package com.mpather47.git.controller.person;
 
 import com.mpather47.git.entity.person.Address;
+import com.mpather47.git.entity.person.Contact;
 import com.mpather47.git.entity.person.Person;
-import com.mpather47.git.factory.person.AddressFactory;
+import com.mpather47.git.factory.person.ContactFactory;
 import com.mpather47.git.factory.person.PersonFactory;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -16,53 +17,59 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.web.client.RestTemplate;
 
-import static org.junit.Assert.*;
+import java.util.HashMap;
+import java.util.Map;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @RunWith(SpringRunner.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class AddressControllerTest {
-    private static Address address = AddressFactory.addAddress("5454",234234,PersonFactory.createPerson("424234","324324"));
+public class ContactControllerTest {
+    private static Contact contact = ContactFactory.addContact(234432,2342434,"4234",PersonFactory.createPerson("Marcel Pather","1241344"));
+
     @Autowired
     private TestRestTemplate restTemplate;
-    private String baseURL = "http://localhost:8080/address/";
+    private String baseURL = "http://localhost:8080/contact/";
 
     @Test
     public void a_create(){
         String url = baseURL + "create/";
         System.out.println("URL: " + url);
-        System.out.println("Post data: " + address);
-        ResponseEntity<Address> postResponse = restTemplate.postForEntity(url,address,Address.class);
+        System.out.println("Post data: " + contact);
+        ResponseEntity<Contact> postResponse = restTemplate.postForEntity(url,contact,Contact.class);
         assertNotNull(postResponse);
         assertNotNull(postResponse.getBody());
-        address = postResponse.getBody();
-        System.out.println("Saved data: " + address);
-        assertEquals(address.getAddressId(),postResponse.getBody().getAddressId());
+        contact = postResponse.getBody();
+        System.out.println("Saved data: " + contact);
+        assertEquals(contact.getContactId(),postResponse.getBody().getContactId());
     }
 
     @Test
     public void b_read(){
-        String url = baseURL + "read/" +address.getAddressId();
+        String url = baseURL + "read/" + contact.getContactId();
         System.out.println("URL: " + url);
-        ResponseEntity<Address> response = restTemplate.getForEntity(url,Address.class);
-        assertEquals(address.getAddressId(),response.getBody().getAddressId());
+        ResponseEntity<Contact> response = restTemplate.getForEntity(url,Contact.class);
+        assertEquals(contact.getContactId(),response.getBody().getContactId());
+
     }
 
     @Test
     public void c_update(){
-        Address updated = new Address.Builder().copy(address).setPostcode(34234).setAddress("545345").setPostcode(25435543).build();
+        Contact updated = new Contact.Builder().copy(contact).setEmail("ggdf").setCellphoneNo(2434324).setHomePhone(23434342).build();
         String url = baseURL + "update/";
         System.out.println("Post data:" + updated);
-        ResponseEntity<Address> response = restTemplate.postForEntity(url,updated, Address.class);
+        ResponseEntity<Contact> response = restTemplate.postForEntity(url,updated, Contact.class);
         System.out.println(response);
-        assertEquals(address.getAddressId(),response.getBody().getAddressId());
+        assertEquals(contact.getContactId(),response.getBody().getContactId());
     }
 
     @Test
     public void e_delete(){
-        String url = baseURL + "delete/" + address.getAddressId();
+        String url = baseURL + "delete/" + contact.getContactId();
         System.out.println("URL: " + url);
         restTemplate.delete(url);
     }

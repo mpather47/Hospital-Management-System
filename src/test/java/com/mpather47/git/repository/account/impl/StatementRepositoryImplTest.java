@@ -20,7 +20,7 @@ public class StatementRepositoryImplTest {
     private static StatementRepository repository = StatementRepositoryImpl.getStatementRepository();
     private static Helper help = new Helper();
 
-    private static Statement statement = StatementFactory.createStatement(help.generateId(),"October 04-2012",8790.98,AccountFactory.createAccount(help.generateId(),15000.00,"Debit-order"));
+    private static Statement statement = StatementFactory.createStatement("October 04-2012",8790.98,AccountFactory.createAccount(15000.00,"Debit-order"));
 
     @Test
     public void a_create() {

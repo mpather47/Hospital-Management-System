@@ -1,8 +1,6 @@
 package com.mpather47.git.entity.hospital;
 
-import java.io.Serializable;
-
-public class Department implements Serializable {
+public class Department {
     private int departmentId;
     private int employeeId;
     private String ward;
@@ -14,7 +12,6 @@ public class Department implements Serializable {
         this.ward = departmentBuilder.ward;
         this.role = departmentBuilder.role;
     }
-    public Department(){}
 
     public int getDepartmentId() {
         return departmentId;

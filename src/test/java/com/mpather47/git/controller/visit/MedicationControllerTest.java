@@ -1,8 +1,8 @@
-package com.mpather47.git.controller;
+package com.mpather47.git.controller.visit;
 
 
-import com.mpather47.git.entity.hospital.Hospital;
-import com.mpather47.git.factory.hospital.HospitalFactory;
+import com.mpather47.git.entity.visit.Medication;
+import com.mpather47.git.factory.visit.MedicationFactory;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,50 +17,53 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @RunWith(SpringRunner.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class HospitalControllerTest {
-    private static Hospital hospital = HospitalFactory.createHospital("23453", "St Mary", 1254);
+
+public class MedicationControllerTest {
+    private static Medication medication = MedicationFactory.createMedication("1111", "11231","1312");
+
     @Autowired
     private TestRestTemplate restTemplate;
-    private String baseURL = "http://localhost:8080/hospital/";
+    private String baseURL = "http://localhost:8080/medication/";
 
     @Test
     public void a_create(){
-        String url = baseURL + "create/";
-        System.out.println("URL: " + url);
-        System.out.println("Post data: " + hospital);
-        ResponseEntity<Hospital> postResponse = restTemplate.postForEntity(url,hospital,Hospital.class);
-        assertNotNull(postResponse);
-        assertNotNull(postResponse.getBody());
-        hospital = postResponse.getBody();
-        System.out.println("Saved data: " + hospital);
-        assertEquals(hospital.getHospitalId(),postResponse.getBody().getHospitalId());
+        String url = baseURL + "create";
+        System.out.println("URL" + url);
+        System.out.printf("Post data: " + medication);
+        ResponseEntity<Medication> posResponse = restTemplate.postForEntity(url, medication, Medication.class);
+        assertNotNull(posResponse);
+        assertNotNull(posResponse.getBody());
+        medication = posResponse.getBody();
+        System.out.println("Saved data: " + medication);
+        assertEquals(medication.getMedicationId(),posResponse.getBody().getMedicationId());
     }
 
     @Test
     public void b_read(){
-        String url = baseURL + "read/" + hospital.getHospitalId();
+        String url = baseURL +  "read/" + medication.getMedicationId();
         System.out.println("URL: " + url);
-        ResponseEntity<Hospital> response = restTemplate.getForEntity(url,Hospital.class);
-        assertEquals(hospital.getHospitalId(),response.getBody().getHospitalId());
+        ResponseEntity<Medication> response = restTemplate.getForEntity(url,Medication.class);
+        assertEquals(medication.getMedicationId(),response.getBody().getMedicationId());
     }
 
     @Test
     public void c_update(){
-        Hospital updated = new Hospital.Builder().copy(hospital).setHospitalName("st mary").setHospitalNumber(323).build();
+        Medication updated = new Medication.Builder().copyMedication(medication).setMedicationId("1242").setVisit("121").setPrescriptionId("123123").build();
         String url = baseURL + "update/";
         System.out.println("Post data:" + updated);
-        ResponseEntity<Hospital> response = restTemplate.postForEntity(url, updated, Hospital.class);
+        ResponseEntity<Medication> response = restTemplate.postForEntity(url,updated, Medication.class);
         System.out.println(response);
-        assertEquals(updated.getHospitalId(),response.getBody().getHospitalId());
+        assertEquals(medication.getMedicationId(),response.getBody().getMedicationId());
     }
 
     @Test
     public void e_delete(){
-        String url = baseURL + "delete/" + hospital.getHospitalId();
+        String url = baseURL + "delete/" + medication.getMedicationId();
         System.out.println("URL: " + url);
         restTemplate.delete(url);
     }
@@ -75,6 +78,4 @@ public class HospitalControllerTest {
         System.out.println(response.getBody());
 
     }
-
 }
-
