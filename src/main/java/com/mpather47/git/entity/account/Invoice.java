@@ -1,6 +1,6 @@
 package com.mpather47.git.entity.account;
 
-
+import java.io.Serializable;
 public class Invoice {
 
     private String invoiceNum;
@@ -8,6 +8,7 @@ public class Invoice {
     private String description;
     private Account details;
 
+    private Invoice (){}
 
     private Invoice(Builder builder){
         this.invoiceNum = builder.invoiceNum;

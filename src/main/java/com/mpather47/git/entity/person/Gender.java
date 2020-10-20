@@ -4,6 +4,8 @@ public class Gender {
     private int genderId;
     private String genderType;
 
+    public Gender(){}
+
     public Gender(GenderBuilder genderBuilder){
         this.genderId = genderBuilder.genderId;
         this.genderType = genderBuilder.genderType;
@@ -15,6 +17,14 @@ public class Gender {
 
     public String getGenderType() {
         return genderType;
+    }
+
+    @Override
+    public String toString() {
+        return "Gender{" +
+                "genderId=" + genderId +
+                ", genderType='" + genderType + '\'' +
+                '}';
     }
 
     public static class GenderBuilder{
