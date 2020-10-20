@@ -4,9 +4,10 @@ import com.mpather47.git.entity.account.Account;
 import com.mpather47.git.repository.account.AccountRepository;
 import com.mpather47.git.repository.account.impl.AccountRepositoryImpl;
 import com.mpather47.git.services.account.AccountService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
-
+@Service
 public class AccountServiceImpl implements AccountService {
 
     private static AccountService accountService = null;

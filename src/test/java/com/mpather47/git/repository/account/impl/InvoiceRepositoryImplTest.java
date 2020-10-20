@@ -20,7 +20,7 @@ public class InvoiceRepositoryImplTest {
 
     private static InvoiceRepository repository = InvoiceRepositoryImpl.getInvoiceRepository();
     private static Helper help = new Helper();
-    private static Invoice invoice = InvoiceFactory.createInvoice(help.generateId(),"June 12-2009","Dixion Sound System",AccountFactory.createAccount(help.generateId(),3800.76,"Cash"));
+    private static Invoice invoice = InvoiceFactory.createInvoice("June 12-2009","Dixion Sound System",AccountFactory.createAccount(3800.76,"Cash"));
 
     @Test
     public void a_create() {

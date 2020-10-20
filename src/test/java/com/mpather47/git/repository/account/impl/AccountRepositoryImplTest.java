@@ -19,7 +19,7 @@ public class AccountRepositoryImplTest {
 
     private static AccountRepository repository = AccountRepositoryImpl.getAccountRepository();
     private static Helper help = new Helper();
-    private static Account account = AccountFactory.createAccount(help.generateId(),2700.00,"Credit_payement");
+    private static Account account = AccountFactory.createAccount(2700.00,"Credit_payement");
 
 
     @Test

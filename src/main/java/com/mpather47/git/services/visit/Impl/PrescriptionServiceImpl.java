@@ -8,9 +8,10 @@ import com.mpather47.git.repository.visit.MedicationRepository;
 import com.mpather47.git.repository.visit.PrescriptionRepository;
 import com.mpather47.git.services.visit.MedicationService;
 import com.mpather47.git.services.visit.PrescriptionService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
-
+@Service
 public class PrescriptionServiceImpl implements PrescriptionService {
     private static PrescriptionService service=null;
     private PrescriptionRepository repository;
