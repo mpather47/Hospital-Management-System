@@ -4,9 +4,11 @@ import com.mpather47.git.entity.hospital.Ward;
 import com.mpather47.git.repository.hospital.WardRepository;
 import com.mpather47.git.repository.hospital.impl.WardRepositoryImpl;
 import com.mpather47.git.services.hospital.WardService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
+@Service
 public class WardServiceImpl implements WardService {
 
     private static WardService service = null;

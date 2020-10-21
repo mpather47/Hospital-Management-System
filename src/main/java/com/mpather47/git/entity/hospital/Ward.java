@@ -4,6 +4,7 @@ public class Ward {
     private int wardId;
     private int wardSize;
 
+    public Ward(){}
     public Ward(WardBuilder wardBuilder){
         this.wardId = wardBuilder.wardId;
         this.wardSize = wardBuilder.wardSize;

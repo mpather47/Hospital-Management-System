@@ -1,8 +1,9 @@
-package com.mpather47.git.controller;
+package com.mpather47.git.controller.visit;
 
-import com.mpather47.git.entity.person.Address;
-import com.mpather47.git.entity.person.Person;
-import com.mpather47.git.factory.person.PersonFactory;
+import com.mpather47.git.entity.visit.Medication;
+import com.mpather47.git.entity.visit.Prescription;
+import com.mpather47.git.factory.visit.MedicationFactory;
+import com.mpather47.git.factory.visit.PrescriptionFactory;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,52 +18,53 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @RunWith(SpringRunner.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class PersonControllerTest {
 
-    private static Person person = PersonFactory.createPerson("Marcell","1998/08/21");
+public class PrescriptionControllerTest {
+    private static Prescription prescription = PrescriptionFactory.createPrescription("1111", "11231","1312");
 
     @Autowired
     private TestRestTemplate restTemplate;
-    private String baseURL = "http://localhost:8080/person/";
+    private String baseURL = "http://localhost:8080/prescription/";
 
     @Test
     public void a_create(){
         String url = baseURL + "create";
         System.out.println("URL" + url);
-        System.out.printf("Post data: " + person);
-        ResponseEntity<Person> posResponse = restTemplate.postForEntity(url, person, Person.class);
+        System.out.printf("Post data: " +prescription);
+        ResponseEntity<Prescription> posResponse = restTemplate.postForEntity(url, prescription, Prescription.class);
         assertNotNull(posResponse);
         assertNotNull(posResponse.getBody());
-        person = posResponse.getBody();
-        System.out.println("Saved data: " + person);
-        assertEquals(person.getPersonId(),posResponse.getBody().getPersonId());
+        prescription = posResponse.getBody();
+        System.out.println("Saved data: " +prescription);
+        assertEquals(prescription.getPrescriptionId(),posResponse.getBody().getPrescriptionId());
     }
 
     @Test
     public void b_read(){
-        String url = baseURL +  "read/" + person.getPersonId();
+        String url = baseURL +  "read/" +prescription.getMedicationId();
         System.out.println("URL: " + url);
-        ResponseEntity<Person> response = restTemplate.getForEntity(url,Person.class);
-        assertEquals(person.getPersonId(),response.getBody().getPersonId());
+        ResponseEntity<Medication> response = restTemplate.getForEntity(url,Medication.class);
+        assertEquals(prescription.getPrescriptionId(),response.getBody().getPrescriptionId());
     }
 
     @Test
     public void c_update(){
-        Person updated = new Person.Builder().copy(person).setName("gsgfgd").setDateOfBirth("fgsdgsd").build();
+        Prescription updated = new Prescription.Builder().copyPrescription(prescription).setMedicationId("1242").setVisitId("121").setPrescriptionId("123123").build();
         String url = baseURL + "update/";
         System.out.println("Post data:" + updated);
-        ResponseEntity<Person> response = restTemplate.postForEntity(url,updated, Person.class);
+        ResponseEntity<Prescription> response = restTemplate.postForEntity(url,updated, Prescription.class);
         System.out.println(response);
-        assertEquals(person.getPersonId(),response.getBody().getPersonId());
+        assertEquals(prescription.getPrescriptionId(),response.getBody().getPrescriptionId());
     }
 
     @Test
     public void e_delete(){
-        String url = baseURL + "delete/" + person.getPersonId();
+        String url = baseURL + "delete/" + prescription.getPrescriptionId();
         System.out.println("URL: " + url);
         restTemplate.delete(url);
     }
@@ -77,6 +79,4 @@ public class PersonControllerTest {
         System.out.println(response.getBody());
 
     }
-
-
 }
