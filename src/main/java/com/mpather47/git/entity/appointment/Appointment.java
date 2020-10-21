@@ -7,6 +7,7 @@ public class Appointment {
     private String patientId;
     private LocalDate bookingDate;
 
+    public Appointment(){}
     public Appointment (AppointmentBuilder appointmentBuilder){
         this.appointmentId = appointmentBuilder.appointmentId;
         this.patientId = appointmentBuilder.patientId;
@@ -23,6 +24,15 @@ public class Appointment {
 
     public LocalDate getBookingDate() {
         return bookingDate;
+    }
+
+    @Override
+    public String toString() {
+        return "Appointment{" +
+                "appointmentId='" + appointmentId + '\'' +
+                ", patientId='" + patientId + '\'' +
+                ", bookingDate=" + bookingDate +
+                '}';
     }
 
     public static class AppointmentBuilder{

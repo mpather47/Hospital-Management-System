@@ -4,10 +4,9 @@ import com.mpather47.git.entity.hospital.Department;
 import com.mpather47.git.repository.hospital.DepartmentRepository;
 import com.mpather47.git.repository.hospital.impl.DepartmentRepositoryImpl;
 import com.mpather47.git.services.hospital.DepartmentService;
-import org.springframework.stereotype.Service;
 
 import java.util.Set;
-@Service
+
 public class DepartmentServiceImpl implements DepartmentService {
 
     private static DepartmentService service = null;
