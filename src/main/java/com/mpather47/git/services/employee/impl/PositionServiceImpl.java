@@ -15,8 +15,8 @@ import org.springframework.stereotype.Service;
 import java.util.HashSet;
 import java.util.Set;
 @Service
-@Repository
-@Component
+
+
 public class PositionServiceImpl  implements PositionService {
 
     private static PositionService service= null;
