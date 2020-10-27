@@ -10,6 +10,7 @@ import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 import java.util.Set;
@@ -19,7 +20,8 @@ import static org.junit.Assert.assertEquals;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class EquipmentServiceImplTest {
     private static List e;
-    private static EquipmentService service = EquipmentServiceImpl.getService();
+    @Autowired
+    private static EquipmentService service;
     private static Helper help = new Helper();
     private static Equipment equipment = EquipmentFactory.createEquipment(help.generateId(), "Scalpel", "Bladed Instrument utilized in surgery",
             4, RoomFactory.createRoom(help.generateId(),e , HospitalFactory.createHospital(help.generateId(), "St Mary", 1456)));

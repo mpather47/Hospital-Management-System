@@ -2,8 +2,11 @@ package com.mpather47.git.repository.hospital;
 
 import com.mpather47.git.entity.hospital.Equipment;
 import com.mpather47.git.repository.IRepository;
-import java.util.Set;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface EquipmentRepository extends IRepository<Equipment, String> {
-    Set<Equipment> getAll();
+import java.util.Set;
+@Repository
+public interface EquipmentRepository extends JpaRepository<Equipment, String> {
+
 }

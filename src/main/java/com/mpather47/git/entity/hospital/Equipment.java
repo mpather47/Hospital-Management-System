@@ -1,6 +1,12 @@
 package com.mpather47.git.entity.hospital;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import java.util.Objects;
+
+@Entity
 public class Equipment {
+    @Id
     private String equipmentId;
     private String name;
     private String desc;
@@ -91,5 +97,18 @@ public class Equipment {
         public Equipment build(){
             return new Equipment(this);
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Equipment equipment = (Equipment) o;
+        return equipmentId.equals(equipment.equipmentId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(equipmentId);
     }
 }
