@@ -1,16 +1,18 @@
 package com.mpather47.git.entity.person;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.io.Serializable;
-
+@Entity
 public class Contact  {
 
-
+    @Id
     private String contactId;
     private int cellphoneNo,homePhone;
     private String email;
-    private Person details;
+    private transient Person details;
 
-    private Contact(){
+    protected Contact(){
 
     }
     private Contact(Builder builder) {
