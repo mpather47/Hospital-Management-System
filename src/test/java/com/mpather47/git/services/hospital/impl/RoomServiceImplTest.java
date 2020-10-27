@@ -19,11 +19,11 @@ import static org.junit.Assert.assertEquals;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class RoomServiceImplTest {
-    private static List e;
+    //private static List e;
     @Autowired
     private static RoomService service;
     private static Helper help = new Helper();
-    private static Room room = RoomFactory.createRoom(help.generateId(), e, HospitalFactory.createHospital(help.generateId(), "St Mary", 4567));
+    private static Room room = RoomFactory.createRoom(help.generateId(), "Equipment Roster A", "Victoria");
 
     @Test
     public void d_testGetAll() {

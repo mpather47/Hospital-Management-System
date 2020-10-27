@@ -24,7 +24,7 @@ public class EquipmentServiceImplTest {
     private static EquipmentService service;
     private static Helper help = new Helper();
     private static Equipment equipment = EquipmentFactory.createEquipment(help.generateId(), "Scalpel", "Bladed Instrument utilized in surgery",
-            4, RoomFactory.createRoom(help.generateId(),e , HospitalFactory.createHospital(help.generateId(), "St Mary", 1456)));
+            4, "Room B");
     @Test
     public void d_testGetAll() {
         Set<Equipment> equipment = service.getAll();

@@ -9,18 +9,18 @@ public class Equipment {
     @Id
     private String equipmentId;
     private String name;
-    private String desc;
+    private String description;
     private int quantity;
-    private Room details;
+    private String details;
 
-    private Equipment(){
+    protected Equipment(){
 
     }
 
     private Equipment(Builder b){
         this.equipmentId = b.equipment;
         this.name = b.name;
-        this.desc = b.desc;
+        this.description = b.desc;
         this.quantity = b.quantity;
         this.details = b.details;
     }
@@ -33,13 +33,13 @@ public class Equipment {
         return name;
     }
 
-    public String getDesc() {
-        return desc;
+    public String getDescription() {
+        return description;
     }
     public int getQuantity() {
         return quantity;
     }
-    public Room getDetails() {
+    public String getDetails() {
         return details;
     }
 
@@ -48,7 +48,7 @@ public class Equipment {
         return "Equipment{" +
                 "equipment='" + equipmentId + '\'' +
                 ", name='" + name + '\'' +
-                ", desc='" + desc + '\'' +
+                ", desc='" + description + '\'' +
                 ", quantity=" + quantity +
                 ", room=" + details +
                 '}';
@@ -59,7 +59,7 @@ public class Equipment {
         private String name;
         private String desc;
         private int quantity;
-        private Room details;
+        private String details;
 
         public Builder setEquipment(String equipment) {
             this.equipment = equipment;
@@ -81,14 +81,14 @@ public class Equipment {
             return this;
         }
 
-        public Builder setDetails(Room details){
+        public Builder setDetails(String details){
             this.details = details;
             return this;
         }
         public Builder copy(Equipment e){
             this.equipment = e.equipmentId;
             this.name = e.name;
-            this.desc = e.desc;
+            this.desc = e.description;
             this.quantity = e.quantity;
             this.details = e.details;
             return this;

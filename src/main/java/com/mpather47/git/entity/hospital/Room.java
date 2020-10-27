@@ -9,8 +9,8 @@ import java.util.Objects;
 public class Room {
     @Id
     private String roomId;
-    private List equipment;
-    private Hospital details;
+    private String equipment;
+    private String details;
 
     private Room() {
 
@@ -26,11 +26,11 @@ public class Room {
         return roomId;
     }
 
-    public List getEquipment() {
+    public String getEquipment() {
         return equipment;
     }
 
-    public Hospital getDetails() {
+    public String getDetails() {
         return details;
     }
 
@@ -45,8 +45,8 @@ public class Room {
 
     public static class Builder{
         private String roomId;
-        private List equipment;
-        private Hospital details;
+        private String equipment;
+        private String details;
 
 
        public Builder setRoomId(String roomId) {
@@ -54,12 +54,12 @@ public class Room {
            return this;
        }
 
-        public Builder setEquipment(List equipment) {
+        public Builder setEquipment(String equipment) {
             this.equipment = equipment;
             return this;
         }
 
-        public Builder setDetails(Hospital details) {
+        public Builder setDetails(String details) {
             this.details = details;
             return this;
         }
