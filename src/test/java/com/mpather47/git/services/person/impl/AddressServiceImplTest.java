@@ -17,8 +17,9 @@ import static org.junit.Assert.assertEquals;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class AddressServiceImplTest {
     @Autowired
-    private AddressService service ;
+    private  AddressService service ;
     private static Address address = AddressFactory.addAddress("15 Address Street", 324243,PersonFactory.createPerson( "Marcelll Pather","1998/21/08"));
+
 
     @Test
     public void d_testGetAll() {
