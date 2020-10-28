@@ -8,6 +8,7 @@ import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Set;
 
@@ -15,7 +16,8 @@ import static org.junit.Assert.*;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class AccountServiceImplTest {
 
-    private static AccountService service = AccountServiceImpl.getAccountService();
+    @Autowired
+    private AccountService service;
     private static Helper help = new Helper();
     private static Account account = AccountFactory.createAccount(2700.00,"Credit_payement");
 
