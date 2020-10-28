@@ -12,6 +12,6 @@ import java.util.Set;
 public interface JobRepository extends JpaRepository<Job, String > {
 
 
-    Set<Job> getAll();
+
 
 }

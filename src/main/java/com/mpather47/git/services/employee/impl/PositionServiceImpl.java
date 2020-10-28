@@ -24,7 +24,6 @@ public class PositionServiceImpl  implements PositionService {
 
     @Override
     public Set<Position> getAll() {
-
         return this.repository.findAll().stream().collect(Collectors.toSet());
 
     }

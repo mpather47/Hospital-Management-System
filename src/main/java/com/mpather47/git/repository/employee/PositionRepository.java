@@ -12,7 +12,7 @@ import java.util.Set;
 @Repository
 public interface PositionRepository extends JpaRepository<Position, String> {
 
-    Set<Position> getAll();
+
 
 
 }
