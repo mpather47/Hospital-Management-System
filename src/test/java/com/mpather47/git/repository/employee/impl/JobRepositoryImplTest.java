@@ -11,8 +11,7 @@ import com.mpather47.git.factory.person.PersonFactory;
 import com.mpather47.git.repository.employee.JobRepository;
 import com.mpather47.git.repository.person.AddressRepository;
 import com.mpather47.git.repository.person.PersonRepository;
-import com.mpather47.git.repository.person.impl.AddressRepositoryImpl;
-import com.mpather47.git.repository.person.impl.PersonRepositoryImpl;
+
 import com.mpather47.git.utility.Helper;
 import org.junit.Assert;
 import org.junit.FixMethodOrder;

@@ -1,3 +1,4 @@
+/*
 package com.mpather47.git.repository.employee.impl;
 
 import com.mpather47.git.entity.employee.Job;
@@ -59,4 +60,4 @@ public class PositionRepositoryImplTest {
     public void e_getAll(){
         System.out.println("Get all: " + repository.getAll());
     }
-}
+}*/

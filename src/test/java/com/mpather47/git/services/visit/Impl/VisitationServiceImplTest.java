@@ -11,13 +11,15 @@ import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Set;
 
 import static org.junit.Assert.*;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class VisitationServiceImplTest {
-    private static VisitationService service = VisitationServiceImpl.getService();
+    @Autowired
+    private static VisitationService service;
     private static Helper help = new Helper();
     private static Visitation visitation = VisitationFactory.createVisitation(help.generateId(),"13","1123","7032","2020/05/7");
 
