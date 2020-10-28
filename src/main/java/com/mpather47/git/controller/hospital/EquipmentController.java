@@ -17,7 +17,7 @@ public class EquipmentController {
     @PostMapping("/create")
     public Equipment create(@RequestBody Equipment equipment) {
         boolean equipmentExist = false;
-        Equipment newEquipment = EquipmentFactory.createEquipment(equipment.getEquipmentId(), equipment.getName(), equipment.getDesc(), equipment.getQuantity(), equipment.getDetails());
+        Equipment newEquipment = EquipmentFactory.createEquipment(equipment.getEquipmentId(), equipment.getName(), equipment.getDescription(), equipment.getQuantity(), equipment.getDetails());
         if (newEquipment != null) {
             equipmentExist = true;
         }

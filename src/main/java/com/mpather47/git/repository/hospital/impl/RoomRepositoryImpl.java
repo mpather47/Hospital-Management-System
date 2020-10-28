@@ -1,12 +1,12 @@
+/*
 package com.mpather47.git.repository.hospital.impl;
-
 import com.mpather47.git.entity.hospital.Room;
 import com.mpather47.git.repository.hospital.RoomRepository;
 
 import java.util.HashSet;
 import java.util.Set;
 
-public class RoomRepositoryImpl implements RoomRepository {
+//public class RoomRepositoryImpl implements RoomRepository {
     private static RoomRepository repository = null;
     private Set<Room> roomDB;
 
@@ -59,3 +59,4 @@ public class RoomRepositoryImpl implements RoomRepository {
 }
 
 
+*/

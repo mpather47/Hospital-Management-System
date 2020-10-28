@@ -3,18 +3,18 @@ package com.mpather47.git.services.person.impl;
 import com.mpather47.git.entity.person.Person;
 import com.mpather47.git.factory.person.PersonFactory;
 import com.mpather47.git.services.person.PersonService;
-import com.mpather47.git.utility.Helper;
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class PersonServiceImplTest {
-    private static PersonService service = PersonServiceImpl.getService();
+    @Autowired
+    private PersonService service;
     private static Person person = PersonFactory.createPerson("Marcell Panther", "1998/08/21");
 
     @Test
