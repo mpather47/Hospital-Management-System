@@ -4,9 +4,8 @@ import com.mpather47.git.entity.hospital.Ward;
 import com.mpather47.git.services.hospital.impl.WardServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
-import java.util.Set;
+
 
 @RestController
 @RequestMapping("/ward")
