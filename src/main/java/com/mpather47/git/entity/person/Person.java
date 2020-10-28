@@ -1,11 +1,14 @@
 package com.mpather47.git.entity.person;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.io.Serializable;
-
+@Entity
 public class Person  {
-
-    private String personId,name, dateOfBirth;
-    private Person(){}
+    @Id
+    private String personId;
+    private String name, dateOfBirth;
+    protected Person(){}
     private Person(Builder builder) {
         this.personId = builder.personId;
         this.name = builder.name;
