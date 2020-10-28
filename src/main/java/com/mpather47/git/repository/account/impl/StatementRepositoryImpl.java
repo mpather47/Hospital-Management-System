@@ -1,69 +1,71 @@
-package com.mpather47.git.repository.account.impl;
+/**
+ package com.mpather47.git.repository.account.impl;
 
 
-import com.mpather47.git.entity.account.Statement;
-import com.mpather47.git.repository.account.StatementRepository;
+ import com.mpather47.git.entity.account.Statement;
+ import com.mpather47.git.repository.account.StatementRepository;
 
-import java.util.HashSet;
-import java.util.Set;
+ import java.util.HashSet;
+ import java.util.Set;
 
-public class StatementRepositoryImpl implements StatementRepository {
+ public class StatementRepositoryImpl implements StatementRepository {
 
-    private static StatementRepository statementRepository = null;
-    private Set<Statement> statementDB;
+ private static StatementRepository statementRepository = null;
+ private Set<Statement> statementDB;
 
-    private StatementRepositoryImpl(){
-        this.statementDB = new HashSet<>();
-    }
+ private StatementRepositoryImpl(){
+ this.statementDB = new HashSet<>();
+ }
 
-    public static StatementRepository getStatementRepository() {
-        if (statementRepository == null) statementRepository = new StatementRepositoryImpl();
-        return statementRepository;
+ public static StatementRepository getStatementRepository() {
+ if (statementRepository == null) statementRepository = new StatementRepositoryImpl();
+ return statementRepository;
 
-    }
-    @Override
-    public Statement create(Statement statement) {
-        this.statementDB.add(statement);
-        return statement;
-    }
+ }
+ @Override
+ public Statement create(Statement statement) {
+ this.statementDB.add(statement);
+ return statement;
+ }
 
-    @Override
-    public Statement read(String statementNum) {
-        Statement statement = null;
-        for(Statement s : this.statementDB){
-            if(s.getStatementNum().equalsIgnoreCase(statementNum)){
-                statement = s;
-                break;
-            }
-        }
+ @Override
+ public Statement read(String statementNum) {
+ Statement statement = null;
+ for(Statement s : this.statementDB){
+ if(s.getStatementNum().equalsIgnoreCase(statementNum)){
+ statement = s;
+ break;
+ }
+ }
 
-        return  statement;
-    }
+ return  statement;
+ }
 
-    @Override
-    public Statement update(Statement statement) {
-        Statement oldstmDB = read(statement.getStatementNum());
+ @Override
+ public Statement update(Statement statement) {
+ Statement oldstmDB = read(statement.getStatementNum());
 
-        if(oldstmDB != null){
-            this.statementDB.remove(oldstmDB);
-            this.statementDB.add(statement);
+ if(oldstmDB != null){
+ this.statementDB.remove(oldstmDB);
+ this.statementDB.add(statement);
 
-        }
-        return statement;
-    }
+ }
+ return statement;
+ }
 
-    @Override
-    public boolean delete(String statementNum) {
-        Statement statement = read(statementNum);
-        if(statement != null) {
-            this.statementDB.remove(statement);
-            return true;
-        }
-        return false;
-    }
+ @Override
+ public boolean delete(String statementNum) {
+ Statement statement = read(statementNum);
+ if(statement != null) {
+ this.statementDB.remove(statement);
+ return true;
+ }
+ return false;
+ }
 
-    @Override
-    public Set<Statement> getAll() {
-        return statementDB;
-    }
-}
+ @Override
+ public Set<Statement> getAll() {
+ return statementDB;
+ }
+ }
+ **/
