@@ -25,7 +25,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class EquipmentControllerTest {
     private static Room a;
-    private static Equipment equipment = EquipmentFactory.createEquipment("232", "Scalpel", "Cutting tool", 5,  a);
+    private static Equipment equipment = EquipmentFactory.createEquipment("232", "Scalpel", "Cutting tool", 5,  "Room a");
     @Autowired
     private TestRestTemplate restTemplate;
     private String baseURL = "http://localhost:8080/equipment/";
@@ -53,7 +53,7 @@ public class EquipmentControllerTest {
 
     @Test
     public void c_update(){
-        Equipment updated = new Equipment.Builder().copy(equipment).setName("knife").setDesc("another cutting tool").setQuantity(3).setDetails(a).build();
+        Equipment updated = new Equipment.Builder().copy(equipment).setName("knife").setDesc("another cutting tool").setQuantity(3).setDetails("Room B").build();
         String url = baseURL + "update/";
         System.out.println("Post data:" + updated);
         ResponseEntity<Equipment> response = restTemplate.postForEntity(url, updated, Equipment.class);

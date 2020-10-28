@@ -1,25 +1,23 @@
 package com.mpather47.git.services.person.impl;
 
-import com.mpather47.git.entity.person.Address;
+
 import com.mpather47.git.entity.person.Contact;
-import com.mpather47.git.factory.person.AddressFactory;
 import com.mpather47.git.factory.person.ContactFactory;
 import com.mpather47.git.factory.person.PersonFactory;
-import com.mpather47.git.services.person.AddressService;
 import com.mpather47.git.services.person.ContactService;
-import com.mpather47.git.utility.Helper;
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class ContactServiceImplTest {
-    private static ContactService service = ContactServiceImpl.getService();
-    private static Helper help = new Helper();
+    @Autowired
+    private ContactService service;
     private static Contact contact = ContactFactory.addContact(24234433,32434323,"email@email.com", PersonFactory.createPerson("Marcell Pather", "1998/08/21"));
 
     @Test

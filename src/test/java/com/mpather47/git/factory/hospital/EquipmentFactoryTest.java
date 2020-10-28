@@ -7,9 +7,9 @@ import junit.framework.TestCase;
 import org.junit.Assert;
 
 public class EquipmentFactoryTest extends TestCase {
-    Room r;
+    //Room r;
     public void testCreateEquipment() {
-        Equipment e = EquipmentFactory.createEquipment("SC125", "Scalpel", "Auxiliary tool", 5, r);
+        Equipment e = EquipmentFactory.createEquipment("SC125", "Scalpel", "Auxiliary tool", 5, "Room B");
         Assert.assertNotNull(e);
     }
 }
