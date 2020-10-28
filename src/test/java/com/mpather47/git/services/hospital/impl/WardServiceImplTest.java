@@ -2,12 +2,12 @@ package com.mpather47.git.services.hospital.impl;
 
 import com.mpather47.git.entity.hospital.Ward;
 import com.mpather47.git.factory.hospital.WardFactory;
-import com.mpather47.git.repository.hospital.impl.WardRepositoryImpl;
 import com.mpather47.git.services.hospital.WardService;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
+import java.util.List;
 import java.util.Set;
 
 import static org.junit.Assert.*;
@@ -46,7 +46,7 @@ public class WardServiceImplTest {
 
     @Test
     public void d_getAll() {
-        Set<Ward> wards = service.getAll();
+        List<Ward> wards = service.getAll();
         assertEquals(1, wards.size());
     }
 

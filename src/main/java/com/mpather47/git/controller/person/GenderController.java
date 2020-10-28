@@ -5,6 +5,7 @@ import com.mpather47.git.services.person.impl.GenderServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Set;
 
 @RestController
@@ -35,7 +36,7 @@ public class GenderController {
     }
 
     @GetMapping("/all")
-    public Set<Gender> getAll(){
+    public List<Gender> getAll(){
         return service.getAll();
     }
 

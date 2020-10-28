@@ -1,10 +1,15 @@
 package com.mpather47.git.entity.hospital;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Ward {
+    @Id
     private int wardId;
     private int wardSize;
 
-    public Ward(){}
+    private Ward(){}
     public Ward(WardBuilder wardBuilder){
         this.wardId = wardBuilder.wardId;
         this.wardSize = wardBuilder.wardSize;

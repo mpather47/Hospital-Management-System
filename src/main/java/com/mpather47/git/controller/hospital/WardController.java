@@ -5,6 +5,7 @@ import com.mpather47.git.services.hospital.impl.WardServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Set;
 
 @RestController
@@ -35,7 +36,7 @@ public class WardController {
     }
 
     @GetMapping("/all")
-    public Set<Ward> getAll(){
+    public List<Ward> getAll(){
         return service.getAll();
     }
 
