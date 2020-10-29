@@ -2,47 +2,49 @@ package com.mpather47.git.services.account.impl;
 
 import com.mpather47.git.entity.account.Account;
 import com.mpather47.git.repository.account.AccountRepository;
+import com.mpather47.git.repository.account.impl.AccountRepositoryImpl;
 import com.mpather47.git.services.account.AccountService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
-import java.util.stream.Collectors;
-
 @Service
 public class AccountServiceImpl implements AccountService {
 
-    @Autowired
+    private static AccountService accountService = null;
     private AccountRepository repository;
 
-    @Override
-    public Set<Account> getAll() { return this.repository.findAll().stream().collect(Collectors.toSet());
+    private AccountServiceImpl(){
 
+        this.repository = AccountRepositoryImpl.getAccountRepository();
+    }
+
+    public static AccountService getAccountService(){
+        if(accountService == null) accountService = new AccountServiceImpl();
+        return accountService;
+    }
+    @Override
+    public Set<Account> getAll() {
+
+        return this.repository.getll();
     }
 
     @Override
     public Account create(Account account) {
-        return this.repository.save(account);
+        return this.repository.create(account);
     }
 
     @Override
     public Account read(String s) {
-        return this.repository.findById(s).orElseGet(null);
+        return this.repository.read(s);
     }
 
     @Override
     public Account update(Account account) {
-
-        if(this.repository.existsById(account.getAccountId())){
-            return this.repository.save(account);
-        }
-        return null;
+        return this.repository.update(account);
     }
 
     @Override
     public boolean delete(String s) {
-        this.repository.deleteById(s);
-        if(this.repository.existsById(s))return false;
-        else return true;
+        return this.repository.delete(s);
     }
 }

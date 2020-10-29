@@ -8,7 +8,6 @@ import com.mpather47.git.utility.Helper;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Set;
 
@@ -16,8 +15,7 @@ import static org.junit.Assert.*;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class StatementServiceImplTest {
 
-    @Autowired
-    private StatementService service;
+    private static StatementService service = StatementServiceImpl.getStatementService();
     private static Helper help = new Helper();
     private static Statement statement = StatementFactory.createStatement("May 04-2017",1600.00,AccountFactory.createAccount(400.00,"Card-payment"));
 

@@ -1,4 +1,4 @@
-/*package com.mpather47.git.repository.employee.impl;
+package com.mpather47.git.repository.employee.impl;
 
 import com.mpather47.git.entity.employee.Job;
 import com.mpather47.git.entity.employee.Position;
@@ -22,7 +22,7 @@ import static org.junit.Assert.*;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 
 public class JobRepositoryImplTest {
-    private static JobRepository repository;
+    private static JobRepository repository = JobRepositoryImpl.getRepository();
     private static Helper help = new Helper();
     private static Job job = JobFactory.createJob("Doctor");
 
@@ -58,5 +58,3 @@ public class JobRepositoryImplTest {
         System.out.println("Get all: " + repository.getAll());
     }
 }
-
- */

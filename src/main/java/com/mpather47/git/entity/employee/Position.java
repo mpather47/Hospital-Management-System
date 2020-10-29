@@ -1,25 +1,21 @@
 package com.mpather47.git.entity.employee;
 
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
 import java.io.Serializable;
-import java.util.Objects;
 
-@Entity
 /**
  * @authour @Pilisa
  * Decription: Entity for Position
 
  */
 
-public class Position {
+public class Position implements Serializable {
 
-     @Id
+
      private String positionCode;
      private String positionStatus;
 
-     protected Position(){}
+     private Position(){}
 
 
     private Position(Builder builder) {
@@ -77,18 +73,10 @@ public class Position {
 
      }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Position position = (Position) o;
-        return positionCode.equals(position.positionCode) && Objects.equals(positionStatus, position.positionStatus);
-    }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(positionCode, positionStatus);
+
+
+
     }
-}
 
 
