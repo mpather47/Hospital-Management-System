@@ -1,4 +1,3 @@
-/*
 package com.mpather47.git.repository.hospital.impl;
 
 import com.mpather47.git.entity.hospital.Equipment;
@@ -56,4 +55,3 @@ public class EquipmentRepositoryImpl implements EquipmentRepository {
         return false;
     }
 }
-*/

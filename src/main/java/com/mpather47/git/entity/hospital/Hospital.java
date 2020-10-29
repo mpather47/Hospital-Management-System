@@ -1,12 +1,6 @@
 package com.mpather47.git.entity.hospital;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import java.util.Objects;
-
-@Entity
 public class Hospital {
-    @Id
     private String hospitalId;
     private String hospitalName;
     private int hospitalNumber;
@@ -73,18 +67,5 @@ public class Hospital {
         public Hospital build(){
             return new Hospital(this);
         }
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Hospital hospital = (Hospital) o;
-        return hospitalId.equals(hospital.hospitalId);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(hospitalId);
     }
 }

@@ -1,20 +1,14 @@
 package com.mpather47.git.entity.person;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
 import java.io.Serializable;
-import java.util.Objects;
 
-@Entity
 public class Address {
-    @Id
     private String addressId;
     private String address;
     private int postcode;
-    private transient Person details;
+    private Person details;
 
-    protected Address(){
+    private Address(){
 
     }
     private Address(Builder builder) {
@@ -90,6 +84,5 @@ public class Address {
             return new Address(this);
 
         }
-
     }
 }

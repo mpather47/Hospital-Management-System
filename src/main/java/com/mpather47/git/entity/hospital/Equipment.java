@@ -1,26 +1,20 @@
 package com.mpather47.git.entity.hospital;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import java.util.Objects;
-
-@Entity
 public class Equipment {
-    @Id
     private String equipmentId;
     private String name;
-    private String description;
+    private String desc;
     private int quantity;
-    private String details;
+    private Room details;
 
-    protected Equipment(){
+    private Equipment(){
 
     }
 
     private Equipment(Builder b){
         this.equipmentId = b.equipment;
         this.name = b.name;
-        this.description = b.desc;
+        this.desc = b.desc;
         this.quantity = b.quantity;
         this.details = b.details;
     }
@@ -33,13 +27,13 @@ public class Equipment {
         return name;
     }
 
-    public String getDescription() {
-        return description;
+    public String getDesc() {
+        return desc;
     }
     public int getQuantity() {
         return quantity;
     }
-    public String getDetails() {
+    public Room getDetails() {
         return details;
     }
 
@@ -48,7 +42,7 @@ public class Equipment {
         return "Equipment{" +
                 "equipment='" + equipmentId + '\'' +
                 ", name='" + name + '\'' +
-                ", desc='" + description + '\'' +
+                ", desc='" + desc + '\'' +
                 ", quantity=" + quantity +
                 ", room=" + details +
                 '}';
@@ -59,7 +53,7 @@ public class Equipment {
         private String name;
         private String desc;
         private int quantity;
-        private String details;
+        private Room details;
 
         public Builder setEquipment(String equipment) {
             this.equipment = equipment;
@@ -81,14 +75,14 @@ public class Equipment {
             return this;
         }
 
-        public Builder setDetails(String details){
+        public Builder setDetails(Room details){
             this.details = details;
             return this;
         }
         public Builder copy(Equipment e){
             this.equipment = e.equipmentId;
             this.name = e.name;
-            this.desc = e.description;
+            this.desc = e.desc;
             this.quantity = e.quantity;
             this.details = e.details;
             return this;
@@ -97,18 +91,5 @@ public class Equipment {
         public Equipment build(){
             return new Equipment(this);
         }
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Equipment equipment = (Equipment) o;
-        return equipmentId.equals(equipment.equipmentId);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(equipmentId);
     }
 }
