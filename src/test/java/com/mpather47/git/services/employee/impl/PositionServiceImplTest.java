@@ -6,22 +6,20 @@ import com.mpather47.git.entity.employee.Position;
 import com.mpather47.git.entity.person.Person;
 import com.mpather47.git.factory.employee.PositionFactory;
 import com.mpather47.git.repository.employee.PositionRepository;
+import com.mpather47.git.repository.employee.impl.PositionRepositoryImpl;
 import com.mpather47.git.services.employee.PositionService;
 import com.mpather47.git.utility.Helper;
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class PositionServiceImplTest {
-
-    @Autowired
-    private  PositionService service ;
+    private static PositionService service = PositionServiceImpl.getService();
     private static Helper help = new Helper();
     private static Position position = PositionFactory.createPosition(help.generateId(),"full-time");
 

@@ -1,18 +1,14 @@
 package com.mpather47.git.entity.account;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
-@Entity
+import java.io.Serializable;
 public class Invoice {
 
-    @Id
     private String invoiceNum;
     private String invoiceDate;
     private String description;
-    private transient Account details;
+    private Account details;
 
-    protected Invoice (){}
+    private Invoice (){}
 
     private Invoice(Builder builder){
         this.invoiceNum = builder.invoiceNum;
