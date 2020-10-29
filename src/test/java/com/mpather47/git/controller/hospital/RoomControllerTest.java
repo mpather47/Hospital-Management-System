@@ -25,9 +25,9 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @RunWith(SpringRunner.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class RoomControllerTest {
-    //static List e;
-    //static Hospital a;
-    private static Room room = RoomFactory.createRoom("2343", "Equipment roster b", "Victoria");
+    static List e;
+    static Hospital a;
+    private static Room room = RoomFactory.createRoom("2343", e, a);
 
 
     @Autowired
@@ -57,7 +57,7 @@ public class RoomControllerTest {
 
     @Test
     public void c_update(){
-        Room updated = new Room.Builder().copy(room).setEquipment("Equipment Roster a").setDetails("bbb").build();
+        Room updated = new Room.Builder().copy(room).setEquipment(e).setDetails(a).build();
         String url = baseURL + "/update";
         System.out.println("Post data:" + updated);
         ResponseEntity<Room> response = restTemplate.postForEntity(url,updated, Room.class);

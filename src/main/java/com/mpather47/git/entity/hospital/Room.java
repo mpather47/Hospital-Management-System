@@ -1,16 +1,11 @@
 package com.mpather47.git.entity.hospital;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
 import java.util.List;
-import java.util.Objects;
 
-@Entity
 public class Room {
-    @Id
     private String roomId;
-    private String equipment;
-    private String details;
+    private List equipment;
+    private Hospital details;
 
     private Room() {
 
@@ -26,11 +21,11 @@ public class Room {
         return roomId;
     }
 
-    public String getEquipment() {
+    public List getEquipment() {
         return equipment;
     }
 
-    public String getDetails() {
+    public Hospital getDetails() {
         return details;
     }
 
@@ -45,8 +40,8 @@ public class Room {
 
     public static class Builder{
         private String roomId;
-        private String equipment;
-        private String details;
+        private List equipment;
+        private Hospital details;
 
 
        public Builder setRoomId(String roomId) {
@@ -54,12 +49,12 @@ public class Room {
            return this;
        }
 
-        public Builder setEquipment(String equipment) {
+        public Builder setEquipment(List equipment) {
             this.equipment = equipment;
             return this;
         }
 
-        public Builder setDetails(String details) {
+        public Builder setDetails(Hospital details) {
             this.details = details;
             return this;
         }
@@ -74,19 +69,6 @@ public class Room {
         public Room build(){
             return new Room(this);
         }
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Room room = (Room) o;
-        return roomId.equals(room.roomId);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(roomId);
     }
 }
 
