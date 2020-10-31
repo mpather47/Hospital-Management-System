@@ -1,10 +1,11 @@
+/*
 package com.mpather47.git.repository.hospital.impl;
 import com.mpather47.git.entity.hospital.Hospital;
 import com.mpather47.git.repository.hospital.HospitalRepository;
 
 import java.util.HashSet;
 import java.util.Set;
-
+@Deprecated
 public class HospitalRepositoryImpl implements HospitalRepository {
     private static HospitalRepository repository = null;
     private Set<Hospital> hospitalDB;
@@ -56,3 +57,4 @@ public class HospitalRepositoryImpl implements HospitalRepository {
     }
 }
 
+*/

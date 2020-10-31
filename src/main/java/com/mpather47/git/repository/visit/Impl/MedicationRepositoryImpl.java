@@ -1,4 +1,3 @@
-/*
 package com.mpather47.git.repository.visit.Impl;
 
 import com.mpather47.git.entity.person.Person;
@@ -9,7 +8,6 @@ import com.mpather47.git.repository.visit.VisitationRepository;
 
 import java.util.HashSet;
 import java.util.Set;
-@Deprecated
 public class MedicationRepositoryImpl implements MedicationRepository {
     private static MedicationRepository repository=null;
     private Set<Medication> medicationDB;
@@ -62,4 +60,3 @@ public class MedicationRepositoryImpl implements MedicationRepository {
 }
 
 
-*/

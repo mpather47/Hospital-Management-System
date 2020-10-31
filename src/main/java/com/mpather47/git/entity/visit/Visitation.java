@@ -1,21 +1,11 @@
 package com.mpather47.git.entity.visit;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
 import java.io.Serializable;
-import java.util.Objects;
 
-@Entity
-public class Visitation {
-    @Id
-    private String visitId;
+public class Visitation implements Serializable{
 
-    private String patientId;
-    private String doctorId;
-    private String prescriptionId;
+    private String visitId,patientId,doctorId,prescriptionId;
+    private Visitation(){}
     private String visitDate;
-
-    protected Visitation(){}
 
 
     private Visitation(Builder builder){
@@ -103,18 +93,5 @@ public class Visitation {
         public Visitation build(){
             return new Visitation(this);
         }
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Visitation that = (Visitation) o;
-        return visitId.equals(that.visitId);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(visitId);
     }
 }

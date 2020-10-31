@@ -4,6 +4,7 @@ import com.mpather47.git.entity.employee.Employee;
 import com.mpather47.git.repository.employee.EmployeeRepository;
 import com.mpather47.git.repository.employee.impl.EmployeeRepositoryImpl;
 import com.mpather47.git.services.employee.EmployeeService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
