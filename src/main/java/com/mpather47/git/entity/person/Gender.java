@@ -1,11 +1,6 @@
 package com.mpather47.git.entity.person;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
-@Entity
 public class Gender {
-    @Id
     private int genderId;
     private String genderType;
 

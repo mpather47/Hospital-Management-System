@@ -1,11 +1,8 @@
 package com.mpather47.git.entity.appointment;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
 import java.time.LocalDate;
-@Entity
+
 public class Appointment {
-    @Id
     private String appointmentId;
     private String patientId;
     private LocalDate bookingDate;

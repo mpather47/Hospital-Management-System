@@ -2,22 +2,20 @@ package com.mpather47.git.services.hospital.impl;
 
 import com.mpather47.git.entity.hospital.Ward;
 import com.mpather47.git.repository.hospital.WardRepository;
+import com.mpather47.git.repository.hospital.impl.WardRepositoryImpl;
 import com.mpather47.git.services.hospital.WardService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class WardServiceImpl implements WardService {
 
     private static WardService service = null;
-
-    @Autowired
     private WardRepository  repository;
 
     public WardServiceImpl() {
+        this.repository = WardRepositoryImpl.getWardRepository();
     }
 
     public static WardService getService() {
@@ -28,31 +26,26 @@ public class WardServiceImpl implements WardService {
 
     @Override
     public Ward create(Ward ward) {
-        return repository.save(ward);
+        return repository.create(ward);
     }
 
     @Override
     public Ward read(Integer wardId) {
-        Optional<Ward> wardOptional = repository.findById(wardId);
-        return wardOptional.orElse(null);
+        return repository.read(wardId);
     }
 
     @Override
     public Ward update(Ward ward) {
-        return repository.save(ward);
+        return repository.update(ward);
     }
 
     @Override
     public boolean delete(Integer wardId) {
-        if(read(wardId)!=null){
-            repository.deleteById(wardId);
-            return true;
-        }
-        return false;
+        return repository.delete(wardId);
     }
 
     @Override
-    public List<Ward> getAll() {
-        return repository.findAll();
+    public Set<Ward> getAll() {
+        return repository.getAll();
     }
 }
