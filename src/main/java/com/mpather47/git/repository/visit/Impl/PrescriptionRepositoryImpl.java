@@ -1,3 +1,4 @@
+/*
 package com.mpather47.git.repository.visit.Impl;
 
 import com.mpather47.git.entity.visit.Prescription;
@@ -7,7 +8,7 @@ import com.mpather47.git.repository.visit.VisitationRepository;
 
 import java.util.HashSet;
 import java.util.Set;
-
+@Deprecated
 public class PrescriptionRepositoryImpl implements PrescriptionRepository {
 
     private static PrescriptionRepository repository=null;
@@ -60,3 +61,4 @@ public class PrescriptionRepositoryImpl implements PrescriptionRepository {
         return false;
     }
 }
+*/

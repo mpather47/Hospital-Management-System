@@ -1,3 +1,4 @@
+/*
 package com.mpather47.git.repository.visit.Impl;
 
 import com.mpather47.git.entity.visit.Visitation;
@@ -14,6 +15,7 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
 import static org.junit.Assert.*;
+@Deprecated
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class VisitationRepositoryImplTest {
 
@@ -55,3 +57,4 @@ public class VisitationRepositoryImplTest {
 
 }
 
+*/

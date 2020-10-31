@@ -11,13 +11,15 @@ import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Set;
 
 import static org.junit.Assert.*;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class MedicationServiceImplTest {
-    private static MedicationService service =MedicationServiceImpl.getService();
+    @Autowired
+    private static MedicationService service;
     private static Helper help = new Helper();
     private static Medication medication= MedicationFactory.createMedication(help.generateId(),help.generateId(),help.generateId());
 

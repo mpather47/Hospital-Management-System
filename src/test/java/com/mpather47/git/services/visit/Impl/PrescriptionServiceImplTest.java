@@ -11,6 +11,8 @@ import org.junit.Assert;
 import org.junit.runners.MethodSorters;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import static org.junit.Assert.*;
 import java.util.Set;
 
@@ -19,7 +21,8 @@ import java.util.Set;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 
 public class PrescriptionServiceImplTest {
-    private static PrescriptionService service = PrescriptionServiceImpl.getService();
+    @Autowired
+    private static PrescriptionService service;
     private static Helper help = new Helper();
     private static Prescription prescription = PrescriptionFactory.createPrescription(help.generateId(),help.generateId(),help.generateId());
 

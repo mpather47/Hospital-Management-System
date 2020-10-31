@@ -1,16 +1,13 @@
 package com.mpather47.git.entity.account;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import java.io.Serializable;
 
-@Entity
 public class Account {
 
-    @Id
     private String accountId;
     private double balance;
     private String paymentMethod;
 
-    protected Account(){}
+    private Account(){}
 
     private Account(Builder builder) {
         this.accountId = builder.accountId;

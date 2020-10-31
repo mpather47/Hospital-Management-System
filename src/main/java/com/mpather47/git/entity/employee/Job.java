@@ -1,11 +1,6 @@
 package com.mpather47.git.entity.employee;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
 import java.io.Serializable;
-import java.util.Objects;
-
-@Entity
 
 /**
  * @authour @Pilisa
@@ -13,11 +8,10 @@ import java.util.Objects;
 
  */
 
-public class Job  {
-    @Id
-    private String jobTittle;
+public class Job implements Serializable {
 
-    protected Job(){}
+    private String jobTittle;
+    private Job(){}
 
     private Job(Builder builder) {
         this.jobTittle =builder.jobTittle;
@@ -57,17 +51,5 @@ public class Job  {
 
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Job job = (Job) o;
-        return jobTittle.equals(job.jobTittle);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(jobTittle);
-    }
 }
 

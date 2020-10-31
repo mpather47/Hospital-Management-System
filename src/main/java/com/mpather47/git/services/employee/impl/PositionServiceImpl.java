@@ -2,30 +2,42 @@ package com.mpather47.git.services.employee.impl;
 
 import com.mpather47.git.entity.employee.Job;
 import com.mpather47.git.entity.employee.Position;
+import com.mpather47.git.repository.employee.JobRepository;
 import com.mpather47.git.repository.employee.PositionRepository;
-
+import com.mpather47.git.repository.employee.impl.JobRepositoryImpl;
+import com.mpather47.git.repository.employee.impl.PositionRepositoryImpl;
+import com.mpather47.git.services.employee.JobService;
 import com.mpather47.git.services.employee.PositionService;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
-
 @Service
-
-
+@Repository
+@Component
 public class PositionServiceImpl  implements PositionService {
 
     private static PositionService service= null;
-
-    @Autowired
     private PositionRepository repository;
+
+    private PositionServiceImpl() {
+
+        this.repository= PositionRepositoryImpl.getRepository();
+
+    }
+    public static PositionService getService(){
+        if(service==null) service = new PositionServiceImpl();
+
+        return service;
+    }
+
+
 
     @Override
     public Set<Position> getAll() {
-        return this.repository.findAll().stream().collect(Collectors.toSet());
-
+        return this.repository.getAll();
     }
 
     @Override
@@ -45,28 +57,21 @@ public class PositionServiceImpl  implements PositionService {
 
     @Override
     public Position create(Position position) {
-        return this.repository.save(position);
+        return this.repository.create(position);
     }
 
     @Override
     public Position read(String s) {
-        return this.repository.findById(s).orElseGet(null);
+        return this.repository.read(s);
     }
 
     @Override
     public Position update(Position position) {
-        if (this.repository.existsById(position.getPositionCode()))
-        if(this.repository.existsById(position.getPositionStatus()))
-        {
-            return this.repository.save(position);
-        }
-        return null;
+        return this.repository.update(position);
     }
 
     @Override
     public boolean delete(String s) {
-        this.repository.deleteById(s);
-        if(this.repository.existsById(s)) return false;
-        else return true;
+        return this.repository.delete(s);
     }
 }

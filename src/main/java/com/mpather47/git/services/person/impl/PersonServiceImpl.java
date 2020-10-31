@@ -4,50 +4,51 @@ import com.mpather47.git.entity.person.Contact;
 import com.mpather47.git.entity.person.Person;
 import com.mpather47.git.repository.person.ContactRepository;
 import com.mpather47.git.repository.person.PersonRepository;
+import com.mpather47.git.repository.person.impl.ContactRepositoryImpl;
+import com.mpather47.git.repository.person.impl.PersonRepositoryImpl;
 import com.mpather47.git.services.person.ContactService;
 import com.mpather47.git.services.person.PersonService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
-import java.util.stream.Collectors;
-
 @Service
 public class PersonServiceImpl  implements PersonService{
-    @Autowired
+
+    private static PersonService service=null;
     private PersonRepository repository;
+
+    private PersonServiceImpl() {
+        this.repository = PersonRepositoryImpl.getRepository();
+    }
+
+    public static PersonService getService(){
+        if(service==null) service = new PersonServiceImpl();
+        return service;
+    }
+
 
     @Override
     public Set getAll() {
-        return this.repository.findAll().stream().collect(Collectors.toSet());
+        return this.repository.getAll();
     }
 
     @Override
     public Person create(Person person) {
-        return this.repository.save(person);
+        return this.repository.create(person);
     }
 
     @Override
     public Person read(String s) {
-        return this.repository.findById(s).orElseGet(null);
+        return this.repository.read(s);
     }
 
     @Override
     public Person update(Person person) {
-        if(this.repository.existsById(person.getPersonId())){
-            return this.repository.save(person);
-        }
-        return null;
+        return this.repository.update(person);
     }
 
     @Override
     public boolean delete(String s) {
-
-        this.repository.deleteById(s);
-        if(this.repository.existsById(s)){
-            return false;
-        }else{
-            return true;
-        }
+        return this.repository.delete(s);
     }
 }
