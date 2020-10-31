@@ -6,7 +6,10 @@ import com.mpather47.git.repository.hospital.WardRepository;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import static org.junit.Assert.*;
@@ -14,39 +17,41 @@ import static org.junit.Assert.*;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class WardRepositoryImplTest {
 
-    private static WardRepository repository = WardRepositoryImpl.getWardRepository();
+    @Autowired
+    private static WardRepository repository;
 
     private static Ward ward = WardFactory.createWard(9, 5);
 
     @Test
     public void a_create() {
-        Ward created = repository.create(ward);
+        Ward created = repository.save(ward);
         assertEquals(ward.getWardId(), created.getWardId());
     }
 
     @Test
     public void b_read() {
-        Ward read = repository.read(ward.getWardId());
-        assertEquals(ward.getWardId(), read.getWardId());
+        Optional<Ward> read = repository.findById(ward.getWardId());
+        assertNotNull(read.orElse(null));
     }
 
     @Test
     public void c_update() {
         Ward updated = new Ward.WardBuilder().copy(ward).setWardSize(23).build();
 
-        updated = repository.update(updated);
+        updated = repository.save(updated);
         assertEquals(ward.getWardId(), updated.getWardId());
     }
 
     @Test
     public void e_delete() {
-        repository.delete(ward.getWardId());
-        assertNull(repository.read(ward.getWardId()));
+        repository.deleteById(ward.getWardId());
+        Optional<Ward> read = repository.findById(ward.getWardId());
+        assertNotNull(read.orElse(null));
     }
 
     @Test
     public void d_getAll() {
-        Set<Ward> wards = repository.getAll();
+        List<Ward> wards = repository.findAll();
         assertEquals(1, wards.size());
     }
 

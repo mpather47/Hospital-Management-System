@@ -2,20 +2,23 @@ package com.mpather47.git.services.appointment.impl;
 
 import com.mpather47.git.entity.appointment.Appointment;
 import com.mpather47.git.repository.appointment.AppointmentRepository;
-import com.mpather47.git.repository.appointment.impl.AppointmentRepositoryImpl;
 import com.mpather47.git.services.appointment.AppointmentService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Set;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AppointmentServiceImpl implements AppointmentService {
 
+
     private static AppointmentService service = null;
+
+    @Autowired
     private AppointmentRepository repository;
 
     public AppointmentServiceImpl() {
-        repository = AppointmentRepositoryImpl.getAppointmentRepository();
     }
 
     public static AppointmentService getService() {
@@ -25,27 +28,32 @@ public class AppointmentServiceImpl implements AppointmentService {
     }
 
     @Override
-    public Set<Appointment> getAll() {
-        return repository.getAll();
+    public List<Appointment> getAll() {
+        return repository.findAll();
     }
 
     @Override
     public Appointment create(Appointment appointment) {
-        return repository.create(appointment);
+        return repository.save(appointment);
     }
 
     @Override
     public Appointment read(String s) {
-        return repository.read(s);
+        Optional<Appointment> appointmentOptional = repository.findById(s);
+        return appointmentOptional.orElse(null);
     }
 
     @Override
     public Appointment update(Appointment appointment) {
-        return repository.update(appointment);
+        return repository.save(appointment);
     }
 
     @Override
     public boolean delete(String s) {
-        return repository.delete(s);
+        if(read(s)!=null){
+            repository.deleteById(s);
+            return true;
+        }
+        return false;
     }
 }

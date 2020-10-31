@@ -5,8 +5,8 @@ import com.mpather47.git.entity.appointment.Appointment;
 import com.mpather47.git.services.appointment.impl.AppointmentServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import java.util.List;
 
-import java.util.Set;
 
 @RestController
 @RequestMapping("/appointment")
@@ -36,7 +36,7 @@ public class AppointmentController {
     }
 
     @GetMapping("/all")
-    public Set<Appointment> getAll(){
+    public List<Appointment> getAll(){
         return service.getAll();
     }
 
