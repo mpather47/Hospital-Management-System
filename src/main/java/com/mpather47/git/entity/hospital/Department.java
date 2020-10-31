@@ -1,18 +1,10 @@
 package com.mpather47.git.entity.hospital;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
-@Entity
 public class Department {
-    @Id
     private int departmentId;
     private int employeeId;
     private String ward;
     private String role;
-
-    private Department() {
-    }
 
     public Department(DepartmentBuilder departmentBuilder){
         this.departmentId = departmentBuilder.departmentId;
