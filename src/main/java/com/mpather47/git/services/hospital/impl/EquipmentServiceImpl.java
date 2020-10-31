@@ -2,53 +2,49 @@ package com.mpather47.git.services.hospital.impl;
 
 import com.mpather47.git.entity.hospital.Equipment;
 import com.mpather47.git.repository.hospital.EquipmentRepository;
-import com.mpather47.git.repository.hospital.impl.EquipmentRepositoryImpl;
 import com.mpather47.git.services.hospital.EquipmentService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
+import java.util.stream.Collectors;
+
 @Service
 public class EquipmentServiceImpl implements EquipmentService {
-    private static EquipmentService service = null;
+    @Autowired
     private EquipmentRepository repository;
-
-    private EquipmentServiceImpl() {
-        this.repository = EquipmentRepositoryImpl.getRepository();
-    }
-
-    public static EquipmentService getService() {
-        if (service == null) service = new EquipmentServiceImpl();
-        return service;
-    }
 
 
     @Override
     public Set getAll() {
 
-        return this.repository.getAll();
+        return this.repository.findAll().stream().collect(Collectors.toSet());
     }
 
     @Override
     public Equipment create(Equipment equipment) {
-        return this.repository.create(equipment);
+        return this.repository.save(equipment);
     }
 
     @Override
     public Equipment read(String s) {
 
-        return this.repository.read(s);
+        return this.repository.findById(s).orElseGet(null);
     }
 
     @Override
     public Equipment update(Equipment equipment) {
 
-        return this.repository.update(equipment);
+        return this.repository.save(equipment);
     }
 
     @Override
     public boolean delete(String s) {
-
-        return this.repository.delete(s);
+        this.repository.deleteById(s);
+        if (repository.existsById(s)) {
+            return false;
+        }
+        else return true;
     }
 }
 

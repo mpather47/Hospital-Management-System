@@ -6,7 +6,7 @@ import com.mpather47.git.entity.hospital.Room;
 import java.util.List;
 
 public class RoomFactory {
-    public static Room createRoom(String roomId, List equipment, Hospital details) {
+    public static Room createRoom(String roomId, String equipment, String details) {
         return new Room.Builder()
                 .setRoomId(roomId)
                 .setEquipment(equipment)

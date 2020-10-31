@@ -1,14 +1,18 @@
 package com.mpather47.git.entity.account;
-import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
+@Entity
 public class Statement {
+
+    @Id
     private String statementNum;
     private String  date;
     private double paymentDue;
-    private Account details;
+    private transient Account details;
 
 
-    private Statement(){}
+    protected Statement(){}
 
     private Statement(Builder builder){
         this.statementNum = builder.statementNum;

@@ -8,6 +8,7 @@ import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Set;
 
@@ -15,7 +16,8 @@ import static org.junit.Assert.assertEquals;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class HospitalServiceImplTest {
-    private static HospitalService service = HospitalServiceImpl.getService();
+    @Autowired
+    private static HospitalService service;
     private static Helper help = new Helper();
     private static Hospital hospital = HospitalFactory.createHospital(help.generateId(), "St Mary", 2456);
     @Test

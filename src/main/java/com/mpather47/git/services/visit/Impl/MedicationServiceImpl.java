@@ -2,56 +2,53 @@ package com.mpather47.git.services.visit.Impl;
 
 import com.mpather47.git.entity.visit.Medication;
 import com.mpather47.git.repository.person.AddressRepository;
-
+import com.mpather47.git.repository.visit.Impl.MedicationRepositoryImpl;
 import com.mpather47.git.repository.visit.MedicationRepository;
 import com.mpather47.git.services.person.AddressService;
 import com.mpather47.git.services.visit.Impl.MedicationServiceImpl;
 import com.mpather47.git.services.visit.MedicationService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
-import java.util.stream.Collectors;
-
 @Service
 public class MedicationServiceImpl implements MedicationService {
 
-
-    @Autowired
+    private static MedicationService service=null;
     private MedicationRepository repository;
+
+    private MedicationServiceImpl() {
+        this.repository = MedicationRepositoryImpl.getRepository();
+    }
+
+    public static MedicationService getService(){
+        if(service==null) service = new MedicationServiceImpl();
+        return service;
+    }
 
 
     @Override
-    public Set<Medication> getAll() {
-        return this.repository.findAll().stream().collect(Collectors.toSet());
+    public Set getAll() {
+        return this.repository.getAll();
     }
 
     @Override
     public Medication create(Medication medication) {
-        return this.repository.save(medication);
+        return this.repository.create(medication);
     }
 
     @Override
     public Medication read(String s) {
-        return this.repository.findById(s).orElseGet(null);
+        return this.repository.read(s);
     }
 
     @Override
     public Medication  update(Medication  medication) {
-        if(this.repository.existsById(medication.getVisitId())) {
-            return this.repository.save(medication);
-        }
-        return null;
+        return this.repository.update(medication);
     }
 
     @Override
     public boolean delete(String s) {
-        this.repository.deleteById(s);
-        if(this.repository.existsById(s)){
-            return false;
-        }
-        else
-            return true;
+        return this.repository.delete(s);
     }
 }
 
