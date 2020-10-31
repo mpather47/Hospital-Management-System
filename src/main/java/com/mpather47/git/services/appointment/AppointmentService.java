@@ -6,5 +6,5 @@ import com.mpather47.git.services.IService;
 import java.util.Set;
 
 public interface AppointmentService extends IService<Appointment, String> {
-
+    Set<Appointment> getAll();
 }

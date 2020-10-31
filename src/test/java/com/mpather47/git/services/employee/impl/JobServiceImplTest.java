@@ -5,20 +5,23 @@ import com.mpather47.git.entity.employee.Job;
 import com.mpather47.git.entity.employee.Position;
 import com.mpather47.git.factory.employee.JobFactory;
 import com.mpather47.git.repository.employee.JobRepository;
-import com.mpather47.git.repository.employee.impl.JobRepositoryImpl;
+
 import com.mpather47.git.services.employee.JobService;
 import com.mpather47.git.utility.Helper;
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class JobServiceImplTest {
-    private static JobService service = JobServiceImpl.getService();
+
+    @Autowired
+    private  JobService service;
     private static Helper help = new Helper();
     private static Job job = JobFactory.createJob("Doctor");
 

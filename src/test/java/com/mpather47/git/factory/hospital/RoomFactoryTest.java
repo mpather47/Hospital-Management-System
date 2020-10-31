@@ -9,10 +9,10 @@ import org.junit.Assert;
 import java.util.List;
 
 public class RoomFactoryTest extends TestCase {
-    Hospital h;
-    List e;
+    //Hospital h;
+    //List e;
     public void testCreateRoom() {
-        Room r = RoomFactory.createRoom("e21", e, h);
+        Room r = RoomFactory.createRoom("e21", "Equipment list A", "Victoria");
         Assert.assertNotNull(r);
     }
 }

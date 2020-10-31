@@ -1,4 +1,3 @@
-/*
 package com.mpather47.git.repository.visit.Impl;
 import com.mpather47.git.entity.person.Person;
 import com.mpather47.git.entity.visit.Prescription;
@@ -11,7 +10,6 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
 import static org.junit.Assert.*;
-@Deprecated
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class PrescriptionRepositoryImplTest {
     private static PrescriptionRepository repository = PrescriptionRepositoryImpl.getRepository();
@@ -53,4 +51,4 @@ public class PrescriptionRepositoryImplTest {
 
     }
 
-}*/
+}

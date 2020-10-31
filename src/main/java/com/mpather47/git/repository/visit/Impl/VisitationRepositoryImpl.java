@@ -1,4 +1,3 @@
-/*
 package com.mpather47.git.repository.visit.Impl;
 
 
@@ -7,7 +6,7 @@ import com.mpather47.git.repository.visit.VisitationRepository;
 
 import java.util.HashSet;
 import java.util.Set;
-@Deprecated
+
 public class VisitationRepositoryImpl implements VisitationRepository{
 
     private static VisitationRepository repository=null;
@@ -60,4 +59,3 @@ public class VisitationRepositoryImpl implements VisitationRepository{
         return false;
     }
 }
-*/
