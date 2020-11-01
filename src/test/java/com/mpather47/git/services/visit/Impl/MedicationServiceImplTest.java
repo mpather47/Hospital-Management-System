@@ -17,7 +17,7 @@ import java.util.Set;
 import static org.junit.Assert.*;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class MedicationServiceImplTest {
-    private static MedicationService service =MedicationServiceImpl.getService();
+    private static MedicationService service;
     private static Helper help = new Helper();
     private static Medication medication= MedicationFactory.createMedication(help.generateId(),help.generateId(),help.generateId());
 

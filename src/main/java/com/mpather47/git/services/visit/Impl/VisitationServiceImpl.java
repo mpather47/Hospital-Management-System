@@ -3,50 +3,55 @@ package com.mpather47.git.services.visit.Impl;
 import com.mpather47.git.entity.visit.Prescription;
 import com.mpather47.git.entity.visit.Visitation;
 import com.mpather47.git.repository.person.AddressRepository;
-import com.mpather47.git.repository.visit.Impl.VisitationRepositoryImpl;
+
 import com.mpather47.git.repository.visit.VisitationRepository;
 import com.mpather47.git.services.person.impl.AddressServiceImpl;
 import com.mpather47.git.services.visit.PrescriptionService;
 import com.mpather47.git.services.visit.VisitationService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
+import java.util.stream.Collectors;
+
 @Service
 public class VisitationServiceImpl implements VisitationService {
 
-    private static VisitationService service = null;
+
+    @Autowired
     private VisitationRepository repository;
 
-    private VisitationServiceImpl(){this.repository = VisitationRepositoryImpl.getRepository();}
-
-    public static VisitationService getService(){
-        if(service==null) service = new VisitationServiceImpl();
-        return service;
-    }
-
-
     @Override
-    public Set getAll() {
-        return this.repository.getAll();
+    public Set<Visitation> getAll() {
+        return this.repository.findAll().stream().collect(Collectors.toSet());
     }
 
     @Override
     public Visitation create(Visitation visitation) {
-        return this.repository.create(visitation);
+        return this.repository.save(visitation);
     }
 
     @Override
     public Visitation read(String s) {
-        return this.repository.read(s);
+        return this.repository.findById(s).orElseGet(null);
     }
 
     @Override
     public Visitation update(Visitation visitation) {
-        return this.repository.update(visitation);
+        if(this.repository.existsById(visitation.getVisitId())){
+            return this.repository.save(visitation);
+
+        }
+
+        return null;
     }
 
     @Override
     public boolean delete(String s) {
-        return this.repository.delete(s);
+        this.repository.deleteById(s);
+        if (this.repository.existsById(s))
+            return false;
+        else
+            return true;
     }
 }

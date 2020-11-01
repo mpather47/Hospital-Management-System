@@ -1,10 +1,17 @@
 package com.mpather47.git.entity.visit;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.io.Serializable;
+import java.util.Objects;
 
-public class Prescription implements Serializable {
-    private String prescriptionId, medicationId, visitId;
-    private Prescription(){}
+@Entity
+public class Prescription  {
+    @Id
+    private String prescriptionId;
+
+    private String medicationId, visitId;
+    protected Prescription(){}
 
 
     private Prescription(Builder builder) {
@@ -67,5 +74,18 @@ public class Prescription implements Serializable {
             return new Prescription(this);
 
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Prescription that = (Prescription) o;
+        return prescriptionId.equals(that.prescriptionId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(prescriptionId);
     }
 }
