@@ -38,7 +38,7 @@ public class MedicationServiceImpl implements MedicationService {
 
     @Override
     public Medication  update(Medication  medication) {
-        if(this.repository.existsById(medication.getMedicationId())) {
+        if(this.repository.existsById(medication.getVisitId())) {
             return this.repository.save(medication);
         }
         return null;

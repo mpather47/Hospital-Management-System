@@ -4,7 +4,6 @@ import com.mpather47.git.entity.visit.Prescription;
 import com.mpather47.git.factory.visit.PrescriptionFactory;
 import com.mpather47.git.factory.visit.VisitationFactory;
 import com.mpather47.git.services.visit.Impl.PrescriptionServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Set;
@@ -12,7 +11,6 @@ import java.util.Set;
 @RestController
 @RequestMapping("/prescription")
 public class PrescriptionController {
-    @Autowired
     private PrescriptionServiceImpl prescriptionService;
 
     @PostMapping("/create")

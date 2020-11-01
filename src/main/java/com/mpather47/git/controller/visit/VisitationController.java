@@ -5,7 +5,6 @@ import com.mpather47.git.entity.visit.Visitation;
 import com.mpather47.git.factory.visit.MedicationFactory;
 import com.mpather47.git.factory.visit.VisitationFactory;
 import com.mpather47.git.services.visit.Impl.VisitationServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Set;
@@ -14,7 +13,6 @@ import java.util.Set;
 @RestController
 @RequestMapping("/visitation")
 public class VisitationController {
-    @Autowired
     private VisitationServiceImpl visitationService;
 
     @PostMapping("/create")
