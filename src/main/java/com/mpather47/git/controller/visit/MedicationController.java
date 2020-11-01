@@ -4,6 +4,7 @@ import com.mpather47.git.entity.visit.Medication;
 import com.mpather47.git.factory.visit.MedicationFactory;
 import com.mpather47.git.services.visit.Impl.MedicationServiceImpl;
 import org.junit.jupiter.api.extension.RegisterExtension;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Set;
@@ -11,6 +12,7 @@ import java.util.Set;
 @RestController
 @RequestMapping("/medication")
 public class MedicationController {
+    @Autowired
     private MedicationServiceImpl medicationService;
 
     @PostMapping("/create")
