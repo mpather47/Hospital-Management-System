@@ -4,6 +4,7 @@ import com.mpather47.git.entity.person.Person;
 import com.mpather47.git.entity.visit.Medication;
 import com.mpather47.git.factory.visit.MedicationFactory;
 import org.junit.FixMethodOrder;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
@@ -53,7 +54,7 @@ public class MedicationControllerTest {
 
     @Test
     public void c_update() {
-       Medication updated = new Medication.Builder().copyMedication(medication).setMedicationId("123213").setPrescriptionId("1231").setVisit("41243").build();
+        Medication updated = new Medication.Builder().copyMedication(medication).setPrescriptionId("123").setVisit("12414").build();
         String url = baseURL + "update/";
         System.out.println("Post data:" + updated);
         ResponseEntity<Medication> response = restTemplate.postForEntity(url,updated, Medication.class);
