@@ -19,7 +19,7 @@ import java.util.Set;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 
 public class PrescriptionServiceImplTest {
-    private static PrescriptionService service = PrescriptionServiceImpl.getService();
+    private static PrescriptionService service;
     private static Helper help = new Helper();
     private static Prescription prescription = PrescriptionFactory.createPrescription(help.generateId(),help.generateId(),help.generateId());
 
