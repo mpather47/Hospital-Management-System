@@ -1,6 +1,6 @@
 package com.mpather47.git.controller.visit;
 
-
+import com.mpather47.git.entity.person.Person;
 import com.mpather47.git.entity.visit.Medication;
 import com.mpather47.git.factory.visit.MedicationFactory;
 import org.junit.FixMethodOrder;
@@ -22,29 +22,29 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @RunWith(SpringRunner.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-
 public class MedicationControllerTest {
-    private static Medication medication = MedicationFactory.createMedication("1111", "11231","1312");
+    private static Medication medication = MedicationFactory.createMedication("11123","12312","123");
 
     @Autowired
     private TestRestTemplate restTemplate;
     private String baseURL = "http://localhost:8080/medication/";
 
+
     @Test
-    public void a_create(){
+    public void a_create() {
         String url = baseURL + "create";
         System.out.println("URL" + url);
         System.out.printf("Post data: " + medication);
         ResponseEntity<Medication> posResponse = restTemplate.postForEntity(url, medication, Medication.class);
         assertNotNull(posResponse);
         assertNotNull(posResponse.getBody());
-        medication = posResponse.getBody();
+       medication = posResponse.getBody();
         System.out.println("Saved data: " + medication);
         assertEquals(medication.getMedicationId(),posResponse.getBody().getMedicationId());
     }
 
     @Test
-    public void b_read(){
+    public void b_read() {
         String url = baseURL +  "read/" + medication.getMedicationId();
         System.out.println("URL: " + url);
         ResponseEntity<Medication> response = restTemplate.getForEntity(url,Medication.class);
@@ -52,8 +52,8 @@ public class MedicationControllerTest {
     }
 
     @Test
-    public void c_update(){
-        Medication updated = new Medication.Builder().copyMedication(medication).setMedicationId("1242").setVisit("121").setPrescriptionId("123123").build();
+    public void c_update() {
+       Medication updated = new Medication.Builder().copyMedication(medication).setMedicationId("123213").setPrescriptionId("1231").setVisit("41243").build();
         String url = baseURL + "update/";
         System.out.println("Post data:" + updated);
         ResponseEntity<Medication> response = restTemplate.postForEntity(url,updated, Medication.class);
@@ -62,20 +62,21 @@ public class MedicationControllerTest {
     }
 
     @Test
-    public void e_delete(){
-        String url = baseURL + "delete/" + medication.getMedicationId();
+    public void d_delete() {
+        String url = baseURL + "delete/" +medication.getMedicationId();
         System.out.println("URL: " + url);
         restTemplate.delete(url);
     }
 
     @Test
-    public void d_getAll(){
+    public void e_getAll() {
         String url = baseURL + "all/";
         HttpHeaders headers= new HttpHeaders();
         HttpEntity<String> entity = new HttpEntity<>(null,headers);
         ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET,entity,String.class);
         System.out.println(response);
         System.out.println(response.getBody());
-
     }
+
+
 }

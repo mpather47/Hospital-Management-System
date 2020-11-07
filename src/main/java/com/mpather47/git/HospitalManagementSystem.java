@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerA
 import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
 
 
+
 @SpringBootApplication
 public class HospitalManagementSystem {
     public static void main(String[] args) {
