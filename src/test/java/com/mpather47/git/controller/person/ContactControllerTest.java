@@ -34,13 +34,17 @@ public class ContactControllerTest {
     @Autowired
     private TestRestTemplate restTemplate;
     private String baseURL = "http://localhost:8080/contact/";
+    private static String SECURITY_USERNAME="client";
+    private static String SECURITY_PASSWORD= "password";
 
     @Test
     public void a_create(){
         String url = baseURL + "create/";
         System.out.println("URL: " + url);
         System.out.println("Post data: " + contact);
-        ResponseEntity<Contact> postResponse = restTemplate.postForEntity(url,contact,Contact.class);
+        ResponseEntity<Contact> postResponse = restTemplate
+                .withBasicAuth(SECURITY_USERNAME,SECURITY_PASSWORD)
+                .postForEntity(url,contact,Contact.class);
         assertNotNull(postResponse);
         assertNotNull(postResponse.getBody());
         contact = postResponse.getBody();
@@ -52,7 +56,9 @@ public class ContactControllerTest {
     public void b_read(){
         String url = baseURL + "read/" + contact.getContactId();
         System.out.println("URL: " + url);
-        ResponseEntity<Contact> response = restTemplate.getForEntity(url,Contact.class);
+        ResponseEntity<Contact> response = restTemplate
+                .withBasicAuth(SECURITY_USERNAME,SECURITY_PASSWORD)
+                .getForEntity(url,Contact.class);
         assertEquals(contact.getContactId(),response.getBody().getContactId());
 
     }
@@ -62,7 +68,9 @@ public class ContactControllerTest {
         Contact updated = new Contact.Builder().copy(contact).setEmail("ggdf").setCellphoneNo(2434324).setHomePhone(23434342).build();
         String url = baseURL + "update/";
         System.out.println("Post data:" + updated);
-        ResponseEntity<Contact> response = restTemplate.postForEntity(url,updated, Contact.class);
+        ResponseEntity<Contact> response = restTemplate
+                .withBasicAuth(SECURITY_USERNAME,SECURITY_PASSWORD)
+                .postForEntity(url,updated, Contact.class);
         System.out.println(response);
         assertEquals(contact.getContactId(),response.getBody().getContactId());
     }
@@ -71,7 +79,9 @@ public class ContactControllerTest {
     public void e_delete(){
         String url = baseURL + "delete/" + contact.getContactId();
         System.out.println("URL: " + url);
-        restTemplate.delete(url);
+        restTemplate
+                .withBasicAuth(SECURITY_USERNAME,SECURITY_PASSWORD)
+                .delete(url);
     }
 
     @Test
@@ -79,7 +89,9 @@ public class ContactControllerTest {
         String url = baseURL + "all/";
         HttpHeaders headers= new HttpHeaders();
         HttpEntity<String> entity = new HttpEntity<>(null,headers);
-        ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET,entity,String.class);
+        ResponseEntity<String> response = restTemplate
+                .withBasicAuth(SECURITY_USERNAME,SECURITY_PASSWORD)
+                .exchange(url, HttpMethod.GET,entity,String.class);
         System.out.println(response);
         System.out.println(response.getBody());
 
