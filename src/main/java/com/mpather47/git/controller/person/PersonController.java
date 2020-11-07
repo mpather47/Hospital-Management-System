@@ -10,8 +10,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Set;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/person")
-public class PersonController {
+public class    PersonController {
     @Autowired
     private PersonServiceImpl personService;
 
