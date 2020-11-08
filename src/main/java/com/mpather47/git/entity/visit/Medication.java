@@ -37,7 +37,7 @@ public class Medication  {
     }
 
     public static class Builder{
-        private String medicationId, prescriptionId, visitId;
+        private String prescriptionId, medicationId, visitId;
 
 
         public Builder setMedicationId(String medicationId){
