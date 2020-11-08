@@ -25,7 +25,8 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class PersonControllerTest {
 
     private static Person person = PersonFactory.createPerson("Marcell","1998/08/21");
-
+    private static String SECURITY_USERNAME="client";
+    private static String SECURITY_PASSWORD= "password";
     @Autowired
     private TestRestTemplate restTemplate;
     private String baseURL = "http://localhost:8080/person/";
@@ -35,7 +36,9 @@ public class PersonControllerTest {
         String url = baseURL + "create";
         System.out.println("URL" + url);
         System.out.printf("Post data: " + person);
-        ResponseEntity<Person> posResponse = restTemplate.postForEntity(url, person, Person.class);
+        ResponseEntity<Person> posResponse = restTemplate
+                .withBasicAuth(SECURITY_USERNAME,SECURITY_PASSWORD)
+                .postForEntity(url, person, Person.class);
         assertNotNull(posResponse);
         assertNotNull(posResponse.getBody());
         person = posResponse.getBody();
@@ -47,7 +50,9 @@ public class PersonControllerTest {
     public void b_read(){
         String url = baseURL +  "read/" + person.getPersonId();
         System.out.println("URL: " + url);
-        ResponseEntity<Person> response = restTemplate.getForEntity(url,Person.class);
+        ResponseEntity<Person> response = restTemplate
+                .withBasicAuth(SECURITY_USERNAME,SECURITY_PASSWORD)
+                .getForEntity(url,Person.class);
         assertEquals(person.getPersonId(),response.getBody().getPersonId());
     }
 
@@ -56,7 +61,9 @@ public class PersonControllerTest {
         Person updated = new Person.Builder().copy(person).setName("gsgfgd").setDateOfBirth("fgsdgsd").build();
         String url = baseURL + "update/";
         System.out.println("Post data:" + updated);
-        ResponseEntity<Person> response = restTemplate.postForEntity(url,updated, Person.class);
+        ResponseEntity<Person> response = restTemplate
+                .withBasicAuth(SECURITY_USERNAME,SECURITY_PASSWORD)
+                .postForEntity(url,updated, Person.class);
         System.out.println(response);
         assertEquals(person.getPersonId(),response.getBody().getPersonId());
     }
@@ -65,7 +72,9 @@ public class PersonControllerTest {
     public void e_delete(){
         String url = baseURL + "delete/" + person.getPersonId();
         System.out.println("URL: " + url);
-        restTemplate.delete(url);
+        restTemplate
+                .withBasicAuth(SECURITY_USERNAME,SECURITY_PASSWORD)
+                .delete(url);
     }
 
     @Test
@@ -73,7 +82,9 @@ public class PersonControllerTest {
         String url = baseURL + "all/";
         HttpHeaders headers= new HttpHeaders();
         HttpEntity<String> entity = new HttpEntity<>(null,headers);
-        ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET,entity,String.class);
+        ResponseEntity<String> response = restTemplate
+                .withBasicAuth(SECURITY_USERNAME,SECURITY_PASSWORD)
+                .exchange(url, HttpMethod.GET,entity,String.class);
         System.out.println(response);
         System.out.println(response.getBody());
 
