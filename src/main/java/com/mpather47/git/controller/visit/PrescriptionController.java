@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Set;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/prescription")
 public class PrescriptionController {
     private PrescriptionServiceImpl prescriptionService;

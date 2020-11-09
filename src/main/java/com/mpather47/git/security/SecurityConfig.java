@@ -40,8 +40,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .antMatchers(HttpMethod.GET,"person/read/**","person/all").hasRole(USER_ROLE)
                 .antMatchers(HttpMethod.GET,"contact/read/**","person/all").hasRole(USER_ROLE)
                 .antMatchers(HttpMethod.GET,"address/read/**","person/all").hasRole(USER_ROLE)
+                .antMatchers(HttpMethod.GET,"visitation/read/**","visitation/all").hasRole(USER_ROLE)
+                .antMatchers(HttpMethod.GET,"prescription/read/**","prescription/all").hasRole(USER_ROLE)
+                .antMatchers(HttpMethod.GET,"medication/read/**","medication/all").hasRole(USER_ROLE)
                 .and()
-                .csrf().disable();
+                .csrf()
+                .disable();
 
     }
     @Bean
