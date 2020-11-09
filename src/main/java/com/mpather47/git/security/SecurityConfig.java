@@ -37,14 +37,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .and()
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST,"**/create","**/read/**","**/all").hasRole(ADMIN_ROLE)
+                .antMatchers(HttpMethod.POST,"ward/**").hasRole(ADMIN_ROLE)
                 .antMatchers(HttpMethod.GET,"person/read/**","person/all").hasRole(USER_ROLE)
                 .antMatchers(HttpMethod.GET,"contact/read/**","person/all").hasRole(USER_ROLE)
                 .antMatchers(HttpMethod.GET,"address/read/**","person/all").hasRole(USER_ROLE)
                 .antMatchers(HttpMethod.GET,"account/read/**","account/all").hasRole(USER_ROLE)
                 .antMatchers(HttpMethod.GET,"invoice/read/**","invoice/all").hasRole(USER_ROLE)
                 .antMatchers(HttpMethod.GET,"statement/read/**","statement/all").hasRole(USER_ROLE)
+                .antMatchers(HttpMethod.GET,"job/read/**","employee/all").hasRole(USER_ROLE)
+                . antMatchers(HttpMethod.GET,"position/read/**","employee/all").hasRole(USER_ROLE)
+                .antMatchers(HttpMethod.GET,"visitation/read/**","visitation/all").hasRole(USER_ROLE)
+                .antMatchers(HttpMethod.GET,"prescription/read/**","prescription/all").hasRole(USER_ROLE)
+                .antMatchers(HttpMethod.GET,"medication/read/**","medication/all").hasRole(USER_ROLE)
+                .antMatchers(HttpMethod.GET,"appointement/create").hasRole(USER_ROLE)
+                .antMatchers(HttpMethod.GET,"hospital/read/**","hospital/all").hasRole(USER_ROLE)
+                .antMatchers(HttpMethod.GET,"room/read/**","hospital/all").hasRole(USER_ROLE)
+                .antMatchers(HttpMethod.GET,"equipment/read/**","hospital/all").hasRole(USER_ROLE)
                 .and()
-                .csrf().disable();
+                .csrf()
+                .disable();
 
     }
     @Bean

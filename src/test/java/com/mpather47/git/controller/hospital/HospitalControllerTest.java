@@ -27,13 +27,17 @@ public class HospitalControllerTest {
     @Autowired
     private TestRestTemplate restTemplate;
     private String baseURL = "http://localhost:8080/hospital/";
+    private static String SECURITY_USERNAME="client";
+    private static String SECURITY_PASSWORD= "password";
 
     @Test
     public void a_create(){
         String url = baseURL + "create/";
         System.out.println("URL: " + url);
         System.out.println("Post data: " + hospital);
-        ResponseEntity<Hospital> postResponse = restTemplate.postForEntity(url,hospital,Hospital.class);
+        ResponseEntity<Hospital> postResponse = restTemplate
+                .withBasicAuth(SECURITY_USERNAME,SECURITY_PASSWORD)
+                .postForEntity(url,hospital,Hospital.class);
         assertNotNull(postResponse);
         assertNotNull(postResponse.getBody());
         hospital = postResponse.getBody();
@@ -45,7 +49,9 @@ public class HospitalControllerTest {
     public void b_read(){
         String url = baseURL + "read/" + hospital.getHospitalId();
         System.out.println("URL: " + url);
-        ResponseEntity<Hospital> response = restTemplate.getForEntity(url,Hospital.class);
+        ResponseEntity<Hospital> response = restTemplate
+                .withBasicAuth(SECURITY_USERNAME,SECURITY_PASSWORD)
+                .getForEntity(url,Hospital.class);
         assertEquals(hospital.getHospitalId(),response.getBody().getHospitalId());
     }
 
@@ -54,7 +60,9 @@ public class HospitalControllerTest {
         Hospital updated = new Hospital.Builder().copy(hospital).setHospitalName("st mary").setHospitalNumber(323).build();
         String url = baseURL + "update/";
         System.out.println("Post data:" + updated);
-        ResponseEntity<Hospital> response = restTemplate.postForEntity(url, updated, Hospital.class);
+        ResponseEntity<Hospital> response = restTemplate
+                .withBasicAuth(SECURITY_USERNAME,SECURITY_PASSWORD)
+                .postForEntity(url, updated, Hospital.class);
         System.out.println(response);
         assertEquals(updated.getHospitalId(),response.getBody().getHospitalId());
     }
@@ -63,7 +71,9 @@ public class HospitalControllerTest {
     public void e_delete(){
         String url = baseURL + "delete/" + hospital.getHospitalId();
         System.out.println("URL: " + url);
-        restTemplate.delete(url);
+        restTemplate
+                .withBasicAuth(SECURITY_USERNAME,SECURITY_PASSWORD)
+                .delete(url);
     }
 
     @Test
@@ -71,7 +81,9 @@ public class HospitalControllerTest {
         String url = baseURL + "all/";
         HttpHeaders headers= new HttpHeaders();
         HttpEntity<String> entity = new HttpEntity<>(null,headers);
-        ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET,entity,String.class);
+        ResponseEntity<String> response = restTemplate
+                .withBasicAuth(SECURITY_USERNAME,SECURITY_PASSWORD)
+                .exchange(url, HttpMethod.GET,entity,String.class);
         System.out.println(response);
         System.out.println(response.getBody());
 

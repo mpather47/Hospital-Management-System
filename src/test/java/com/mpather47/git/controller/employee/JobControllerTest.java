@@ -28,6 +28,8 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class JobControllerTest {
 
     private Job job = JobFactory.buildJob("Teacher");
+    private static String SECURITY_USERNAME="client";
+    private static String SECURITY_PASSWORD="password";
 
     @Autowired
     private TestRestTemplate restTemplate;
@@ -42,7 +44,8 @@ public class JobControllerTest {
         String url = baseURL + "create/";
         System.out.println("URL: " + url);
         System.out.println("Post data: " + job);
-        ResponseEntity<Job> postResponse = restTemplate.postForEntity(url,job,Job.class);
+        ResponseEntity<Job> postResponse = restTemplate.withBasicAuth(SECURITY_USERNAME, SECURITY_PASSWORD)
+                .postForEntity(url,job,Job.class);
         assertNotNull(postResponse);
         assertNotNull(postResponse.getBody());
         job = postResponse.getBody();
@@ -53,10 +56,11 @@ public class JobControllerTest {
     @Test
     public void b_read(){
 
-        String url = baseURL + "read/" + job.getJobTittle();
+        String url = baseURL + "read/" +job.getJobTittle();
         System.out.println("URL: " + url);
-        ResponseEntity<Job> response = restTemplate.getForEntity(url,Job.class);
-        job = response.getBody();
+        ResponseEntity<Job> response = restTemplate
+                .withBasicAuth(SECURITY_USERNAME,SECURITY_PASSWORD)
+                .getForEntity(url,Job.class);
         assertEquals(job.getJobTittle(),response.getBody().getJobTittle());
 
     }
@@ -65,21 +69,27 @@ public class JobControllerTest {
     @Test
     public void c_update(){
 
-        Job updated = new Job.Builder().copy(job).setjobTittle("Teacher").build();
+       Job updated = new Job.Builder().copy(job).setjobTittle("CEO").build();
         String url = baseURL + "update/";
         System.out.println("Post data:" + updated);
-        ResponseEntity<Job> response = restTemplate.postForEntity(url,updated, Job.class);
-        job = response.getBody();
-        System.out.println(job);
+        ResponseEntity<Job> response = restTemplate
+               .withBasicAuth(SECURITY_USERNAME,SECURITY_PASSWORD)
+               .postForEntity(url,updated, Job.class);
+          System.out.println(response);
         assertEquals(job.getJobTittle(),response.getBody().getJobTittle());
+
+
+
     }
+
 
     @Test
     public void d_getall() {
         String url = baseURL + "all/";
         HttpHeaders headers= new HttpHeaders();
         HttpEntity<String> entity = new HttpEntity<>(null,headers);
-        ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET,entity,String.class);
+        ResponseEntity<String> response = restTemplate.withBasicAuth(SECURITY_USERNAME,SECURITY_PASSWORD)
+                .exchange(url, HttpMethod.GET,entity,String.class);
         System.out.println(response);
         System.out.println(response.getBody());
 
@@ -88,9 +98,11 @@ public class JobControllerTest {
     @Test
     public void e_delete(){
 
-        String url = baseURL + "delete/" + job.getJobTittle()+ job.getJobTittle();
+      String url = baseURL + "delete/" + job.getJobTittle() ;
         System.out.println("URL: " + url);
-        restTemplate.delete(url);
+        restTemplate.withBasicAuth(SECURITY_USERNAME,SECURITY_PASSWORD).delete(url);
+
+
     }
 
 
