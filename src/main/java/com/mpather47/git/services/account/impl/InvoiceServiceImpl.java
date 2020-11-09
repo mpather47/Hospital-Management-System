@@ -15,24 +15,26 @@ public class InvoiceServiceImpl implements InvoiceService {
     @Autowired
     private InvoiceRepository repository;
 
-
     @Override
-    public Set<Invoice> getAll() {
+    public Set getAll() {
+
         return this.repository.findAll().stream().collect(Collectors.toSet());
     }
 
     @Override
-    public Invoice create(Invoice invoice) { return this.repository.save(invoice);
+    public Invoice create(Invoice invoice) {
+        return this.repository.save(invoice);
     }
 
     @Override
     public Invoice read(String s) {
+
         return this.repository.findById(s).orElseGet(null);
     }
 
     @Override
     public Invoice update(Invoice invoice) {
-        if(this.repository.existsById(invoice.getInvoiceNum())){
+        if (this.repository.existsById(invoice.getInvoiceNum())) {
             return this.repository.save(invoice);
         }
         return null;
@@ -41,7 +43,10 @@ public class InvoiceServiceImpl implements InvoiceService {
     @Override
     public boolean delete(String s) {
         this.repository.deleteById(s);
-        if(this.repository.existsById(s))return false;
-        else return true;
+        if (this.repository.existsById(s)) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }

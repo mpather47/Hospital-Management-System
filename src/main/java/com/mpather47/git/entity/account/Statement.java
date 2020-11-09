@@ -11,7 +11,6 @@ public class Statement {
     private double paymentDue;
     private transient Account details;
 
-
     protected Statement(){}
 
     private Statement(Builder builder){

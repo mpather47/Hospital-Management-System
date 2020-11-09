@@ -11,12 +11,11 @@ import java.util.stream.Collectors;
 
 @Service
 public class AccountServiceImpl implements AccountService {
-
     @Autowired
     private AccountRepository repository;
 
     @Override
-    public Set<Account> getAll() { return this.repository.findAll().stream().collect(Collectors.toSet());
+    public Set getAll() { return this.repository.findAll().stream().collect(Collectors.toSet());
 
     }
 
@@ -42,7 +41,10 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public boolean delete(String s) {
         this.repository.deleteById(s);
-        if(this.repository.existsById(s))return false;
-        else return true;
+        if(this.repository.existsById(s)) {
+            return false;
+        }else{
+            return true;
+        }
     }
 }

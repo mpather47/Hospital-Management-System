@@ -17,17 +17,20 @@ public class StatementServiceImpl implements StatementService {
 
 
     @Override
-    public Set<Statement> getAll() {
+    public Set getAll() {
+
         return this.repository.findAll().stream().collect(Collectors.toSet());
     }
 
     @Override
     public Statement create(Statement statement) {
+
         return this.repository.save(statement);
     }
 
     @Override
     public Statement read(String s) {
+
         return this.repository.findById(s).orElseGet(null);
     }
 
@@ -42,8 +45,11 @@ public class StatementServiceImpl implements StatementService {
     @Override
     public boolean delete(String s) {
         this.repository.deleteById(s);
-        if(this.repository.existsById(s))return false;
-        else return true;
+        if(this.repository.existsById(s)) {
+            return false;
+        }else{
+            return true;
+        }
 
     }
 }

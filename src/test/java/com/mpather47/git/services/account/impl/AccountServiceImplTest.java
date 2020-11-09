@@ -18,7 +18,6 @@ public class AccountServiceImplTest {
 
     @Autowired
     private AccountService service;
-    private static Helper help = new Helper();
     private static Account account = AccountFactory.createAccount(2700.00,"Credit_payement");
 
 
@@ -33,7 +32,7 @@ public class AccountServiceImplTest {
     public void a_create() {
 
         Account generate = service.create(account);
-        assertEquals(account.getAccountId(), generate.getAccountId());
+        Assert.assertEquals(account.getAccountId(), generate.getAccountId());
         System.out.println("Create: " + generate);
     }
 
@@ -41,21 +40,19 @@ public class AccountServiceImplTest {
     public void b_read() {
 
         Account see = service.read(account.getAccountId());
-        assertEquals(account.getAccountId(), see.getAccountId());
         System.out.println("Read: " + see);
     }
 
     @Test
     public void c_update() {
-
         Account revise = new Account.Builder().copy(account).setBalance(100000.00).setPaymentMethod("Cash").build();
         revise = service.update(revise);
-        Assert.assertEquals(account.getAccountId(), revise.getAccountId());
         System.out.println("Update: " + revise);
     }
 
     @Test
     public void e_delete() {
-        service.delete(account.getAccountId());
+        boolean deleted = service.delete(account.getAccountId());
+        Assert.assertTrue(deleted);
     }
 }
