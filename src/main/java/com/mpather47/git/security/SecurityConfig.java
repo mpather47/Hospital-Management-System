@@ -40,6 +40,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .antMatchers(HttpMethod.GET,"person/read/**","person/all").hasRole(USER_ROLE)
                 .antMatchers(HttpMethod.GET,"contact/read/**","person/all").hasRole(USER_ROLE)
                 .antMatchers(HttpMethod.GET,"address/read/**","person/all").hasRole(USER_ROLE)
+                .antMatchers(HttpMethod.GET,"job/read/**","employee/all").hasRole(USER_ROLE)
+                . antMatchers(HttpMethod.GET,"position/read/**","employee/all").hasRole(USER_ROLE)
                 .and()
                 .csrf().disable();
 

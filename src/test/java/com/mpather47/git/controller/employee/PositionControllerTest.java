@@ -27,6 +27,10 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class PositionControllerTest {
 
     private Position position= PositionFactory.createPosition("CEO" ,"Accepted");
+    private static String SECURITY_USERNAME="client";
+    private static String SECURITY_PASSWORD="password";
+
+
 
     @Autowired
     private TestRestTemplate restTemplate;
@@ -39,7 +43,8 @@ public class PositionControllerTest {
         String url = baseURL + "create/";
         System.out.println("URL: " + url);
         System.out.println("Post data: " + position);
-        ResponseEntity<Position> postResponse = restTemplate.postForEntity(url,position,Position.class);
+        ResponseEntity<Position> postResponse = restTemplate.withBasicAuth(SECURITY_USERNAME,SECURITY_PASSWORD)
+                .postForEntity(url,position,Position.class);
         assertNotNull(postResponse);
         assertNotNull(postResponse.getBody());
         position = postResponse.getBody();
@@ -53,7 +58,8 @@ public class PositionControllerTest {
 
         String url = baseURL + "read/"+position.getPositionCode() + position.getPositionStatus();
         System.out.println("URL: " + url);
-        ResponseEntity<Position> response = restTemplate.getForEntity(url,Position.class);
+        ResponseEntity<Position> response = restTemplate.withBasicAuth(SECURITY_USERNAME, SECURITY_PASSWORD)
+                .getForEntity(url,Position.class);
         position = response.getBody();
         assertEquals(position.getPositionCode(),response.getBody().getPositionStatus());
 
@@ -67,7 +73,8 @@ public class PositionControllerTest {
         Position updated = new Position.Builder().copy(position).setPositionCode("CEO").setPositionStatus("Accepted").build();
         String url = baseURL + "update/";
         System.out.println("Post data:" + updated);
-        ResponseEntity<Position> response = restTemplate.postForEntity(url,updated, Position.class);
+        ResponseEntity<Position> response = restTemplate.withBasicAuth(SECURITY_USERNAME, SECURITY_PASSWORD)
+                .postForEntity(url,updated, Position.class);
         position = response.getBody();
         System.out.println(position);
         assertEquals(position.getPositionCode(),response.getBody().getPositionStatus());
@@ -80,7 +87,8 @@ public class PositionControllerTest {
         String url = baseURL + "all/";
         HttpHeaders headers= new HttpHeaders();
         HttpEntity<String> entity = new HttpEntity<>(null,headers);
-        ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET,entity,String.class);
+        ResponseEntity<String> response = restTemplate.withBasicAuth(SECURITY_USERNAME, SECURITY_PASSWORD)
+                .exchange(url, HttpMethod.GET,entity,String.class);
         System.out.println(response);
         System.out.println(response.getBody());
 
@@ -90,6 +98,6 @@ public class PositionControllerTest {
     public void e_delete(){
         String url = baseURL + "delete/" + position.getPositionCode() +position.getPositionStatus();
         System.out.println("URL: " + url);
-        restTemplate.delete(url);
+        restTemplate.withBasicAuth(SECURITY_USERNAME,SECURITY_PASSWORD).delete(url);
     }
 }

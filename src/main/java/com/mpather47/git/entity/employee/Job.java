@@ -2,14 +2,15 @@ package com.mpather47.git.entity.employee;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import java.io.Serializable;
 import java.util.Objects;
+//import java.io.Serializable;
+//import java.util.Objects;
 
 @Entity
 
 /**
  * @authour @Pilisa
- * Decription: Entity for Position
+ * Decription: Entity for Job
 
  */
 
