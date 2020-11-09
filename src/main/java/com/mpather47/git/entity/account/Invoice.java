@@ -22,8 +22,7 @@ public class Invoice {
 
     }
 
-    public String getInvoiceNum() {
-        return invoiceNum; }
+    public String getInvoiceNum() { return invoiceNum; }
 
     public String getInvoiceDate() {
         return invoiceDate;
@@ -33,8 +32,7 @@ public class Invoice {
         return description;
     }
 
-    public Account getDetails(){
-        return details; }
+    public Account getDetails(){ return details; }
 
     @Override
     public String toString() {

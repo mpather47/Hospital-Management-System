@@ -11,7 +11,8 @@ public class AccountFactoryTest {
     public void createAccount() {
 
         Account account = AccountFactory.createAccount(300.00,"Cash");
-        Assert.assertNotNull(account.getAccountId());
         System.out.println(account);
+        Assert.assertNotNull(account);
+
     }
 }

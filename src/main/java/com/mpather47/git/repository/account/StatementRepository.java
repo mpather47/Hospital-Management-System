@@ -9,3 +9,4 @@ import java.util.Set;
 @Repository
 public interface StatementRepository extends JpaRepository<Statement, String> {
 }
+

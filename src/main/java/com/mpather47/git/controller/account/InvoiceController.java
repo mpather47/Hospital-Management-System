@@ -11,28 +11,44 @@ import java.util.Set;
 @RestController
 @RequestMapping("/invoice")
 public class InvoiceController {
-
     @Autowired
     private InvoiceServiceImpl invoiceService;
 
     @PostMapping("/create")
     public Invoice create(@RequestBody Invoice invoice){
-        Invoice newInvoice = InvoiceFactory.createInvoice(
-                invoice.getInvoiceDate(),
-                invoice.getDescription(),
-                invoice.getDetails());
-        return invoiceService.create(newInvoice);
-
+        boolean invoiceExist = false;
+        Invoice newInvoice = InvoiceFactory.createInvoice(invoice.getInvoiceDate(), invoice.getDescription(), invoice.getDetails());
+        if (newInvoice != null) {
+            invoiceExist = true;
+        }
+        if (invoiceExist) {
+            return invoiceService.create(newInvoice);
+        }
+        else return InvoiceFactory.createInvoice(null,null,null);
     }
 
     @GetMapping("/read{id}")
     public Invoice read(@PathVariable String id){
-        return invoiceService.read(id);
+        boolean invoiceExist = false;
+        if(id !=null){
+            invoiceExist = true;
+        }
+        if (invoiceExist = true) {
+            return invoiceService.read(id);
+        }
+        else return null;
     }
 
     @PostMapping("/update")
     public Invoice update(@RequestBody Invoice invoice){
-        return invoiceService.update(invoice);
+        boolean invoiceExist = false;
+        if(invoice !=null) {
+            invoiceExist = true;
+        }
+        if (invoiceExist) {
+            return invoiceService.update(invoice);
+        }
+        else return null;
     }
 
     @GetMapping("/all")
@@ -42,6 +58,13 @@ public class InvoiceController {
 
     @DeleteMapping("/delete/{id}")
     public boolean delete(@PathVariable String id){
-        return invoiceService.delete(id);
+        boolean invoiceExist = false;
+        if(id != null){
+            invoiceExist = true;
+        }
+        if (invoiceExist) {
+            return invoiceService.delete(id);
+        }
+        else return false;
     }
 }
