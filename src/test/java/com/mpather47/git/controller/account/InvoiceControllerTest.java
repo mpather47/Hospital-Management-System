@@ -25,7 +25,10 @@ import static org.junit.Assert.*;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class InvoiceControllerTest {
 
-    private Invoice invoice = InvoiceFactory.createInvoice("27/07/2023","Coka Cola", AccountFactory.createAccount(555.00,"Payroll"));
+    private static Invoice invoice = InvoiceFactory.createInvoice("27/07/2023","Coka Cola", AccountFactory.createAccount(555.00,"Payroll"));
+    private static String SECURITY_USERNAME="client";
+    private static String SECURITY_PASSWORD= "password";
+
     @Autowired
     private TestRestTemplate restTemplate;
     private String baseURL = "http://localhost:8080/invoice/";
@@ -36,7 +39,9 @@ public class InvoiceControllerTest {
         String url = baseURL + "create/";
         System.out.println("URL: " + url);
         System.out.println("Post data: " + invoice);
-        ResponseEntity<Invoice> postResponse = restTemplate.postForEntity(url,invoice,Invoice.class);
+        ResponseEntity<Invoice> postResponse = restTemplate
+                .withBasicAuth(SECURITY_USERNAME,SECURITY_PASSWORD)
+                .postForEntity(url,invoice,Invoice.class);
         assertNotNull(postResponse);
         assertNotNull(postResponse.getBody());
         invoice = postResponse.getBody();
@@ -49,7 +54,9 @@ public class InvoiceControllerTest {
     public void b_read() {
         String url = baseURL + "read/" + invoice.getInvoiceNum();
         System.out.println("URL: " + url);
-        ResponseEntity<Invoice> response = restTemplate.getForEntity(url,Invoice.class);
+        ResponseEntity<Invoice> response = restTemplate
+                .withBasicAuth(SECURITY_USERNAME,SECURITY_PASSWORD)
+                .getForEntity(url,Invoice.class);
         invoice = response.getBody();
         assertEquals(invoice.getInvoiceNum(), response.getBody().getInvoiceNum());
 
@@ -60,8 +67,9 @@ public class InvoiceControllerTest {
         Invoice updated = new Invoice.Builder().copy(invoice).setInvoiceDate("07/01/2021").setDescription("LG Refrigerant").build();
         String url = baseURL + "update/";
         System.out.println("Post data:" + updated);
-        ResponseEntity<Invoice> response = restTemplate.postForEntity(url,updated, Invoice.class);
-        invoice = response.getBody();
+        ResponseEntity<Invoice> response = restTemplate
+                .withBasicAuth(SECURITY_USERNAME,SECURITY_PASSWORD)
+                .postForEntity(url,updated, Invoice.class);
         System.out.println(invoice);
         assertEquals(invoice.getInvoiceNum(),response.getBody().getInvoiceNum());
 
@@ -72,7 +80,9 @@ public class InvoiceControllerTest {
         String url = baseURL + "all/";
         HttpHeaders headers= new HttpHeaders();
         HttpEntity<String> entity = new HttpEntity<>(null,headers);
-        ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET,entity,String.class);
+        ResponseEntity<String> response = restTemplate
+                .withBasicAuth(SECURITY_USERNAME,SECURITY_PASSWORD)
+                .exchange(url, HttpMethod.GET,entity,String.class);
         System.out.println(response);
         System.out.println(response.getBody());
     }
@@ -81,6 +91,8 @@ public class InvoiceControllerTest {
     public void e_delete() {
         String url = baseURL + "delete/" + invoice.getInvoiceNum();
         System.out.println("URL: " + url);
-        restTemplate.delete(url);
+        restTemplate
+                .withBasicAuth(SECURITY_USERNAME,SECURITY_PASSWORD)
+                .delete(url);
     }
 }

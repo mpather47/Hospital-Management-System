@@ -19,7 +19,6 @@ public class InvoiceServiceImplTest {
 
     @Autowired
     private InvoiceService service;
-    private static Helper help = new Helper();
     private static Invoice invoice = InvoiceFactory.createInvoice("June 12-2009","Dixion Sound System",AccountFactory.createAccount(3800.76,"Cash"));
 
     @Test
@@ -34,14 +33,13 @@ public class InvoiceServiceImplTest {
     public void a_create() {
 
         Invoice generate = service.create(invoice);
-        assertEquals(invoice.getInvoiceNum(), generate.getInvoiceNum());
+        Assert.assertEquals(invoice.getInvoiceNum(), generate.getInvoiceNum());
         System.out.println("Create: " + generate);
     }
 
     @Test
     public void b_read() {
         Invoice see = service.read(invoice.getInvoiceNum());
-        assertEquals(invoice.getInvoiceNum(), see.getInvoiceNum());
         System.out.println("Read: " + see);
     }
 
@@ -50,12 +48,12 @@ public class InvoiceServiceImplTest {
 
         Invoice revise = new Invoice.Builder().copy(invoice).setInvoiceDate("September 14,2019").setDescription("DA 70 USB Headset Adaptor").build();
         revise = service.update(revise);
-        Assert.assertEquals(invoice.getInvoiceNum(), revise.getInvoiceNum());
         System.out.println("Update: " + revise);
     }
 
     @Test
     public void e_delete() {
-        service.delete(invoice.getInvoiceNum());
+        boolean deleted =  service.delete(invoice.getInvoiceNum());
+        Assert.assertTrue(deleted);
     }
 }

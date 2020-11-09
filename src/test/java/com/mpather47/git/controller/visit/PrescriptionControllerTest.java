@@ -5,6 +5,7 @@ import com.mpather47.git.entity.visit.Prescription;
 import com.mpather47.git.factory.visit.MedicationFactory;
 import com.mpather47.git.factory.visit.PrescriptionFactory;
 import org.junit.FixMethodOrder;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
@@ -27,17 +28,21 @@ public class PrescriptionControllerTest {
 
     private static Prescription prescription = PrescriptionFactory.createPrescription("1231","123123","123123");
 
+
     @Autowired
     private TestRestTemplate restTemplate;
     private String baseURL = "http://localhost:8080/prescription/";
-
+    private static String SECURITY_USERNAME="client";
+    private static String SECURITY_PASSWORD= "password";
 
     @Test
     public void a_create() {
         String url = baseURL + "create";
         System.out.println("URL" + url);
         System.out.printf("Post data: " + prescription);
-        ResponseEntity<Prescription> posResponse = restTemplate.postForEntity(url, prescription, Prescription.class);
+        ResponseEntity<Prescription> posResponse = restTemplate
+                .withBasicAuth(SECURITY_USERNAME,SECURITY_PASSWORD)
+                .postForEntity(url, prescription, Prescription.class);
         assertNotNull(posResponse);
         assertNotNull(posResponse.getBody());
         prescription = posResponse.getBody();
@@ -49,7 +54,9 @@ public class PrescriptionControllerTest {
     public void b_read() {
         String url = baseURL +  "read/" + prescription.getPrescriptionId();
         System.out.println("URL: " + url);
-        ResponseEntity<Prescription> response = restTemplate.getForEntity(url,Prescription.class);
+        ResponseEntity<Prescription> response = restTemplate
+                .withBasicAuth(SECURITY_USERNAME,SECURITY_PASSWORD)
+                .getForEntity(url,Prescription.class);
         assertEquals(prescription.getPrescriptionId(),response.getBody().getPrescriptionId());
     }
 
@@ -58,7 +65,9 @@ public class PrescriptionControllerTest {
         Prescription updated = new Prescription.Builder().copyPrescription(prescription).setPrescriptionId("1111").setMedicationId("22222").setVisitId("3333").build();
         String url = baseURL + "update/";
         System.out.println("Post data:" + updated);
-        ResponseEntity<Prescription> response = restTemplate.postForEntity(url,updated, Prescription.class);
+        ResponseEntity<Prescription> response = restTemplate
+                .withBasicAuth(SECURITY_USERNAME,SECURITY_PASSWORD)
+                .postForEntity(url,updated, Prescription.class);
         System.out.println(response);
         assertEquals(prescription.getPrescriptionId(),response.getBody().getPrescriptionId());
     }
@@ -67,7 +76,9 @@ public class PrescriptionControllerTest {
     public void d_delete() {
         String url = baseURL + "delete/" +prescription.getPrescriptionId();
         System.out.println("URL: " + url);
-        restTemplate.delete(url);
+        restTemplate
+                .withBasicAuth(SECURITY_USERNAME,SECURITY_PASSWORD)
+                .delete(url);
     }
 
     @Test
@@ -75,7 +86,9 @@ public class PrescriptionControllerTest {
         String url = baseURL + "all/";
         HttpHeaders headers= new HttpHeaders();
         HttpEntity<String> entity = new HttpEntity<>(null,headers);
-        ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET,entity,String.class);
+        ResponseEntity<String> response = restTemplate
+                .withBasicAuth(SECURITY_USERNAME,SECURITY_PASSWORD)
+                .exchange(url, HttpMethod.GET,entity,String.class);
         System.out.println(response);
         System.out.println(response.getBody());
     }

@@ -9,6 +9,7 @@ public class Person  {
     private String personId;
     private String name, dateOfBirth;
     protected Person(){}
+
     private Person(Builder builder) {
         this.personId = builder.personId;
         this.name = builder.name;

@@ -1,4 +1,5 @@
 package com.mpather47.git.entity.account;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -16,17 +17,12 @@ public class Account {
         this.accountId = builder.accountId;
         this.balance = builder.balance;
         this.paymentMethod = builder.paymentMethod;
-
     }
+    public String getAccountId() { return accountId; }
 
-    public String getAccountId() {
-        return accountId; }
+    public double getBalance() { return balance; }
 
-    public double getBalance() {
-        return balance; }
-
-    public String getPaymentMethod() {
-        return paymentMethod; }
+    public String getPaymentMethod() { return paymentMethod; }
 
     @Override
     public String toString(){

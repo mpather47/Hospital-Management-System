@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Set;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/account")
 public class AccountController {
 
@@ -18,16 +19,38 @@ public class AccountController {
 
     @PostMapping("/create")
     public Account create(@RequestBody Account account){
-        Account newAccount = AccountFactory.createAccount(account.getBalance(),
-                account.getPaymentMethod());
-        return accountService.create(newAccount);
+        boolean accountExist = false;
+        Account newAccount = AccountFactory.createAccount(account.getBalance(), account.getPaymentMethod());
+        if(newAccount !=null){
+            accountExist = true;
+        }
+        if (accountExist) {
+            return accountService.create(newAccount);
+        }
+        else  return AccountFactory.createAccount(0.00,"");
     }
     @GetMapping("/read{id}")
-    public Account read( @PathVariable String id){ return accountService.read(id);}
+    public Account read( @PathVariable String id){
+        boolean accountExist = false;
+        if (id != null){
+            accountExist = true;
+        }
+        if (accountExist = true) {
+            return accountService.read(id);
+        }
+        else return null;
+    }
 
     @PostMapping("/update")
     public Account update(@RequestBody Account account){
-        return accountService.update(account);
+        boolean accountExist = false;
+        if(account !=null) {
+            accountExist = true;
+        }
+        if(accountExist) {
+            return accountService.update(account);
+        }
+        else return null;
     }
 
     @GetMapping("/all")
@@ -37,7 +60,14 @@ public class AccountController {
 
     @DeleteMapping("/delete/{id}")
     public boolean delete(@PathVariable String id){
-        return accountService.delete(id);
+        boolean accountExist = false;
+        if (id != null){
+            accountExist = true;
+        }
+        if (accountExist) {
+            return accountService.delete(id);
+        }
+        else return false;
     }
 
 }

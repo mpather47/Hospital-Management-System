@@ -17,21 +17,39 @@ public class StatementController {
 
     @PostMapping("/create")
     public Statement create(@RequestBody Statement statement){
-        Statement newStatement = StatementFactory.createStatement(
-                statement.getDate(),
-                statement.getPaymentDue(),
-                statement.getDetails());
-        return statementService.create(newStatement);
+        boolean statementExist = false;
+        Statement newStatement = StatementFactory.createStatement(statement.getDate(), statement.getPaymentDue(), statement.getDetails());
+        if(statement !=null){
+            statementExist = true;
+        }
+        if(statementExist) {
+            return statementService.create(newStatement);
+        }
+        else return StatementFactory.createStatement(null,0.00,null);
     }
 
     @GetMapping("/read{id}")
     public Statement read(@PathVariable String id){
-        return statementService.read(id);
+        boolean statementExist = false;
+        if(id !=null){
+            statementExist = true;
+        }
+        if (statementExist = true) {
+            return statementService.read(id);
+        }
+        else return null;
     }
 
     @PostMapping("/update")
     public Statement update(@RequestBody Statement statement){
-        return statementService.update(statement);
+        boolean statementExist = false;
+        if(statement !=null) {
+            statementExist = true;
+        }
+        if (statementExist) {
+            return statementService.update(statement);
+        }
+        else return null;
     }
 
     @GetMapping("/all")
@@ -41,6 +59,13 @@ public class StatementController {
 
     @DeleteMapping("/delete/{id}")
     public boolean delete(@PathVariable String id){
-        return statementService.delete(id);
+        boolean statementExist = false;
+        if(id != null){
+            statementExist = true;
+        }
+        if (statementExist) {
+            return statementService.delete(id);
+        }
+        else return false;
     }
 }
