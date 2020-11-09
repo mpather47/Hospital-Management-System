@@ -28,6 +28,8 @@ public class RoomControllerTest {
     //static List e;
     //static Hospital a;
     private static Room room = RoomFactory.createRoom("2343", "Equipment roster b", "Victoria");
+    private static String SECURITY_USERNAME="client";
+    private static String SECURITY_PASSWORD= "password";
 
 
     @Autowired
@@ -39,7 +41,9 @@ public class RoomControllerTest {
         String url = baseURL + "/create";
         System.out.println("URL: " + url);
         System.out.println("Post data: " + room);
-        ResponseEntity<Room> postResponse = restTemplate.postForEntity(url, room,Room.class);
+        ResponseEntity<Room> postResponse = restTemplate
+                .withBasicAuth(SECURITY_USERNAME,SECURITY_PASSWORD)
+                .postForEntity(url, room,Room.class);
         assertNotNull(postResponse);
         assertNotNull(postResponse.getBody());
         room = postResponse.getBody();
@@ -51,7 +55,9 @@ public class RoomControllerTest {
     public void b_read(){
         String url = baseURL + "/read/" + room.getRoomId();
         System.out.println("URL: " + url);
-        ResponseEntity<Room> response = restTemplate.getForEntity(url,Room.class);
+        ResponseEntity<Room> response = restTemplate
+                .withBasicAuth(SECURITY_USERNAME,SECURITY_PASSWORD)
+                .getForEntity(url,Room.class);
         assertEquals(room.getRoomId(),response.getBody().getRoomId());
     }
 
@@ -60,7 +66,9 @@ public class RoomControllerTest {
         Room updated = new Room.Builder().copy(room).setEquipment("Equipment Roster a").setDetails("bbb").build();
         String url = baseURL + "/update";
         System.out.println("Post data:" + updated);
-        ResponseEntity<Room> response = restTemplate.postForEntity(url,updated, Room.class);
+        ResponseEntity<Room> response = restTemplate
+                .withBasicAuth(SECURITY_USERNAME,SECURITY_PASSWORD)
+                .postForEntity(url,updated, Room.class);
         System.out.println(response);
         assertEquals(room.getRoomId(),response.getBody().getRoomId());
     }
@@ -69,7 +77,9 @@ public class RoomControllerTest {
     public void e_delete(){
         String url = baseURL + "/delete/" + room.getRoomId();
         System.out.println("URL: " + url);
-        restTemplate.delete(url);
+        restTemplate
+                .withBasicAuth(SECURITY_USERNAME,SECURITY_PASSWORD)
+                .delete(url);
     }
 
     @Test
@@ -77,7 +87,9 @@ public class RoomControllerTest {
         String url = baseURL + "/all";
         HttpHeaders headers= new HttpHeaders();
         HttpEntity<String> entity = new HttpEntity<>(null,headers);
-        ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET,entity,String.class);
+        ResponseEntity<String> response = restTemplate
+                .withBasicAuth(SECURITY_USERNAME,SECURITY_PASSWORD)
+                .exchange(url, HttpMethod.GET,entity,String.class);
         System.out.println(response);
         System.out.println(response.getBody());
 
