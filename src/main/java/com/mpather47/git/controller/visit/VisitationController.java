@@ -11,6 +11,7 @@ import java.util.Set;
 
 
 @RestController
+@CrossOrigin
 @RequestMapping("/visitation")
 public class VisitationController {
     private VisitationServiceImpl visitationService;
