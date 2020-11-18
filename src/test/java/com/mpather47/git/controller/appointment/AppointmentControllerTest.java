@@ -26,7 +26,7 @@ import static org.junit.Assert.*;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class AppointmentControllerTest {
 
-    private static Appointment appointment = AppointmentFactory.createAppointment(new Helper().generateId(),"3", LocalDate.of(2020,10,20));
+    private static Appointment appointment = AppointmentFactory.createAppointment("3", "LocalDate.of(2020,10,20)");
 
     @Autowired
     private TestRestTemplate restTemplate = null;
@@ -56,7 +56,7 @@ public class AppointmentControllerTest {
     @Test
     public void c_update() {
         Appointment update = new Appointment.AppointmentBuilder().copy(appointment).
-                setBookingDate(LocalDate.of(2020,11,3)).build();
+                setBookingDate("LocalDate.of(2020,11,3)").build();
         String url = baseURL + "update";
         System.out.println("URL: " + url);
         System.out.println("Post data: " + update);
