@@ -17,7 +17,7 @@ import static org.junit.Assert.*;
 public class AppointmentServiceImplTest {
 
     private AppointmentService service = AppointmentServiceImpl.getService();
-    private static Appointment appointment = AppointmentFactory.createAppointment(new Helper().generateId(),"3", LocalDate.of(2020,10,20));
+    private static Appointment appointment = AppointmentFactory.createAppointment("3", "LocalDate.of(2020,10,20)");
 
     @Test
     public void a_create() {
@@ -34,7 +34,7 @@ public class AppointmentServiceImplTest {
     @Test
     public void c_update() {
         Appointment updated = new Appointment.AppointmentBuilder().copy(appointment).
-                setBookingDate(LocalDate.of(2020,11,3)).build();
+                setBookingDate("LocalDate.of(2020,11,3)").build();
 
         updated = service.update(updated);
         assertNotEquals(appointment, updated);

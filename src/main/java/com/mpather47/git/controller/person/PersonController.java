@@ -12,7 +12,7 @@ import java.util.Set;
 @RestController
 @CrossOrigin
 @RequestMapping("/person")
-public class    PersonController {
+public class PersonController {
     @Autowired
     private PersonServiceImpl personService;
 
@@ -43,7 +43,7 @@ public class    PersonController {
         }
         else return null;
     }
-
+    
     @PostMapping("/update")
     public Person update(@RequestBody Person person){
         boolean personExist = false;

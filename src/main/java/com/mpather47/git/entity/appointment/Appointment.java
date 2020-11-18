@@ -1,11 +1,9 @@
 package com.mpather47.git.entity.appointment;
 
-import java.time.LocalDate;
-
 public class Appointment {
     private String appointmentId;
     private String patientId;
-    private LocalDate bookingDate;
+    private String bookingDate;
 
     public Appointment(){}
     public Appointment (AppointmentBuilder appointmentBuilder){
@@ -22,7 +20,7 @@ public class Appointment {
         return patientId;
     }
 
-    public LocalDate getBookingDate() {
+    public String getBookingDate() {
         return bookingDate;
     }
 
@@ -38,7 +36,7 @@ public class Appointment {
     public static class AppointmentBuilder{
         private String appointmentId;
         private String patientId;
-        private LocalDate bookingDate;
+        private String bookingDate;
 
         public AppointmentBuilder(){}
 
@@ -52,7 +50,7 @@ public class Appointment {
             return this;
         }
 
-        public AppointmentBuilder setBookingDate(LocalDate bookingDate) {
+        public AppointmentBuilder setBookingDate(String bookingDate) {
             this.bookingDate = bookingDate;
             return this;
         }

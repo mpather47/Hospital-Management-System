@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Set;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/address")
 public class AddressController {
     @Autowired

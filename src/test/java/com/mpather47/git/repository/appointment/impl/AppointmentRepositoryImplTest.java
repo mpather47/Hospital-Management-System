@@ -18,7 +18,7 @@ public class AppointmentRepositoryImplTest {
 
     private static AppointmentRepository repository = AppointmentRepositoryImpl.getAppointmentRepository();
 
-    private static Appointment appointment = AppointmentFactory.createAppointment(new Helper().generateId(),"3", LocalDate.of(2020,10,20));
+    private static Appointment appointment = AppointmentFactory.createAppointment("3", "LocalDate.of(2020,10,20)");
 
     @Test
     public void a_create() {
@@ -35,7 +35,7 @@ public class AppointmentRepositoryImplTest {
     @Test
     public void c_update() {
         Appointment updated = new Appointment.AppointmentBuilder().copy(appointment).
-                setBookingDate(LocalDate.of(2020,11,3)).build();
+                setBookingDate("LocalDate.of(2020,11,3)").build();
 
         updated = repository.update(updated);
         assertEquals(appointment.getAppointmentId(), updated.getAppointmentId());

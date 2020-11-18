@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Set;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/appointment")
 public class AppointmentController {
 

@@ -26,7 +26,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class PrescriptionControllerTest {
 
-    private static Prescription prescription = PrescriptionFactory.createPrescription("1231","123123","123123");
+    private static Prescription prescription = PrescriptionFactory.createPrescription("1231","123123");
 
 
     @Autowired

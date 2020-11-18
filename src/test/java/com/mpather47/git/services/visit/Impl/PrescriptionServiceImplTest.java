@@ -21,7 +21,7 @@ import java.util.Set;
 public class PrescriptionServiceImplTest {
     private static PrescriptionService service;
     private static Helper help = new Helper();
-    private static Prescription prescription = PrescriptionFactory.createPrescription(help.generateId(),help.generateId(),help.generateId());
+    private static Prescription prescription = PrescriptionFactory.createPrescription(help.generateId(),help.generateId());
 
     @Test
     public void d_testGetAll() {

@@ -9,7 +9,7 @@ public class PrescriptionFactoryTest {
 
     @Test
     public void createPrescription() {
-        Prescription prescription = PrescriptionFactory.createPrescription("112","51","244");
+        Prescription prescription = PrescriptionFactory.createPrescription("112","51");
         Assert.assertNotNull(prescription);
     }
     
