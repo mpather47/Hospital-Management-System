@@ -4,6 +4,7 @@ import com.mpather47.git.entity.visit.Prescription;
 import com.mpather47.git.factory.visit.PrescriptionFactory;
 import com.mpather47.git.factory.visit.VisitationFactory;
 import com.mpather47.git.services.visit.Impl.PrescriptionServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Set;
@@ -12,12 +13,14 @@ import java.util.Set;
 @CrossOrigin
 @RequestMapping("/prescription")
 public class PrescriptionController {
+
+    @Autowired
     private PrescriptionServiceImpl prescriptionService;
 
     @PostMapping("/create")
     public Prescription create (@RequestBody Prescription prescription) {
         boolean prescriptionExist = false;
-        Prescription newPrescription = PrescriptionFactory.createPrescription(prescription.getPrescriptionId(),prescription.getMedicationId(),prescription.getVisitId());
+        Prescription newPrescription = PrescriptionFactory.createPrescription(prescription.getMedicationId(),prescription.getVisitId());
         if(newPrescription != null){
             prescriptionExist = true;
 
@@ -26,7 +29,7 @@ public class PrescriptionController {
         if (prescriptionExist){
             return prescriptionService.create(newPrescription);
         }
-        else return PrescriptionFactory.createPrescription("","","");
+        else return PrescriptionFactory.createPrescription("","");
 
     }
 
