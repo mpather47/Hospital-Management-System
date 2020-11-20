@@ -19,7 +19,7 @@ import static org.junit.Assert.*;
 public class VisitationServiceImplTest {
     private static VisitationService service;
     private static Helper help = new Helper();
-    private static Visitation visitation = VisitationFactory.createVisitation(help.generateId(),"13","1123","7032","2020/05/7");
+    private static Visitation visitation = VisitationFactory.createVisitation("13","1123","7032","2020/05/7");
 
     @Test
     public void d_testGetAll() {
