@@ -5,6 +5,7 @@ import com.mpather47.git.entity.visit.Visitation;
 import com.mpather47.git.factory.visit.MedicationFactory;
 import com.mpather47.git.factory.visit.VisitationFactory;
 import com.mpather47.git.services.visit.Impl.VisitationServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Set;
@@ -14,12 +15,13 @@ import java.util.Set;
 @CrossOrigin
 @RequestMapping("/visitation")
 public class VisitationController {
+    @Autowired
     private VisitationServiceImpl visitationService;
 
     @PostMapping("/create")
     public Visitation create (@RequestBody Visitation visitation) {
         boolean visitationExist = false;
-        Visitation newVisitation = VisitationFactory.createVisitation(visitation.getVisitId(),visitation.getPatientId(),visitation.getDoctorId(),visitation.getPrescriptionId(),visitation.getVisitDate());
+        Visitation newVisitation = VisitationFactory.createVisitation(visitation.getPatientId(),visitation.getDoctorId(),visitation.getPrescriptionId(),visitation.getVisitDate());
         if(newVisitation != null){
             visitationExist = true;
 
@@ -28,7 +30,7 @@ public class VisitationController {
         if (visitationExist){
             return visitationService.create(newVisitation);
         }
-        else return VisitationFactory.createVisitation("","","","","");
+        else return VisitationFactory.createVisitation("","","","");
 
     }
 

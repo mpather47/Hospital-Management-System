@@ -25,7 +25,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @RunWith(SpringRunner.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class VisitationControllerTest {
-    private static Visitation visitation = VisitationFactory.createVisitation("111","112","113","114","09/05/2020");
+    private static Visitation visitation = VisitationFactory.createVisitation("112","113","114","09/05/2020");
 
 
     @Autowired
